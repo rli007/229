@@ -5,17 +5,99 @@ This code evaluates baselines for an instance-level router whose main project fr
 > Given an input and the cheap strategy's first response, predict whether a stronger
 > strategy is worth its additional cost.
 
-Recommended no-API setup:
+Recommended OpenRouter setup:
 
-- `cheap_direct`: Llama 3.2 1B with a direct-answer prompt.
-- `strong_reasoning`: Llama 3.1 8B with a reasoning prompt.
-- Optional `medium_fewshot`: few-shot prompting, usually with the cheap model.
+- `cheap_direct`: `meta-llama/llama-3.2-3b-instruct:free`
+- `strong_reasoning`: `meta-llama/llama-3.3-70b-instruct:free`
+- `escalate_strong`: same 70B output, but with cascade cost equal to cheap feature call(s) plus 70B.
 
 The cleanest project story is binary escalation: accept `cheap_direct` or escalate
 to `strong_reasoning`. The code can still evaluate 3-way routing when
 `medium_fewshot` is included.
 
-## Generate Local Llama Outputs
+## Generate OpenRouter Outputs
+
+Set your key outside the repo:
+
+```bash
+export OPENROUTER_API_KEY="sk-or-v1-..."
+```
+
+Run a small end-to-end sample:
+
+```bash
+python scripts/run_openrouter_strategies.py \
+  --tasks data/tasks/sample_tasks.csv \
+  --output data/raw/openrouter_sample_outputs.jsonl \
+  --limit 20 \
+  --cheap-samples 3
+```
+
+For full experiments, replace `data/tasks/sample_tasks.csv` with the mixed benchmark task CSV.
+
+## Build Router Datasets
+
+Direct-routing dataset, where the router chooses 3B or 70B before observing the cheap answer:
+
+```bash
+python scripts/build_router_dataset.py \
+  --input data/raw/openrouter_sample_outputs.jsonl \
+  --output data/openrouter_direct_router_dataset.csv \
+  --strategies cheap_direct strong_reasoning
+```
+
+Cascade-routing dataset, where the router has already paid for cheap features and chooses accept vs escalate:
+
+```bash
+python scripts/build_router_dataset.py \
+  --input data/raw/openrouter_sample_outputs.jsonl \
+  --output data/openrouter_cascade_router_dataset.csv \
+  --strategies cheap_direct escalate_strong
+```
+
+## Run Baselines
+
+Metadata-only direct routing:
+
+```bash
+python baselines/router_baselines.py \
+  --data data/openrouter_direct_router_dataset.csv \
+  --models cheap_direct strong_reasoning \
+  --features task_type prompt_chars prompt_words num_numbers has_math_symbols has_code_like_text question_mark_count \
+  --cost-weight 0.05 \
+  --text-feature prompt \
+  --results-output results/openrouter_direct_metadata.csv
+```
+
+Cascade routing with cheap-response features:
+
+```bash
+python baselines/router_baselines.py \
+  --data data/openrouter_cascade_router_dataset.csv \
+  --models cheap_direct escalate_strong \
+  --features task_type prompt_chars prompt_words num_numbers has_math_symbols has_code_like_text question_mark_count cheap_answer_chars cheap_answer_words cheap_contains_uncertainty cheap_self_confidence cheap_sample_agreement \
+  --cost-weight 0.05 \
+  --threshold-feature cheap_self_confidence \
+  --thresholds 0.5 0.7 0.9 \
+  --text-feature prompt \
+  --results-output results/openrouter_cascade_features.csv
+```
+
+Held-out task evaluation example:
+
+```bash
+python baselines/router_baselines.py \
+  --data data/openrouter_cascade_router_dataset.csv \
+  --models cheap_direct escalate_strong \
+  --features task_type prompt_chars prompt_words num_numbers has_math_symbols has_code_like_text question_mark_count cheap_answer_chars cheap_answer_words cheap_contains_uncertainty cheap_self_confidence cheap_sample_agreement \
+  --cost-weight 0.05 \
+  --threshold-feature cheap_self_confidence \
+  --text-feature prompt \
+  --heldout-task-types knowledge \
+  --results-output results/openrouter_cascade_heldout_knowledge.csv
+```
+
+## Legacy Local Llama Path
 
 If your Hugging Face cache has the models, use model IDs or snapshot paths:
 
@@ -50,40 +132,6 @@ Example final CSV columns:
 example_id,task_type,prompt_chars,prompt_words,num_numbers,cheap_answer_words,cheap_self_confidence,cheap_direct_correct,cheap_direct_cost,strong_reasoning_correct,strong_reasoning_cost
 ```
 
-## Build Dataset From Raw Outputs
-
-```bash
-python scripts/build_router_dataset.py \
-  --input data/raw/local_llama_outputs.jsonl \
-  --output data/local_llama_router_dataset.csv \
-  --strategies cheap_direct strong_reasoning
-```
-
-The raw JSONL should have one record per example and nested results for each strategy.
-
-## Run Baselines
-
-```bash
-python baselines/router_baselines.py \
-  --data data/local_llama_router_dataset.csv \
-  --models cheap_direct strong_reasoning \
-  --features task_type prompt_chars prompt_words num_numbers has_math_symbols has_code_like_text question_mark_count \
-  --cost-weight 0.05
-```
-
-Cascade-feature run:
-
-```bash
-python baselines/router_baselines.py \
-  --data data/local_llama_router_dataset.csv \
-  --models cheap_direct strong_reasoning \
-  --features task_type prompt_chars prompt_words num_numbers has_math_symbols has_code_like_text question_mark_count cheap_answer_chars cheap_answer_words cheap_contains_uncertainty cheap_self_confidence cheap_sample_agreement \
-  --cost-weight 0.05 \
-  --threshold-feature cheap_self_confidence \
-  --thresholds 0.5 0.7 0.9 \
-  --results-output results/cascade_feature_baselines.csv
-```
-
 ## Policies Included
 
 - `always_<model>` for every candidate model.
@@ -93,6 +141,9 @@ python baselines/router_baselines.py \
   otherwise escalate to the last model.
 - `logistic_router`, a first supervised baseline.
 - `random_forest_router`, a nonlinear supervised baseline.
+- `mlp_router`, a small neural-network router over tabular features.
+- `tfidf_logistic_router`, a prompt text + tabular logistic router.
+- `tfidf_mlp_router`, a prompt text + tabular neural router.
 
 ## Metrics
 
@@ -105,8 +156,8 @@ python baselines/router_baselines.py \
 ## Project Choices To Decide
 
 1. **Candidate model set.**
-   - Recommended: `cheap_direct`, `medium_fewshot`, `strong_reasoning`.
-   - Safer milestone variant: binary `cheap_direct` vs `strong_reasoning`.
+   - Direct: `cheap_direct` vs `strong_reasoning`.
+   - Cascade: `cheap_direct` vs `escalate_strong`.
 
 2. **Routing target.**
    - Recommended: cost-aware utility, `correct - lambda * cost`.

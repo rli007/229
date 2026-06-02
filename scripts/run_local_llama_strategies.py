@@ -169,11 +169,11 @@ def strategy_result(
     sample_count: int = 1,
 ) -> dict[str, object]:
     generation = generator.generate(model, prompt, temperature=temperature)
-    samples: list[str] = []
+    output = generation.text
+    samples: list[str] = [extract_answer_field(output)]
     for _ in range(max(0, sample_count - 1)):
         sample = generator.generate(model, prompt, temperature=max(temperature, 0.7))
         samples.append(extract_answer_field(sample.text))
-    output = generation.text
     return {
         "output": output,
         "parsed_answer": extract_answer_field(output),

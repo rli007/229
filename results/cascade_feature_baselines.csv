@@ -9,3 +9,6 @@ threshold_cheap_self_confidence_0.7,1.0,4.5,0.7749999999999999,0.125,0.5
 threshold_cheap_self_confidence_0.9,1.0,6.25,0.6875,0.2125,0.25
 logistic_router,1.0,2.0,0.8999999999999999,0.0,1.0
 random_forest_router,1.0,2.0,0.8999999999999999,0.0,1.0
+mlp_router,1.0,2.0,0.8999999999999999,0.0,1.0
+tfidf_logistic_router,1.0,2.0,0.8999999999999999,0.0,1.0
+tfidf_mlp_router,1.0,2.0,0.8999999999999999,0.0,1.0

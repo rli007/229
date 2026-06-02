@@ -81,6 +81,8 @@ def build_feature_row(
     row: dict[str, Any] = {
         "example_id": record.get("example_id"),
         "task_type": record.get("task_type", "unknown"),
+        "answer_type": record.get("answer_type", "unknown"),
+        "prompt": prompt,
     }
     row.update(extract_prompt_features(prompt))
     row.update(
@@ -91,4 +93,3 @@ def build_feature_row(
         )
     )
     return row
-

@@ -28,8 +28,10 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
+from sklearn.neural_network import MLPClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 @dataclass(frozen=True)
@@ -68,8 +70,19 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="Optional column with train/val/test labels. If absent, a random split is used.",
     )
+    parser.add_argument(
+        "--heldout-task-types",
+        nargs="+",
+        default=None,
+        help="Optional task_type values to hold out for evaluation.",
+    )
     parser.add_argument("--test-size", type=float, default=0.25)
     parser.add_argument("--random-state", type=int, default=229)
+    parser.add_argument(
+        "--text-feature",
+        default=None,
+        help="Optional text column for TF-IDF router variants, usually `prompt`.",
+    )
     parser.add_argument(
         "--threshold-feature",
         default=None,
@@ -94,11 +107,18 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def validate_columns(df: pd.DataFrame, models: Iterable[str], features: Iterable[str]) -> None:
+def validate_columns(
+    df: pd.DataFrame,
+    models: Iterable[str],
+    features: Iterable[str],
+    text_feature: str | None = None,
+) -> None:
     missing = []
     for col in features:
         if col not in df.columns:
             missing.append(col)
+    if text_feature and text_feature not in df.columns:
+        missing.append(text_feature)
     for model in models:
         for suffix in ("correct", "cost"):
             col = f"{model}_{suffix}"
@@ -156,7 +176,11 @@ def evaluate_policy(
     )
 
 
-def feature_pipeline(df: pd.DataFrame, features: list[str]) -> ColumnTransformer:
+def feature_pipeline(
+    df: pd.DataFrame,
+    features: list[str],
+    text_feature: str | None = None,
+) -> ColumnTransformer:
     categorical = [
         col
         for col in features
@@ -164,21 +188,42 @@ def feature_pipeline(df: pd.DataFrame, features: list[str]) -> ColumnTransformer
         or isinstance(df[col].dtype, pd.CategoricalDtype)
     ]
     numeric = [col for col in features if col not in categorical]
-    return ColumnTransformer(
-        transformers=[
-            ("num", StandardScaler(), numeric),
-            ("cat", OneHotEncoder(handle_unknown="ignore"), categorical),
-        ],
-        remainder="drop",
-    )
+    transformers = []
+    if numeric:
+        transformers.append(("num", StandardScaler(), numeric))
+    if categorical:
+        transformers.append(("cat", OneHotEncoder(handle_unknown="ignore"), categorical))
+    if text_feature:
+        transformers.append(
+            (
+                "text",
+                TfidfVectorizer(max_features=5000, ngram_range=(1, 2), min_df=1),
+                text_feature,
+            )
+        )
+    return ColumnTransformer(transformers=transformers, remainder="drop")
 
 
 def split_data(
     df: pd.DataFrame,
     split_column: str | None,
+    heldout_task_types: list[str] | None,
     test_size: float,
     random_state: int,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
+    if heldout_task_types:
+        if "task_type" not in df.columns:
+            raise ValueError("--heldout-task-types requires a task_type column.")
+        heldout = set(heldout_task_types)
+        train = df[~df["task_type"].isin(heldout)].copy()
+        test = df[df["task_type"].isin(heldout)].copy()
+        if train.empty or test.empty:
+            raise ValueError(
+                "Held-out split produced empty train or eval data. "
+                f"Requested heldout task types: {', '.join(heldout_task_types)}"
+            )
+        return train, test
+
     if split_column:
         if split_column not in df.columns:
             raise ValueError(f"Split column {split_column!r} not found.")
@@ -205,14 +250,16 @@ def fit_router(
     train_df: pd.DataFrame,
     features: list[str],
     labels: np.ndarray,
+    text_feature: str | None = None,
 ) -> Pipeline:
+    input_columns = features + ([text_feature] if text_feature else [])
     pipe = Pipeline(
         steps=[
-            ("features", feature_pipeline(train_df, features)),
+            ("features", feature_pipeline(train_df, features, text_feature=text_feature)),
             ("clf", estimator),
         ]
     )
-    pipe.fit(train_df[features], labels)
+    pipe.fit(train_df[input_columns], labels)
     return pipe
 
 
@@ -237,11 +284,12 @@ def main() -> None:
     df = pd.read_csv(args.data)
     models = list(args.models)
     features = list(args.features)
-    validate_columns(df, models, features)
+    validate_columns(df, models, features, text_feature=args.text_feature)
 
     train_df, test_df = split_data(
         df,
         split_column=args.split_column,
+        heldout_task_types=args.heldout_task_types,
         test_size=args.test_size,
         random_state=args.random_state,
     )
@@ -312,8 +360,18 @@ def main() -> None:
             random_state=args.random_state,
             class_weight="balanced_subsample",
         ),
+        "mlp_router": MLPClassifier(
+            hidden_layer_sizes=(64, 32),
+            activation="relu",
+            alpha=1e-3,
+            max_iter=1000,
+            random_state=args.random_state,
+        ),
     }
     for name, estimator in supervised_models.items():
+        if len(np.unique(y_train)) < 2:
+            print(f"Skipping {name}: training labels contain only one class.")
+            continue
         router = fit_router(name, estimator, train_df, features, y_train)
         choices = router.predict(test_df[features])
         results.append(
@@ -327,9 +385,52 @@ def main() -> None:
             )
         )
 
+    if args.text_feature:
+        text_models = {
+            "tfidf_logistic_router": LogisticRegression(
+                max_iter=2000,
+                class_weight="balanced",
+            ),
+            "tfidf_mlp_router": MLPClassifier(
+                hidden_layer_sizes=(128, 64),
+                activation="relu",
+                alpha=1e-3,
+                max_iter=1000,
+                random_state=args.random_state,
+            ),
+        }
+        input_columns = features + [args.text_feature]
+        for name, estimator in text_models.items():
+            if len(np.unique(y_train)) < 2:
+                print(f"Skipping {name}: training labels contain only one class.")
+                continue
+            router = fit_router(
+                name,
+                estimator,
+                train_df,
+                features,
+                y_train,
+                text_feature=args.text_feature,
+            )
+            choices = router.predict(test_df[input_columns])
+            results.append(
+                evaluate_policy(
+                    name=name,
+                    df=test_df,
+                    models=models,
+                    choices=choices,
+                    cost_weight=args.cost_weight,
+                    oracle=y_test,
+                )
+            )
+
     print(f"Loaded {len(df)} rows: {len(train_df)} train, {len(test_df)} eval")
     print(f"Models: {', '.join(models)}")
     print(f"Features: {', '.join(features)}")
+    if args.text_feature:
+        print(f"Text feature: {args.text_feature}")
+    if args.heldout_task_types:
+        print(f"Held-out task types: {', '.join(args.heldout_task_types)}")
     print(f"Cost weight: {args.cost_weight}")
     print()
     print_results(results)

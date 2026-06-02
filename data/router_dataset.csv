@@ -1,17 +1,17 @@
-example_id,task_type,prompt_chars,prompt_words,num_numbers,has_math_symbols,has_code_like_text,question_mark_count,cheap_answer_chars,cheap_answer_words,cheap_contains_uncertainty,cheap_self_confidence,cheap_sample_agreement,cheap_direct_correct,cheap_direct_cost,medium_fewshot_correct,medium_fewshot_cost,strong_reasoning_correct,strong_reasoning_cost
-math_001,math,65,14,2,0,0,1,2,1,0,0.92,1.0,1,1.0,1,3.0,1,8.0
-math_002,math,57,12,3,0,0,1,5,2,0,0.61,0.6666666666666666,0,1.0,1,3.0,1,8.0
-math_003,math,86,19,3,0,0,1,3,1,0,0.88,0.6666666666666666,1,1.0,1,3.0,1,8.0
-math_004,math,83,16,3,0,0,1,2,1,0,0.57,0.6666666666666666,0,1.0,1,3.0,1,8.0
-strategy_001,commonsense,75,14,0,0,0,1,3,1,0,0.95,1.0,1,1.0,1,3.0,1,8.0
-strategy_002,commonsense,73,16,0,0,0,1,2,1,0,0.91,1.0,1,1.0,1,3.0,1,8.0
-strategy_003,commonsense,80,16,0,0,0,1,17,3,1,0.45,0.6666666666666666,0,1.0,1,3.0,1,8.0
-strategy_004,commonsense,77,17,0,0,0,1,3,1,0,0.52,0.6666666666666666,0,1.0,1,3.0,1,8.0
-knowledge_001,knowledge,78,16,0,0,0,1,1,1,0,0.93,1.0,1,1.0,1,3.0,1,8.0
-knowledge_002,knowledge,125,19,0,0,0,0,1,1,0,0.9,1.0,1,1.0,1,3.0,1,8.0
-knowledge_003,knowledge,99,18,0,0,0,1,1,1,0,0.87,1.0,1,1.0,1,3.0,1,8.0
-knowledge_004,knowledge,112,18,0,0,0,1,1,1,0,0.84,0.6666666666666666,1,1.0,1,3.0,1,8.0
-math_005,math,89,19,3,0,0,1,1,1,0,0.49,0.6666666666666666,0,1.0,1,3.0,1,8.0
-math_006,math,26,6,2,0,0,1,2,1,0,0.86,0.6666666666666666,1,1.0,1,3.0,1,8.0
-strategy_005,commonsense,85,15,0,0,0,1,3,1,0,0.96,1.0,1,1.0,1,3.0,1,8.0
-strategy_006,commonsense,59,13,0,0,0,1,2,1,0,0.5,0.6666666666666666,0,1.0,1,3.0,1,8.0
+example_id,task_type,answer_type,prompt,prompt_chars,prompt_words,num_numbers,has_math_symbols,has_code_like_text,question_mark_count,cheap_answer_chars,cheap_answer_words,cheap_contains_uncertainty,cheap_self_confidence,cheap_sample_agreement,cheap_direct_correct,cheap_direct_cost,medium_fewshot_correct,medium_fewshot_cost,strong_reasoning_correct,strong_reasoning_cost
+math_001,math,unknown,A store has 12 apples and buys 8 more. How many apples are there?,65,14,2,0,0,1,2,1,0,0.92,1.0,1,1.0,1,3.0,1,8.0
+math_002,math,unknown,"If 3 notebooks cost $4.50, how much do 10 notebooks cost?",57,12,3,0,0,1,5,2,0,0.61,0.6666666666666666,0,1.0,1,3.0,1,8.0
+math_003,math,unknown,"A train travels 180 miles in 3 hours. At that rate, how far will it travel in 7 hours?",86,19,3,0,0,1,3,1,0,0.88,0.6666666666666666,1,1.0,1,3.0,1,8.0
+math_004,math,unknown,"There are 5 boxes with 18 pencils each. If 17 pencils are removed, how many remain?",83,16,3,0,0,1,2,1,0,0.57,0.6666666666666666,0,1.0,1,3.0,1,8.0
+strategy_001,commonsense,unknown,Would a person need an umbrella during a heavy rainstorm? Answer yes or no.,75,14,0,0,0,1,3,1,0,0.95,1.0,1,1.0,1,3.0,1,8.0
+strategy_002,commonsense,unknown,Can a fish usually survive for a long time on dry land? Answer yes or no.,73,16,0,0,0,1,2,1,0,0.91,1.0,1,1.0,1,3.0,1,8.0
+strategy_003,commonsense,unknown,Could a person use a paper map after their phone battery dies? Answer yes or no.,80,16,0,0,0,1,17,3,1,0.45,0.6666666666666666,0,1.0,1,3.0,1,8.0
+strategy_004,commonsense,unknown,Is a whale more closely related to a shark than to a horse? Answer yes or no.,77,17,0,0,0,1,3,1,0,0.52,0.6666666666666666,0,1.0,1,3.0,1,8.0
+knowledge_001,knowledge,unknown,Which planet is known as the Red Planet? A) Venus B) Mars C) Jupiter D) Saturn,78,16,0,0,0,1,1,1,0,0.93,1.0,1,1.0,1,3.0,1,8.0
+knowledge_002,knowledge,unknown,The process by which plants make food using sunlight is called: A) respiration B) photosynthesis C) digestion D) fermentation,125,19,0,0,0,0,1,1,0,0.9,1.0,1,1.0,1,3.0,1,8.0
+knowledge_003,knowledge,unknown,Which scientist is most associated with the laws of motion? A) Darwin B) Newton C) Pasteur D) Curie,99,18,0,0,0,1,1,1,0,0.87,1.0,1,1.0,1,3.0,1,8.0
+knowledge_004,knowledge,unknown,"In economics, what term describes a general increase in prices? A) inflation B) deflation C) surplus D) monopoly",112,18,0,0,0,1,1,1,0,0.84,0.6666666666666666,1,1.0,1,3.0,1,8.0
+math_005,math,unknown,A recipe uses 2.5 cups of flour for 4 servings. How many cups are needed for 10 servings?,89,19,3,0,0,1,1,1,0,0.49,0.6666666666666666,0,1.0,1,3.0,1,8.0
+math_006,math,unknown,What is 15 percent of 240?,26,6,2,0,0,1,2,1,0,0.86,0.6666666666666666,1,1.0,1,3.0,1,8.0
+strategy_005,commonsense,unknown,"If someone is allergic to peanuts, should they avoid peanut butter? Answer yes or no.",85,15,0,0,0,1,3,1,0,0.96,1.0,1,1.0,1,3.0,1,8.0
+strategy_006,commonsense,unknown,Can a sealed empty bottle be full of air? Answer yes or no.,59,13,0,0,0,1,2,1,0,0.5,0.6666666666666666,0,1.0,1,3.0,1,8.0
