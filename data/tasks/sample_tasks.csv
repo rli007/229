@@ -1,0 +1,16 @@
+example_id,task_type,answer_type,prompt,answer
+math_001,math,number,"A store has 12 apples and buys 8 more. How many apples are there?",20
+math_002,math,number,"If 3 notebooks cost 4.50 dollars, how much do 10 notebooks cost?",15
+math_003,math,number,"A train travels 180 miles in 3 hours. At that rate, how far will it travel in 7 hours?",420
+math_004,math,number,"There are 5 boxes with 18 pencils each. If 17 pencils are removed, how many remain?",73
+math_005,math,number,"A recipe uses 2.5 cups of flour for 4 servings. How many cups are needed for 10 servings?",6.25
+math_006,math,number,"What is 15 percent of 240?",36
+commonsense_001,commonsense,yesno,"Would a person need an umbrella during a heavy rainstorm? Answer yes or no.",yes
+commonsense_002,commonsense,yesno,"Can a fish usually survive for a long time on dry land? Answer yes or no.",no
+commonsense_003,commonsense,yesno,"Could a person use a paper map after their phone battery dies? Answer yes or no.",yes
+commonsense_004,commonsense,yesno,"Is a whale more closely related to a shark than to a horse? Answer yes or no.",no
+knowledge_001,knowledge,choice,"Which planet is known as the Red Planet? A) Venus B) Mars C) Jupiter D) Saturn",B
+knowledge_002,knowledge,choice,"The process by which plants make food using sunlight is called: A) respiration B) photosynthesis C) digestion D) fermentation",B
+knowledge_003,knowledge,choice,"Which scientist is most associated with the laws of motion? A) Darwin B) Newton C) Pasteur D) Curie",B
+knowledge_004,knowledge,choice,"In economics, what term describes a general increase in prices? A) inflation B) deflation C) surplus D) monopoly",A
+

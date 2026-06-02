@@ -1,0 +1,22 @@
+__pycache__/
+*.py[cod]
+
+# Local model/generated benchmark outputs can be regenerated.
+data/raw/local_llama_outputs.jsonl
+data/raw/smoke_*.jsonl
+data/*smoke*.csv
+
+# LaTeX build artifacts.
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+
+# OS/editor noise.
+.DS_Store
+.vscode/
+

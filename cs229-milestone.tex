@@ -1,0 +1,105 @@
+% The template is adapted for CS229 project milestone
+\documentclass{article}
+
+\usepackage[preprint]{cs229}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsfonts}
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{CS229 Project Milestone}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\renewcommand{\maketitle}{
+  \begin{center}
+    {\bf \large Project Title: Learning When to Escalate: Cost-Aware Routing for Local Language Models}\\
+    \vspace{0.1cm}
+    {\bf Team Members:} [Full Name 1], [Full Name 2], [Full Name 3]\\
+    \vspace{0.1cm}
+    {\bf Emails:} [email1], [email2], [email3]\\
+    \vspace{0.2cm}
+  \end{center}
+}
+
+\begin{document}
+
+\maketitle
+
+\section{Motivation}
+
+Large language model systems often face a practical tradeoff between response quality and inference cost. A small local model may answer easy questions quickly, while a larger model or more expensive reasoning prompt may be needed for harder examples. Always using the larger model wastes computation on easy inputs; always using the smaller model sacrifices accuracy on difficult inputs. Our project studies whether a learned router can predict when escalation from a cheap local inference path to a stronger one is worth the extra cost.
+
+The setting we consider is external, per-example routing among complete inference strategies, rather than Mixture-of-Experts routing inside a single neural network. Our current no-API setup uses Llama 3.2 1B as the cheap direct-answer model and Llama 3.1 8B as the stronger reasoning model, both run locally from cached Hugging Face weights. The primary task is binary escalation: after observing the input and the cheap model's first response, decide whether to accept the cheap answer or escalate to the stronger model. This lets us study a realistic deployment question: can cheap signals such as prompt metadata, model confidence, and answer consistency predict the marginal value of a more expensive inference path?
+
+Prior work has studied LLM cascades and routing systems \cite{frugalgpt,routerbench,routellm}. Our contribution is narrower and empirical: we focus on local, no-API routing and compare simple metadata-only routers against routers that use cheap-model confidence and consistency features. This ablation is intended to test whether cheap response signals provide information beyond task type and input length.
+
+\section{Methods}
+
+We formulate escalation as a supervised learning problem. For each example $x_i$ and inference strategy $m$, we record correctness $c_{i,m} \in \{0,1\}$ and normalized cost $k_m$. We define utility as
+\[
+U(i,m) = c_{i,m} - \lambda k_m,
+\]
+where $\lambda$ controls the cost penalty. The oracle label is the strategy with maximum utility. In the binary setting, the label is whether to accept the cheap model's answer or escalate to the stronger model.
+
+We have implemented the data pipeline and baseline evaluation code. The raw data format stores each example's prompt, answer, task type, and the outputs of each local strategy. A preprocessing script converts those outputs into a flat router dataset with columns for prompt features, cheap-response features, correctness, and cost. The current feature groups are:
+\begin{itemize}
+    \item \textbf{Metadata features:} task type, prompt length, word count, number count, math-symbol indicator, code-like-text indicator, and question-mark count.
+    \item \textbf{Cheap-response features:} cheap answer length, self-reported confidence, uncertainty-phrase indicator, and sampled-answer agreement.
+\end{itemize}
+
+We evaluate fixed-policy baselines and learned routers. The fixed baselines are always using the cheap model, always using the strong model, random routing, oracle routing, and confidence-threshold escalation. The learned routers are logistic regression and random forest classifiers. Logistic regression is included as an interpretable baseline, while random forests can capture nonlinear interactions between task type, prompt complexity, and cheap-model confidence.
+
+\section{Preliminary Experiments and Results}
+
+We have built the experiment code and validated it on a small mixed-task fixture covering numeric math, yes/no commonsense questions, and multiple-choice knowledge questions. This fixture is not intended as a final benchmark; it checks that the pipeline can store local model outputs, grade answers automatically, build router features, and compare escalation policies. The planned benchmark will use a larger sample from spread-out automatically gradable tasks: GSM8K or SVAMP for math, StrategyQA for yes/no commonsense reasoning, and a small MMLU subset for multiple-choice knowledge.
+
+Table~\ref{tab:prelim} is the result table format we will use for the full local Llama experiment. The rows are already implemented in code; the bracketed entries should be filled after running the full benchmark.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+Policy / Router & Accuracy & Avg. Cost & Utility & Regret \\
+\midrule
+Always Llama 3.2 1B & [ ] & [ ] & [ ] & [ ] \\
+Always Llama 3.1 8B & [ ] & [ ] & [ ] & [ ] \\
+Confidence threshold & [ ] & [ ] & [ ] & [ ] \\
+Logistic regression router & [ ] & [ ] & [ ] & [ ] \\
+Random forest router & [ ] & [ ] & [ ] & [ ] \\
+Oracle router & [ ] & [ ] & [ ] & 0.000 \\
+\bottomrule
+\end{tabular}
+\caption{Planned preliminary evaluation table for the local Llama escalation benchmark. Accuracy is routed-task correctness, average cost uses normalized strategy costs, utility is $c-\lambda k$, and regret is the gap from oracle routing.}
+\label{tab:prelim}
+\end{table}
+
+The main error analysis will focus on two failure modes. First, the cheap model may be confidently wrong, making self-reported confidence a weak signal. We will test this by comparing confidence-threshold escalation with learned routers that also use task metadata and sample agreement. Second, random train/test splits may overstate performance if the router learns dataset-specific artifacts. To address this, we plan to report both a random split and a held-out-task split.
+
+\section{Next Steps}
+
+The immediate next step is to run the local benchmark on a larger mixed-task sample and fill Table~\ref{tab:prelim}. After that, we will run feature ablations comparing metadata-only routing, metadata plus cheap confidence, and metadata plus cheap sample agreement. We will also sweep the cost penalty $\lambda$ to produce an accuracy-cost tradeoff curve instead of reporting only one operating point.
+
+If time permits, we will add a held-out-task evaluation, such as training the router on math and commonsense examples and testing on multiple-choice knowledge questions. This will help determine whether the router learns general difficulty and confidence signals or mainly memorizes task-family patterns.
+
+\section{Team Contributions}
+
+\begin{itemize}
+    \item \textbf{[Full Name 1]}: Worked on local model inference, prompt templates, and automatic grading for numeric, yes/no, and multiple-choice tasks.
+    \item \textbf{[Full Name 2]}: Worked on router baselines, feature extraction, cost-aware utility evaluation, and result tables.
+    \item \textbf{[Full Name 3]}: Worked on dataset selection, error analysis, literature review, and milestone/final report writing.
+\end{itemize}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{reference}
+
+\end{document}

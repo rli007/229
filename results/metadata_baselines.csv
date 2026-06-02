@@ -1,0 +1,8 @@
+policy,accuracy,avg_cost,utility,regret,route_acc
+always_cheap_direct,0.5,1.0,0.44999999999999996,0.45,0.5
+always_medium_fewshot,1.0,3.0,0.85,0.04999999999999999,0.5
+always_strong_reasoning,1.0,8.0,0.6,0.3,0.0
+random,1.0,5.5,0.725,0.175,0.25
+oracle,1.0,2.0,0.8999999999999999,0.0,1.0
+logistic_router,0.5,1.0,0.44999999999999996,0.45,0.5
+random_forest_router,0.5,1.0,0.44999999999999996,0.45,0.5
