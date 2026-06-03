@@ -111,12 +111,40 @@ def parse_args() -> argparse.Namespace:
         help="Threshold values for --threshold-feature.",
     )
     parser.add_argument(
+        "--task-router",
+        nargs="+",
+        default=None,
+        help=(
+            "Optional manual task router rules, e.g. commonsense=cheap_general "
+            "math=math_specialist science=science_specialist."
+        ),
+    )
+    parser.add_argument(
         "--results-output",
         type=Path,
         default=None,
         help="Optional CSV path for saving the result table.",
     )
+    parser.add_argument(
+        "--skip-mlp",
+        action="store_true",
+        help="Skip MLP router variants for faster experiment sweeps.",
+    )
     return parser.parse_args()
+
+
+def parse_task_router_rules(rules: list[str] | None) -> dict[str, str]:
+    parsed = {}
+    for rule in rules or []:
+        if "=" not in rule:
+            raise ValueError(f"Invalid task router rule {rule!r}; expected task_type=model")
+        task_type, model = rule.split("=", 1)
+        task_type = task_type.strip()
+        model = model.strip()
+        if not task_type or not model:
+            raise ValueError(f"Invalid task router rule {rule!r}; expected task_type=model")
+        parsed[task_type] = model
+    return parsed
 
 
 def validate_columns(
@@ -254,6 +282,8 @@ def evaluate_for_cost_weight(
     text_feature: str | None,
     threshold_feature: str | None,
     thresholds: list[float],
+    task_router_rules: dict[str, str],
+    skip_mlp: bool,
     random_state: int,
 ) -> list[PolicyResult]:
     y_train = oracle_labels(train_df, models, cost_weight)
@@ -314,7 +344,42 @@ def evaluate_for_cost_weight(
                 )
             )
 
-    for name, estimator in base_router_estimators(random_state).items():
+    if task_router_rules:
+        if "task_type" not in test_df.columns:
+            raise ValueError("--task-router requires a task_type column.")
+        model_to_idx = {model: idx for idx, model in enumerate(models)}
+        missing_models = sorted(set(task_router_rules.values()) - set(model_to_idx))
+        if missing_models:
+            raise ValueError(
+                "Task router rules reference models not in --models: "
+                + ", ".join(missing_models)
+            )
+        choices = np.array(
+            [
+                model_to_idx.get(task_router_rules.get(str(task_type), models[0]))
+                for task_type in test_df["task_type"]
+            ],
+            dtype=int,
+        )
+        results.append(
+            evaluate_policy(
+                name="manual_task_router",
+                df=test_df,
+                models=models,
+                choices=choices,
+                cost_weight=cost_weight,
+                oracle=y_test,
+            )
+        )
+
+    base_estimators = base_router_estimators(random_state)
+    if skip_mlp:
+        base_estimators = {
+            name: estimator
+            for name, estimator in base_estimators.items()
+            if "mlp" not in name
+        }
+    for name, estimator in base_estimators.items():
         if len(np.unique(y_train)) < 2:
             print(
                 f"Skipping {name} at cost_weight={cost_weight:g}: "
@@ -336,7 +401,14 @@ def evaluate_for_cost_weight(
 
     if text_feature:
         input_columns = features + [text_feature]
-        for name, estimator in text_router_estimators(random_state).items():
+        text_estimators = text_router_estimators(random_state)
+        if skip_mlp:
+            text_estimators = {
+                name: estimator
+                for name, estimator in text_estimators.items()
+                if "mlp" not in name
+            }
+        for name, estimator in text_estimators.items():
             if len(np.unique(y_train)) < 2:
                 print(
                     f"Skipping {name} at cost_weight={cost_weight:g}: "
@@ -381,6 +453,7 @@ def main() -> None:
 
     results: list[PolicyResult] = []
     cost_weights = args.cost_weights if args.cost_weights is not None else [args.cost_weight]
+    task_router_rules = parse_task_router_rules(args.task_router)
     for cost_weight in cost_weights:
         results.extend(
             evaluate_for_cost_weight(
@@ -392,6 +465,8 @@ def main() -> None:
                 text_feature=args.text_feature,
                 threshold_feature=args.threshold_feature,
                 thresholds=args.thresholds,
+                task_router_rules=task_router_rules,
+                skip_mlp=args.skip_mlp,
                 random_state=args.random_state,
             )
         )
@@ -403,6 +478,13 @@ def main() -> None:
         print(f"Text feature: {args.text_feature}")
     if args.heldout_task_types:
         print(f"Held-out task types: {', '.join(args.heldout_task_types)}")
+    if task_router_rules:
+        print(
+            "Manual task router: "
+            + ", ".join(f"{task}={model}" for task, model in task_router_rules.items())
+        )
+    if args.skip_mlp:
+        print("Skipped MLP router variants")
     print(f"Cost weights: {', '.join(f'{weight:g}' for weight in cost_weights)}")
     print()
     print_results(results)

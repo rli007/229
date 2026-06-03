@@ -16,7 +16,9 @@ The main experiment compares metadata-only routing against cascade routing that 
 
 ```text
 scripts/prepare_strategyqa.py        Download/convert StrategyQA into a task CSV
+scripts/prepare_mixed_tasks.py       Download/convert StrategyQA, GSM8K, and SciQ
 scripts/run_openrouter_strategies.py Run cheap and strong OpenRouter models
+scripts/run_openrouter_multimodel.py Run arbitrary named OpenRouter model routes
 scripts/build_router_dataset.py      Convert raw model outputs into router-training CSVs
 baselines/router_baselines.py        Run routing evaluations and save result tables
 routing/prompts.py                   Prompt templates for cheap and strong model calls
@@ -233,6 +235,61 @@ The final analysis should compare:
 - Fixed policies vs learned routers
 - Accuracy-cost tradeoff across several `cost_weight` values
 - Normalized route costs vs actual OpenRouter `usage.cost`
+
+## Mixed Specialist Routing
+
+Prepare a balanced mixed-task CSV:
+
+```bash
+python scripts/prepare_mixed_tasks.py \
+  --output data/tasks/mixed_specialist_600.csv \
+  --per-task-limit 150 \
+  --shuffle
+```
+
+Run cheap specialist candidates on the same examples:
+
+```bash
+python scripts/run_openrouter_multimodel.py \
+  --tasks data/tasks/mixed_specialist_600.csv \
+  --output data/raw/openrouter_mixed_specialists.jsonl \
+  --route cheap_general=mistralai/mistral-nemo:full_reasoning \
+  --route math_specialist=qwen/qwen3-235b-a22b-2507:reasoning \
+  --route science_specialist=google/gemini-2.5-flash:reasoning \
+  --route humanities_specialist=qwen/qwen3-235b-a22b-2507:reasoning \
+  --limit 150 \
+  --concurrency 4 \
+  --request-delay-seconds 0.25 \
+  --max-retries 8 \
+  --resume
+```
+
+Build a router dataset with actual OpenRouter costs:
+
+```bash
+python scripts/build_router_dataset.py \
+  --input data/raw/openrouter_mixed_specialists.jsonl \
+  --output data/openrouter_mixed_specialists_router_dataset.csv \
+  --strategies cheap_general math_specialist science_specialist humanities_specialist \
+  --cheap-strategy cheap_general \
+  --cost-mode actual
+```
+
+Train/evaluate fixed policies, manual task routing, and learned routers:
+
+```bash
+python baselines/router_baselines.py \
+  --data data/openrouter_mixed_specialists_router_dataset.csv \
+  --models cheap_general math_specialist science_specialist humanities_specialist \
+  --features task_type prompt_chars prompt_words question_start num_numbers has_math_symbols has_code_like_text question_mark_count capitalized_word_count contains_parenthesis contains_quote has_comparison_word has_negation_word has_quantity_word cheap_answer_chars cheap_answer_words cheap_parsed_answer cheap_contains_uncertainty cheap_self_confidence cheap_sample_agreement \
+  --cost-weights 0 1000 5000 10000 20000 \
+  --task-router commonsense=cheap_general math=math_specialist science=science_specialist humanities=humanities_specialist \
+  --text-feature prompt \
+  --results-output results/openrouter_mixed_specialists.csv
+```
+
+For normalized conceptual costs instead of dollar costs, build with
+`--cost-mode normalized` and use smaller weights like `0 0.02 0.05 0.1`.
 
 Held-out-task evaluation only makes sense after creating a mixed dataset with
 multiple task types, such as StrategyQA, math, and MMLU. For StrategyQA-only

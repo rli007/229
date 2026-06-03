@@ -1,13 +1,10 @@
 #!/usr/bin/env python3
-"""Run OpenRouter models and write raw JSONL for routing experiments.
+"""Run several OpenRouter models over the same task CSV.
 
-The default project setup is:
-  - cheap_direct: Mistral Nemo
-  - strong_reasoning: Qwen3 235B A22B
+This is the specialist-routing runner. It writes one JSONL record per example,
+with one result object per named route, e.g.:
 
-The script writes both direct and cascade route costs:
-  - strong_reasoning: strong model cost only, for direct routing experiments.
-  - escalate_strong: cheap feature cost + strong model cost, for cascade experiments.
+    cheap_general, math_specialist, science_specialist
 """
 
 from __future__ import annotations
@@ -43,6 +40,13 @@ OPENROUTER_CHAT_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 
 @dataclass(frozen=True)
+class Route:
+    name: str
+    model: str
+    prompt_mode: str
+
+
+@dataclass(frozen=True)
 class Generation:
     text: str
     elapsed_seconds: float
@@ -55,46 +59,48 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--tasks", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument(
-        "--cheap-model",
-        default="mistralai/mistral-nemo",
-    )
-    parser.add_argument(
-        "--strong-model",
-        default="qwen/qwen3-235b-a22b-2507",
+        "--route",
+        action="append",
+        required=True,
+        help=(
+            "Named model route. Format: name=model_slug or name=model_slug:prompt_mode. "
+            "Prompt modes: direct, brief_reasoning, full_reasoning, reasoning."
+        ),
     )
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--max-tokens", type=int, default=192)
     parser.add_argument("--temperature", type=float, default=0.0)
-    parser.add_argument("--cheap-samples", type=int, default=1)
-    parser.add_argument(
-        "--cheap-prompt-mode",
-        choices=["direct", "brief_reasoning", "full_reasoning"],
-        default="direct",
-        help="Use a reasoning mode to expose cheap-model reasoning features for routing.",
-    )
-    parser.add_argument("--cheap-cost", type=float, default=1.0)
-    parser.add_argument("--strong-cost", type=float, default=8.0)
     parser.add_argument("--request-delay-seconds", type=float, default=0.25)
     parser.add_argument("--max-retries", type=int, default=8)
-    parser.add_argument(
-        "--concurrency",
-        type=int,
-        default=4,
-        help="Number of examples to process in parallel. Each example still runs cheap then strong sequentially.",
-    )
+    parser.add_argument("--concurrency", type=int, default=4)
     parser.add_argument("--resume", action="store_true")
-    parser.add_argument(
-        "--api-key-env",
-        default="OPENROUTER_API_KEY",
-        help="Environment variable containing the OpenRouter API key.",
-    )
-    parser.add_argument(
-        "--site-url",
-        default="https://github.com/rli007/229",
-        help="Optional HTTP-Referer header for OpenRouter rankings/analytics.",
-    )
+    parser.add_argument("--api-key-env", default="OPENROUTER_API_KEY")
+    parser.add_argument("--site-url", default="https://github.com/rli007/229")
     parser.add_argument("--app-title", default="CS229 Routing Project")
     return parser.parse_args()
+
+
+def parse_route(raw: str) -> Route:
+    if "=" not in raw:
+        raise ValueError(f"Invalid --route {raw!r}; expected name=model")
+    name, rest = raw.split("=", 1)
+    name = name.strip()
+    if not name:
+        raise ValueError(f"Invalid --route {raw!r}; route name is empty")
+    prompt_mode = "reasoning"
+    valid_prompt_modes = {"direct", "brief_reasoning", "full_reasoning", "reasoning"}
+    if ":" in rest:
+        model, maybe_mode = rest.rsplit(":", 1)
+        if maybe_mode in valid_prompt_modes:
+            prompt_mode = maybe_mode
+        else:
+            model = rest
+    else:
+        model = rest
+    model = model.strip()
+    if not model:
+        raise ValueError(f"Invalid --route {raw!r}; model slug is empty")
+    return Route(name=name, model=model, prompt_mode=prompt_mode)
 
 
 def load_env_file(path: Path) -> None:
@@ -127,6 +133,41 @@ def read_completed_ids(path: Path) -> set[str]:
     return completed
 
 
+def prompt_for_mode(question: str, task_type: str, answer_type: str, mode: str) -> str:
+    if mode == "direct":
+        return direct_prompt(question, task_type, answer_type)
+    if mode == "brief_reasoning":
+        return brief_reasoning_prompt(question, task_type, answer_type)
+    if mode == "full_reasoning":
+        return full_reasoning_prompt(question, task_type, answer_type)
+    return reasoning_prompt(question, task_type, answer_type)
+
+
+def retry_delay_seconds(
+    attempt: int,
+    retry_after_header: str | None = None,
+    response_body: str | None = None,
+) -> float:
+    candidates: list[float] = []
+    if retry_after_header:
+        try:
+            candidates.append(float(retry_after_header))
+        except ValueError:
+            pass
+    if response_body:
+        try:
+            body = json.loads(response_body)
+            metadata = body.get("error", {}).get("metadata", {})
+            retry_after = metadata.get("retry_after_seconds")
+            if retry_after is not None:
+                candidates.append(float(retry_after))
+        except (json.JSONDecodeError, TypeError, ValueError):
+            pass
+    if candidates:
+        return min(max(candidates), 60.0)
+    return min(2**attempt, 30)
+
+
 def chat_completion(
     api_key: str,
     model: str,
@@ -152,8 +193,8 @@ def chat_completion(
     }
     last_error: Exception | None = None
     for attempt in range(max_retries + 1):
-        retry_after_header: str | None = None
-        response_body: str | None = None
+        retry_after_header = None
+        response_body = None
         request = urllib.request.Request(
             OPENROUTER_CHAT_URL,
             data=data,
@@ -164,8 +205,7 @@ def chat_completion(
         try:
             with urllib.request.urlopen(request, timeout=120) as response:
                 result = json.loads(response.read().decode("utf-8"))
-            choice = result["choices"][0]
-            content = choice.get("message", {}).get("content", "")
+            content = result["choices"][0].get("message", {}).get("content", "")
             return Generation(
                 text=content or "",
                 elapsed_seconds=time.perf_counter() - started,
@@ -178,61 +218,33 @@ def chat_completion(
             last_error = RuntimeError(f"HTTP {exc.code}: {response_body}")
             if exc.code not in {408, 429, 500, 502, 503}:
                 break
-        except urllib.error.URLError as exc:
+        except (urllib.error.URLError, TimeoutError) as exc:
             last_error = exc
-        except TimeoutError as exc:
-            last_error = exc
-        sleep_seconds = retry_delay_seconds(
-            attempt,
-            error=last_error,
-            retry_after_header=retry_after_header,
-            response_body=response_body,
+        time.sleep(
+            retry_delay_seconds(
+                attempt,
+                retry_after_header=retry_after_header,
+                response_body=response_body,
+            )
         )
-        time.sleep(sleep_seconds)
     raise RuntimeError(f"OpenRouter request failed for {model}: {last_error}")
 
 
-def retry_delay_seconds(
-    attempt: int,
-    error: Exception | None = None,
-    retry_after_header: str | None = None,
-    response_body: str | None = None,
-) -> float:
-    candidates: list[float] = []
-    if retry_after_header:
-        try:
-            candidates.append(float(retry_after_header))
-        except ValueError:
-            pass
-    if response_body:
-        try:
-            body = json.loads(response_body)
-            metadata = body.get("error", {}).get("metadata", {})
-            retry_after = metadata.get("retry_after_seconds")
-            if retry_after is not None:
-                candidates.append(float(retry_after))
-        except (json.JSONDecodeError, TypeError, ValueError):
-            pass
-    if candidates:
-        return min(max(candidates), 60.0)
-    if isinstance(error, TimeoutError):
-        return min(2 ** (attempt + 1), 60)
-    return min(2**attempt, 30)
-
-
-def strategy_result(
+def run_route(
+    route: Route,
+    row: pd.Series,
     api_key: str,
-    model: str,
-    prompt: str,
-    gold: str,
-    answer_type: str,
-    cost: float,
     args: argparse.Namespace,
-    sample_count: int = 1,
 ) -> dict[str, Any]:
+    prompt = prompt_for_mode(
+        question=str(row["prompt"]),
+        task_type=str(row["task_type"]),
+        answer_type=str(row["answer_type"]),
+        mode=route.prompt_mode,
+    )
     generation = chat_completion(
         api_key=api_key,
-        model=model,
+        model=route.model,
         prompt=prompt,
         max_tokens=args.max_tokens,
         temperature=args.temperature,
@@ -240,106 +252,51 @@ def strategy_result(
         app_title=args.app_title,
         max_retries=args.max_retries,
     )
-    output = generation.text
-    samples: list[str] = [extract_answer_field(output)]
-    for _ in range(max(0, sample_count - 1)):
-        sample_generation = chat_completion(
-            api_key=api_key,
-            model=model,
-            prompt=prompt,
-            max_tokens=args.max_tokens,
-            temperature=max(args.temperature, 0.7),
-            site_url=args.site_url,
-            app_title=args.app_title,
-            max_retries=args.max_retries,
-        )
-        samples.append(extract_answer_field(sample_generation.text))
-        time.sleep(args.request_delay_seconds)
     return {
-        "output": output,
-        "parsed_answer": extract_answer_field(output),
-        "correct": grade_answer(output, gold, answer_type),
-        "cost": cost * max(1, sample_count),
-        "confidence": extract_confidence(output),
-        "samples": samples,
+        "output": generation.text,
+        "parsed_answer": extract_answer_field(generation.text),
+        "correct": grade_answer(generation.text, str(row["answer"]), str(row["answer_type"])),
+        "cost": 1.0,
+        "confidence": extract_confidence(generation.text),
+        "samples": [extract_answer_field(generation.text)],
         "elapsed_seconds": generation.elapsed_seconds,
         "usage": generation.usage,
         "model_returned": generation.model_returned,
+        "model_requested": route.model,
+        "prompt_mode": route.prompt_mode,
     }
-
-
-def make_cheap_prompt(
-    question: str,
-    task_type: str,
-    answer_type: str,
-    mode: str,
-) -> str:
-    if mode == "brief_reasoning":
-        return brief_reasoning_prompt(question, task_type, answer_type)
-    if mode == "full_reasoning":
-        return full_reasoning_prompt(question, task_type, answer_type)
-    return direct_prompt(question, task_type, answer_type)
 
 
 def run_example(
     row: pd.Series,
     row_number: int,
     total_rows: int,
+    routes: list[Route],
     api_key: str,
     args: argparse.Namespace,
-) -> tuple[int, str, dict[str, Any]]:
-    example_id = str(row["example_id"])
-    question = str(row["prompt"])
-    task_type = str(row["task_type"])
-    answer_type = str(row["answer_type"])
-    gold = str(row["answer"])
-    cheap_prompt = make_cheap_prompt(
-        question,
-        task_type,
-        answer_type,
-        args.cheap_prompt_mode,
-    )
-    strong_prompt = reasoning_prompt(question, task_type, answer_type)
-
+) -> tuple[str, dict[str, Any]]:
     record: dict[str, Any] = {
-        "example_id": example_id,
-        "task_type": task_type,
-        "answer_type": answer_type,
-        "prompt": question,
-        "answer": gold,
+        "example_id": str(row["example_id"]),
+        "task_type": str(row["task_type"]),
+        "answer_type": str(row["answer_type"]),
+        "prompt": str(row["prompt"]),
+        "answer": str(row["answer"]),
     }
-    cheap_result = strategy_result(
-        api_key=api_key,
-        model=args.cheap_model,
-        prompt=cheap_prompt,
-        gold=gold,
-        answer_type=answer_type,
-        cost=args.cheap_cost,
-        args=args,
-        sample_count=args.cheap_samples,
-    )
-    if args.request_delay_seconds > 0:
-        time.sleep(args.request_delay_seconds)
-    strong_result = strategy_result(
-        api_key=api_key,
-        model=args.strong_model,
-        prompt=strong_prompt,
-        gold=gold,
-        answer_type=answer_type,
-        cost=args.strong_cost,
-        args=args,
-    )
-    record["cheap_direct"] = cheap_result
-    record["strong_reasoning"] = strong_result
-    record["escalate_strong"] = {
-        **strong_result,
-        "cost": cheap_result["cost"] + args.strong_cost,
-    }
-    return row_number, f"[{row_number}/{total_rows}] {example_id}", record
+    for route in routes:
+        record[route.name] = run_route(route, row, api_key, args)
+        if args.request_delay_seconds > 0:
+            time.sleep(args.request_delay_seconds)
+    prefix = f"[{row_number}/{total_rows}] {record['example_id']}"
+    return prefix, record
 
 
 def main() -> None:
     args = parse_args()
+    routes = [parse_route(raw) for raw in args.route]
+    route_names = [route.name for route in routes]
+    if len(route_names) != len(set(route_names)):
+        raise SystemExit("Route names must be unique.")
+
     load_env_file(PROJECT_ROOT / ".env")
     api_key = os.environ.get(args.api_key_env)
     if not api_key:
@@ -369,26 +326,17 @@ def main() -> None:
             print("No new examples to run.")
         with ThreadPoolExecutor(max_workers=max(1, args.concurrency)) as executor:
             futures = [
-                executor.submit(
-                    run_example,
-                    row,
-                    row_number,
-                    len(tasks),
-                    api_key,
-                    args,
-                )
+                executor.submit(run_example, row, row_number, len(tasks), routes, api_key, args)
                 for row_number, row in pending_rows
             ]
             for future in as_completed(futures):
-                row_number, prefix, record = future.result()
+                prefix, record = future.result()
                 f.write(json.dumps(record) + "\n")
                 f.flush()
-                print(
-                    f"{prefix}: "
-                    f"cheap={record['cheap_direct']['correct']} "
-                    f"strong={record['strong_reasoning']['correct']}"
+                summary = " ".join(
+                    f"{route.name}={record[route.name]['correct']}" for route in routes
                 )
-
+                print(f"{prefix}: {summary}")
     print(f"Wrote raw outputs to {args.output}")
 
 

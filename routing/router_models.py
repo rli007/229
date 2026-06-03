@@ -24,7 +24,9 @@ def feature_pipeline(
     categorical = [
         col
         for col in features
-        if pd.api.types.is_object_dtype(df[col])
+        if not pd.api.types.is_numeric_dtype(df[col])
+        or pd.api.types.is_object_dtype(df[col])
+        or pd.api.types.is_string_dtype(df[col])
         or isinstance(df[col].dtype, pd.CategoricalDtype)
     ]
     numeric = [col for col in features if col not in categorical]

@@ -34,6 +34,22 @@ confidence: <number between 0 and 1>
 """
 
 
+def full_reasoning_prompt(question: str, task_type: str, answer_type: str) -> str:
+    return f"""You are answering a {task_type} question.
+Reason step by step. Then give the final answer and a confidence score from 0 to 1.
+
+Question:
+{question}
+
+{_format_hint(answer_type)}
+
+Use exactly this format:
+reasoning: <step-by-step reasoning>
+answer: <final answer>
+confidence: <number between 0 and 1>
+"""
+
+
 def reasoning_prompt(question: str, task_type: str, answer_type: str) -> str:
     return f"""You are answering a {task_type} question.
 Reason carefully but keep the explanation short.
