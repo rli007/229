@@ -1,0 +1,5 @@
+policy,accuracy,avg_cost,utility,regret,route_acc
+always_cheap_direct,0.5,1.0,0.44999999999999996,0.325,0.5
+always_strong_reasoning,1.0,8.0,0.6,0.175,0.5
+random,1.0,8.0,0.6,0.175,0.5
+oracle,1.0,4.5,0.7749999999999999,0.0,1.0

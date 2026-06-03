@@ -1,0 +1,8 @@
+numpy
+pandas
+scikit-learn
+datasets
+
+# Optional local-model path. Not needed for the OpenRouter pipeline.
+# torch
+# transformers

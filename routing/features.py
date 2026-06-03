@@ -24,13 +24,15 @@ def normalize_answer(text: str) -> str:
     return re.sub(r"\s+", " ", text.strip().lower())
 
 
-def extract_prompt_features(prompt: str) -> dict[str, int]:
+def extract_prompt_features(prompt: str) -> dict[str, Any]:
     words = re.findall(r"\b\w+\b", prompt)
+    lower_words = [word.lower() for word in words]
     numbers = re.findall(r"[-+]?\d*\.?\d+", prompt)
     math_symbols = set("=+-*/^<>")
     return {
         "prompt_chars": len(prompt),
         "prompt_words": len(words),
+        "question_start": lower_words[0] if lower_words else "unknown",
         "num_numbers": len(numbers),
         "has_math_symbols": int(any(ch in math_symbols for ch in prompt)),
         "has_code_like_text": int(
@@ -40,6 +42,42 @@ def extract_prompt_features(prompt: str) -> dict[str, int]:
             or "return " in prompt
         ),
         "question_mark_count": prompt.count("?"),
+        "capitalized_word_count": len(re.findall(r"\b[A-Z][a-z]+\b", prompt)),
+        "contains_parenthesis": int("(" in prompt or ")" in prompt),
+        "contains_quote": int('"' in prompt or "'" in prompt),
+        "has_comparison_word": int(
+            any(
+                word in lower_words
+                for word in (
+                    "more",
+                    "less",
+                    "than",
+                    "same",
+                    "different",
+                    "outnumber",
+                    "larger",
+                    "smaller",
+                    "before",
+                    "after",
+                    "longer",
+                    "older",
+                    "younger",
+                    "most",
+                )
+            )
+        ),
+        "has_negation_word": int(
+            any(
+                word in lower_words
+                for word in ("not", "no", "never", "without", "lack", "lacks", "doubt")
+            )
+        ),
+        "has_quantity_word": int(
+            any(
+                word in lower_words
+                for word in ("enough", "all", "entire", "each", "every", "only", "many", "few")
+            )
+        ),
     }
 
 
@@ -47,12 +85,21 @@ def extract_response_features(
     response: str,
     confidence: float | int | None = None,
     samples: list[str] | None = None,
-) -> dict[str, float | int]:
+    parsed_answer: str | None = None,
+) -> dict[str, Any]:
     lower = response.lower()
     words = re.findall(r"\b\w+\b", response)
-    features: dict[str, float | int] = {
+    normalized_answer = normalize_answer(parsed_answer or "")
+    if normalized_answer.startswith("yes"):
+        cheap_parsed_answer = "yes"
+    elif normalized_answer.startswith("no"):
+        cheap_parsed_answer = "no"
+    else:
+        cheap_parsed_answer = "other"
+    features: dict[str, Any] = {
         "cheap_answer_chars": len(response),
         "cheap_answer_words": len(words),
+        "cheap_parsed_answer": cheap_parsed_answer,
         "cheap_contains_uncertainty": int(
             any(phrase in lower for phrase in UNCERTAINTY_PHRASES)
         ),
@@ -90,6 +137,7 @@ def build_feature_row(
             response=str(cheap.get("output", "")),
             confidence=cheap.get("confidence"),
             samples=cheap.get("samples"),
+            parsed_answer=cheap.get("parsed_answer"),
         )
     )
     return row

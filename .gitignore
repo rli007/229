@@ -2,8 +2,10 @@ __pycache__/
 *.py[cod]
 
 # Local model/generated benchmark outputs can be regenerated.
+data/raw/openrouter_*.jsonl
 data/raw/local_llama_outputs.jsonl
 data/raw/smoke_*.jsonl
+data/openrouter_*.csv
 data/*smoke*.csv
 
 # LaTeX build artifacts.
@@ -21,3 +23,4 @@ data/*smoke*.csv
 .vscode/
 .env
 .env.*
+!.env.example

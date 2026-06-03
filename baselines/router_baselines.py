@@ -17,21 +17,25 @@ Example:
 from __future__ import annotations
 
 import argparse
+import sys
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable
 
 import numpy as np
 import pandas as pd
-from sklearn.compose import ColumnTransformer
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
-from sklearn.neural_network import MLPClassifier
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
-from sklearn.feature_extraction.text import TfidfVectorizer
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from routing.router_models import (
+    base_router_estimators,
+    fit_router,
+    text_router_estimators,
+)
 
 
 @dataclass(frozen=True)
@@ -41,6 +45,7 @@ class PolicyResult:
     avg_cost: float
     utility: float
     regret: float
+    cost_weight: float
     routing_accuracy: float | None = None
 
 
@@ -64,6 +69,13 @@ def parse_args() -> argparse.Namespace:
         type=float,
         default=0.0,
         help="Utility is correctness - cost_weight * cost.",
+    )
+    parser.add_argument(
+        "--cost-weights",
+        nargs="+",
+        type=float,
+        default=None,
+        help="Optional list of cost weights to evaluate in one run.",
     )
     parser.add_argument(
         "--split-column",
@@ -172,36 +184,9 @@ def evaluate_policy(
         avg_cost=float(chosen_cost.mean()),
         utility=float(chosen_utility.mean()),
         regret=float((oracle_utility - chosen_utility).mean()),
+        cost_weight=cost_weight,
         routing_accuracy=None if routing_acc is None else float(routing_acc),
     )
-
-
-def feature_pipeline(
-    df: pd.DataFrame,
-    features: list[str],
-    text_feature: str | None = None,
-) -> ColumnTransformer:
-    categorical = [
-        col
-        for col in features
-        if pd.api.types.is_object_dtype(df[col])
-        or isinstance(df[col].dtype, pd.CategoricalDtype)
-    ]
-    numeric = [col for col in features if col not in categorical]
-    transformers = []
-    if numeric:
-        transformers.append(("num", StandardScaler(), numeric))
-    if categorical:
-        transformers.append(("cat", OneHotEncoder(handle_unknown="ignore"), categorical))
-    if text_feature:
-        transformers.append(
-            (
-                "text",
-                TfidfVectorizer(max_features=5000, ngram_range=(1, 2), min_df=1),
-                text_feature,
-            )
-        )
-    return ColumnTransformer(transformers=transformers, remainder="drop")
 
 
 def split_data(
@@ -244,25 +229,6 @@ def split_data(
     return train.copy(), test.copy()
 
 
-def fit_router(
-    model_name: str,
-    estimator,
-    train_df: pd.DataFrame,
-    features: list[str],
-    labels: np.ndarray,
-    text_feature: str | None = None,
-) -> Pipeline:
-    input_columns = features + ([text_feature] if text_feature else [])
-    pipe = Pipeline(
-        steps=[
-            ("features", feature_pipeline(train_df, features, text_feature=text_feature)),
-            ("clf", estimator),
-        ]
-    )
-    pipe.fit(train_df[input_columns], labels)
-    return pipe
-
-
 def results_table(results: list[PolicyResult]) -> pd.DataFrame:
     table = pd.DataFrame([r.__dict__ for r in results])
     return table.rename(
@@ -277,6 +243,125 @@ def results_table(results: list[PolicyResult]) -> pd.DataFrame:
 def print_results(results: list[PolicyResult]) -> None:
     table = results_table(results)
     print(table.to_string(index=False, float_format=lambda x: f"{x:.4f}"))
+
+
+def evaluate_for_cost_weight(
+    train_df: pd.DataFrame,
+    test_df: pd.DataFrame,
+    models: list[str],
+    features: list[str],
+    cost_weight: float,
+    text_feature: str | None,
+    threshold_feature: str | None,
+    thresholds: list[float],
+    random_state: int,
+) -> list[PolicyResult]:
+    y_train = oracle_labels(train_df, models, cost_weight)
+    y_test = oracle_labels(test_df, models, cost_weight)
+    results: list[PolicyResult] = []
+
+    for idx, model in enumerate(models):
+        choices = np.full(len(test_df), idx, dtype=int)
+        results.append(
+            evaluate_policy(
+                name=f"always_{model}",
+                df=test_df,
+                models=models,
+                choices=choices,
+                cost_weight=cost_weight,
+                oracle=y_test,
+            )
+        )
+
+    rng = np.random.default_rng(random_state)
+    random_choices = rng.integers(0, len(models), size=len(test_df))
+    results.append(
+        evaluate_policy(
+            name="random",
+            df=test_df,
+            models=models,
+            choices=random_choices,
+            cost_weight=cost_weight,
+            oracle=y_test,
+        )
+    )
+
+    results.append(
+        evaluate_policy(
+            name="oracle",
+            df=test_df,
+            models=models,
+            choices=y_test,
+            cost_weight=cost_weight,
+            oracle=y_test,
+        )
+    )
+
+    if threshold_feature:
+        if threshold_feature not in test_df.columns:
+            raise ValueError(f"Threshold feature {threshold_feature!r} not found.")
+        feature_values = test_df[threshold_feature].to_numpy(dtype=float)
+        for threshold in thresholds:
+            choices = np.where(feature_values >= threshold, 0, len(models) - 1)
+            results.append(
+                evaluate_policy(
+                    name=f"threshold_{threshold_feature}_{threshold:g}",
+                    df=test_df,
+                    models=models,
+                    choices=choices,
+                    cost_weight=cost_weight,
+                    oracle=y_test,
+                )
+            )
+
+    for name, estimator in base_router_estimators(random_state).items():
+        if len(np.unique(y_train)) < 2:
+            print(
+                f"Skipping {name} at cost_weight={cost_weight:g}: "
+                "training labels contain only one class."
+            )
+            continue
+        router = fit_router(estimator, train_df, features, y_train)
+        choices = router.predict(test_df[features])
+        results.append(
+            evaluate_policy(
+                name=name,
+                df=test_df,
+                models=models,
+                choices=choices,
+                cost_weight=cost_weight,
+                oracle=y_test,
+            )
+        )
+
+    if text_feature:
+        input_columns = features + [text_feature]
+        for name, estimator in text_router_estimators(random_state).items():
+            if len(np.unique(y_train)) < 2:
+                print(
+                    f"Skipping {name} at cost_weight={cost_weight:g}: "
+                    "training labels contain only one class."
+                )
+                continue
+            router = fit_router(
+                estimator,
+                train_df,
+                features,
+                y_train,
+                text_feature=text_feature,
+            )
+            choices = router.predict(test_df[input_columns])
+            results.append(
+                evaluate_policy(
+                    name=name,
+                    df=test_df,
+                    models=models,
+                    choices=choices,
+                    cost_weight=cost_weight,
+                    oracle=y_test,
+                )
+            )
+    return results
 
 
 def main() -> None:
@@ -294,135 +379,22 @@ def main() -> None:
         random_state=args.random_state,
     )
 
-    y_train = oracle_labels(train_df, models, args.cost_weight)
-    y_test = oracle_labels(test_df, models, args.cost_weight)
     results: list[PolicyResult] = []
-
-    for idx, model in enumerate(models):
-        choices = np.full(len(test_df), idx, dtype=int)
-        results.append(
-            evaluate_policy(
-                name=f"always_{model}",
-                df=test_df,
+    cost_weights = args.cost_weights if args.cost_weights is not None else [args.cost_weight]
+    for cost_weight in cost_weights:
+        results.extend(
+            evaluate_for_cost_weight(
+                train_df=train_df,
+                test_df=test_df,
                 models=models,
-                choices=choices,
-                cost_weight=args.cost_weight,
-                oracle=y_test,
-            )
-        )
-
-    rng = np.random.default_rng(args.random_state)
-    random_choices = rng.integers(0, len(models), size=len(test_df))
-    results.append(
-        evaluate_policy(
-            name="random",
-            df=test_df,
-            models=models,
-            choices=random_choices,
-            cost_weight=args.cost_weight,
-            oracle=y_test,
-        )
-    )
-
-    results.append(
-        evaluate_policy(
-            name="oracle",
-            df=test_df,
-            models=models,
-            choices=y_test,
-            cost_weight=args.cost_weight,
-            oracle=y_test,
-        )
-    )
-
-    if args.threshold_feature:
-        if args.threshold_feature not in test_df.columns:
-            raise ValueError(f"Threshold feature {args.threshold_feature!r} not found.")
-        feature_values = test_df[args.threshold_feature].to_numpy(dtype=float)
-        for threshold in args.thresholds:
-            choices = np.where(feature_values >= threshold, 0, len(models) - 1)
-            results.append(
-                evaluate_policy(
-                    name=f"threshold_{args.threshold_feature}_{threshold:g}",
-                    df=test_df,
-                    models=models,
-                    choices=choices,
-                    cost_weight=args.cost_weight,
-                    oracle=y_test,
-                )
-            )
-
-    supervised_models = {
-        "logistic_router": LogisticRegression(max_iter=2000, class_weight="balanced"),
-        "random_forest_router": RandomForestClassifier(
-            n_estimators=300,
-            min_samples_leaf=3,
-            random_state=args.random_state,
-            class_weight="balanced_subsample",
-        ),
-        "mlp_router": MLPClassifier(
-            hidden_layer_sizes=(64, 32),
-            activation="relu",
-            alpha=1e-3,
-            max_iter=1000,
-            random_state=args.random_state,
-        ),
-    }
-    for name, estimator in supervised_models.items():
-        if len(np.unique(y_train)) < 2:
-            print(f"Skipping {name}: training labels contain only one class.")
-            continue
-        router = fit_router(name, estimator, train_df, features, y_train)
-        choices = router.predict(test_df[features])
-        results.append(
-            evaluate_policy(
-                name=name,
-                df=test_df,
-                models=models,
-                choices=choices,
-                cost_weight=args.cost_weight,
-                oracle=y_test,
-            )
-        )
-
-    if args.text_feature:
-        text_models = {
-            "tfidf_logistic_router": LogisticRegression(
-                max_iter=2000,
-                class_weight="balanced",
-            ),
-            "tfidf_mlp_router": MLPClassifier(
-                hidden_layer_sizes=(128, 64),
-                activation="relu",
-                alpha=1e-3,
-                max_iter=1000,
-                random_state=args.random_state,
-            ),
-        }
-        input_columns = features + [args.text_feature]
-        for name, estimator in text_models.items():
-            if len(np.unique(y_train)) < 2:
-                print(f"Skipping {name}: training labels contain only one class.")
-                continue
-            router = fit_router(
-                name,
-                estimator,
-                train_df,
-                features,
-                y_train,
+                features=features,
+                cost_weight=cost_weight,
                 text_feature=args.text_feature,
+                threshold_feature=args.threshold_feature,
+                thresholds=args.thresholds,
+                random_state=args.random_state,
             )
-            choices = router.predict(test_df[input_columns])
-            results.append(
-                evaluate_policy(
-                    name=name,
-                    df=test_df,
-                    models=models,
-                    choices=choices,
-                    cost_weight=args.cost_weight,
-                    oracle=y_test,
-                )
-            )
+        )
 
     print(f"Loaded {len(df)} rows: {len(train_df)} train, {len(test_df)} eval")
     print(f"Models: {', '.join(models)}")
@@ -431,7 +403,7 @@ def main() -> None:
         print(f"Text feature: {args.text_feature}")
     if args.heldout_task_types:
         print(f"Held-out task types: {', '.join(args.heldout_task_types)}")
-    print(f"Cost weight: {args.cost_weight}")
+    print(f"Cost weights: {', '.join(f'{weight:g}' for weight in cost_weights)}")
     print()
     print_results(results)
     if args.results_output:

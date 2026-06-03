@@ -45,6 +45,15 @@ def parse_args() -> argparse.Namespace:
         default="cheap_direct",
         help="Strategy used to extract cheap-response cascade features.",
     )
+    parser.add_argument(
+        "--cost-mode",
+        choices=["normalized", "actual"],
+        default="normalized",
+        help=(
+            "`normalized` uses each result's stored cost field. "
+            "`actual` uses OpenRouter usage.cost when present."
+        ),
+    )
     return parser.parse_args()
 
 
@@ -66,6 +75,7 @@ def flatten_record(
     record: dict[str, Any],
     strategies: list[str],
     cheap_strategy: str,
+    cost_mode: str,
 ) -> dict[str, Any]:
     row = build_feature_row(record, cheap_strategy=cheap_strategy)
     for strategy in strategies:
@@ -75,15 +85,50 @@ def flatten_record(
                 f"Record {record.get('example_id')} is missing strategy {strategy!r}."
             )
         row[f"{strategy}_correct"] = int(result["correct"])
-        row[f"{strategy}_cost"] = float(result["cost"])
+        row[f"{strategy}_cost"] = result_cost(
+            record,
+            strategy=strategy,
+            cheap_strategy=cheap_strategy,
+            cost_mode=cost_mode,
+        )
     return row
+
+
+def usage_cost(result: dict[str, Any] | None) -> float | None:
+    if not result:
+        return None
+    usage = result.get("usage") or {}
+    cost = usage.get("cost")
+    if cost is None:
+        return None
+    return float(cost)
+
+
+def result_cost(
+    record: dict[str, Any],
+    strategy: str,
+    cheap_strategy: str,
+    cost_mode: str,
+) -> float:
+    result = record[strategy]
+    if cost_mode == "normalized":
+        return float(result["cost"])
+
+    cost = usage_cost(result)
+    if strategy == "escalate_strong":
+        cheap_cost = usage_cost(record.get(cheap_strategy))
+        if cheap_cost is not None and cost is not None:
+            return cheap_cost + cost
+    if cost is not None:
+        return cost
+    return float(result["cost"])
 
 
 def main() -> None:
     args = parse_args()
     records = read_jsonl(args.input)
     rows = [
-        flatten_record(record, args.strategies, args.cheap_strategy)
+        flatten_record(record, args.strategies, args.cheap_strategy, args.cost_mode)
         for record in records
     ]
     df = pd.DataFrame(rows)

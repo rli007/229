@@ -18,6 +18,22 @@ confidence: <number between 0 and 1>
 """
 
 
+def brief_reasoning_prompt(question: str, task_type: str, answer_type: str) -> str:
+    return f"""You are answering a {task_type} question.
+Give one short sentence of reasoning, then the final answer and a confidence score from 0 to 1.
+
+Question:
+{question}
+
+{_format_hint(answer_type)}
+
+Use exactly this format:
+reasoning: <one short sentence>
+answer: <final answer>
+confidence: <number between 0 and 1>
+"""
+
+
 def reasoning_prompt(question: str, task_type: str, answer_type: str) -> str:
     return f"""You are answering a {task_type} question.
 Reason carefully but keep the explanation short.
@@ -67,4 +83,3 @@ def _format_hint(answer_type: str) -> str:
     if answer_type == "yesno":
         return "The final answer should be yes or no."
     return "The final answer should be concise."
-
