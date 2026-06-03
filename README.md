@@ -20,6 +20,7 @@ scripts/prepare_mixed_tasks.py       Download/convert StrategyQA, GSM8K, and Sci
 scripts/run_openrouter_strategies.py Run cheap and strong OpenRouter models
 scripts/run_openrouter_multimodel.py Run arbitrary named OpenRouter model routes
 scripts/build_router_dataset.py      Convert raw model outputs into router-training CSVs
+scripts/evaluate_model_groups.py     Test accuracy routing within fixed model groups
 baselines/router_baselines.py        Run routing evaluations and save result tables
 routing/prompts.py                   Prompt templates for cheap and strong model calls
 routing/graders.py                   Parse/grade numeric, yes/no, and multiple-choice answers
@@ -152,6 +153,27 @@ python scripts/build_router_dataset.py \
 Use `--cost-mode actual` to train/evaluate with OpenRouter's reported
 `usage.cost` values. Actual costs are usually very small, so use larger
 `--cost-weights` values when optimizing dollar utility.
+
+## Evaluate Similar-Cost Model Groups
+
+For the accuracy-routing question, keep the candidate set in a similar price
+range and set `cost_weight=0`. The helper below repeats the train/test split
+across several seeds so single-split luck is less misleading:
+
+```bash
+python scripts/evaluate_model_groups.py \
+  --data data/openrouter_mixed_5models_500_router_dataset.csv \
+  --models mistral_nemo qwen_235b gemini_flash llama_70b deepseek_v3 \
+  --group gemini_llama=gemini_flash,llama_70b \
+  --group llama_deepseek=llama_70b,deepseek_v3 \
+  --group gemini_llama_deepseek=gemini_flash,llama_70b,deepseek_v3 \
+  --features task_type prompt_chars prompt_words question_start num_numbers has_math_symbols has_code_like_text question_mark_count capitalized_word_count contains_parenthesis contains_quote has_comparison_word has_negation_word has_quantity_word cheap_answer_chars cheap_answer_words cheap_parsed_answer cheap_contains_uncertainty cheap_self_confidence cheap_sample_agreement \
+  --output results/model_group_accuracy_promising_with_mlp_summary.csv \
+  --details-output results/model_group_accuracy_promising_with_mlp_details.csv
+```
+
+If `--group` is omitted, all model pairs and triples are evaluated. Use
+`--skip-mlp` for a faster scan.
 
 ## Run Baselines
 

@@ -8,10 +8,13 @@ from __future__ import annotations
 
 import pandas as pd
 from sklearn.compose import ColumnTransformer
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import ExtraTreesClassifier, RandomForestClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.neural_network import MLPClassifier
+from sklearn.svm import LinearSVC
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
@@ -49,11 +52,32 @@ def feature_pipeline(
 def base_router_estimators(random_state: int) -> dict[str, object]:
     return {
         "logistic_router": LogisticRegression(max_iter=2000, class_weight="balanced"),
+        "linear_svm_router": LinearSVC(
+            class_weight="balanced",
+            max_iter=5000,
+            random_state=random_state,
+        ),
+        "knn_router": KNeighborsClassifier(
+            n_neighbors=15,
+            weights="distance",
+        ),
+        "decision_tree_router": DecisionTreeClassifier(
+            max_depth=6,
+            min_samples_leaf=5,
+            random_state=random_state,
+            class_weight="balanced",
+        ),
         "random_forest_router": RandomForestClassifier(
             n_estimators=300,
             min_samples_leaf=3,
             random_state=random_state,
             class_weight="balanced_subsample",
+        ),
+        "extra_trees_router": ExtraTreesClassifier(
+            n_estimators=500,
+            min_samples_leaf=2,
+            random_state=random_state,
+            class_weight="balanced",
         ),
         "mlp_router": MLPClassifier(
             hidden_layer_sizes=(64, 32),
@@ -70,6 +94,11 @@ def text_router_estimators(random_state: int) -> dict[str, object]:
         "tfidf_logistic_router": LogisticRegression(
             max_iter=2000,
             class_weight="balanced",
+        ),
+        "tfidf_linear_svm_router": LinearSVC(
+            class_weight="balanced",
+            max_iter=5000,
+            random_state=random_state,
         ),
         "tfidf_mlp_router": MLPClassifier(
             hidden_layer_sizes=(128, 64),

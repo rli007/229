@@ -76,6 +76,7 @@ def flatten_record(
     strategies: list[str],
     cheap_strategy: str,
     cost_mode: str,
+    missing_actual_costs: dict[str, float] | None = None,
 ) -> dict[str, Any]:
     row = build_feature_row(record, cheap_strategy=cheap_strategy)
     for strategy in strategies:
@@ -90,6 +91,7 @@ def flatten_record(
             strategy=strategy,
             cheap_strategy=cheap_strategy,
             cost_mode=cost_mode,
+            missing_actual_costs=missing_actual_costs,
         )
     return row
 
@@ -109,6 +111,7 @@ def result_cost(
     strategy: str,
     cheap_strategy: str,
     cost_mode: str,
+    missing_actual_costs: dict[str, float] | None = None,
 ) -> float:
     result = record[strategy]
     if cost_mode == "normalized":
@@ -121,14 +124,43 @@ def result_cost(
             return cheap_cost + cost
     if cost is not None:
         return cost
+    if missing_actual_costs and strategy in missing_actual_costs:
+        return missing_actual_costs[strategy]
     return float(result["cost"])
+
+
+def median_actual_costs(
+    records: list[dict[str, Any]],
+    strategies: list[str],
+) -> dict[str, float]:
+    medians = {}
+    for strategy in strategies:
+        costs = [
+            cost
+            for record in records
+            if (cost := usage_cost(record.get(strategy))) is not None
+        ]
+        if costs:
+            medians[strategy] = float(pd.Series(costs).median())
+    return medians
 
 
 def main() -> None:
     args = parse_args()
     records = read_jsonl(args.input)
+    missing_actual_costs = (
+        median_actual_costs(records, args.strategies)
+        if args.cost_mode == "actual"
+        else None
+    )
     rows = [
-        flatten_record(record, args.strategies, args.cheap_strategy, args.cost_mode)
+        flatten_record(
+            record,
+            args.strategies,
+            args.cheap_strategy,
+            args.cost_mode,
+            missing_actual_costs=missing_actual_costs,
+        )
         for record in records
     ]
     df = pd.DataFrame(rows)
