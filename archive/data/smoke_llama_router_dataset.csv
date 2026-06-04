@@ -1,0 +1,2 @@
+example_id,task_type,prompt_chars,prompt_words,num_numbers,has_math_symbols,has_code_like_text,question_mark_count,cheap_answer_chars,cheap_answer_words,cheap_contains_uncertainty,cheap_self_confidence,cheap_sample_agreement,cheap_direct_correct,cheap_direct_cost,strong_reasoning_correct,strong_reasoning_cost
+math_001,math,65,14,2,0,0,1,0,0,0,-1.0,-1.0,0,1.0,0,8.0

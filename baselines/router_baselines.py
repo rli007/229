@@ -8,10 +8,10 @@ Expected CSV shape:
 
 Example:
     python baselines/router_baselines.py \
-        --data data/example_router_data.csv \
-        --models small medium large \
-        --features prompt_len difficulty task_type \
-        --cost-weight 0.05
+        --data data/openrouter_mixed_10models_787_router_dataset.csv \
+        --models gemini_flash llama_70b \
+        --features task_type prompt_words num_numbers has_math_symbols \
+        --cost-weights 0 0.05
 """
 
 from __future__ import annotations

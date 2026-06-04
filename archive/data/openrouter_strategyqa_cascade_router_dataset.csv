@@ -1,0 +1,301 @@
+example_id,task_type,answer_type,prompt,prompt_chars,prompt_words,question_start,num_numbers,has_math_symbols,has_code_like_text,question_mark_count,capitalized_word_count,contains_parenthesis,contains_quote,has_comparison_word,has_negation_word,has_quantity_word,cheap_answer_chars,cheap_answer_words,cheap_parsed_answer,cheap_contains_uncertainty,cheap_self_confidence,cheap_sample_agreement,cheap_direct_correct,cheap_direct_cost,escalate_strong_correct,escalate_strong_cost
+4b2e265815601bfa4152,strategyqa,yesno,Is it difficult to conduct astrophotography in the summer in Sweden? Answer yes or no.,86,15,is,0,0,0,1,3,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+289c2f15051024b8b27f,strategyqa,yesno,Was milliner in Alice in Wonderland (1951 film) likely in need of succimer? Answer yes or no.,93,17,was,1,0,0,1,4,1,0,0,1,0,24,4,no,0,1.0,1.0,0,1.0,0,9.0
+60aa0b975babf5475cf1,strategyqa,yesno,Was story of Jesus inspired by Egyptian myth? Answer yes or no.,63,12,was,0,0,0,1,4,0,0,0,1,0,27,5,no,0,0.95,1.0,0,1.0,0,9.0
+904898291b7b33f260e7,strategyqa,yesno,Would Jacques Duèze have been friends with Richard Dawkins? Answer yes or no.,77,13,would,0,0,0,1,5,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+ad97256b5f0ab80b948a,strategyqa,yesno,Are parodies of the President of the United States illegal? Answer yes or no.,77,14,are,0,0,0,1,5,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+519626e90b19ecb3886f,strategyqa,yesno,Will Donald Duck hypothetically purchase bell-bottoms for himself? Answer yes or no.,84,13,will,0,1,0,1,4,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+02f5f11bf98632578d50,strategyqa,yesno,Can the Great Depression be treated with Prozac? Answer yes or no.,66,12,can,0,0,0,1,5,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+378926a5a2874aa941a9,strategyqa,yesno,Would J.K Rowling's top sellers be on a fantasy shelf? Answer yes or no.,72,16,would,0,0,0,1,3,0,1,0,1,0,25,4,yes,0,1.0,1.0,1,1.0,1,9.0
+b65adb5caa4f7a207879,strategyqa,yesno,Are tampons a good 24 hour solution for mentruation? Answer yes or no.,70,13,are,1,0,0,1,2,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+4148e19a53dfbb020484,strategyqa,yesno,Are there bones in an anchovy pizza? Answer yes or no.,54,11,are,0,0,0,1,2,0,0,0,1,0,24,4,no,0,1.0,1.0,0,1.0,1,9.0
+31328c97391c0e047f44,strategyqa,yesno,Are there five different single-digit Fibonacci numbers? Answer yes or no.,74,12,are,0,1,0,1,3,0,0,1,1,0,25,4,yes,0,1.0,1.0,1,1.0,1,9.0
+033f7214d9f1aeddb04e,strategyqa,yesno,Is Olivia Newton-John hyphenated celebrity name with most letters? Answer yes or no.,84,14,is,0,1,0,1,5,0,0,1,1,0,27,5,no,0,0.95,1.0,1,1.0,0,9.0
+b07fd13daa6e17e6273c,strategyqa,yesno,Is a pottery kiln inappropriate for use with glass blowing? Answer yes or no.,77,14,is,0,0,0,1,2,0,0,0,1,0,28,5,yes,0,0.95,1.0,0,1.0,0,9.0
+ca09aea1e9589ef40c61,strategyqa,yesno,Would the Titanic be well preserved at the bottom of the Gulf of Finland? Answer yes or no.,91,18,would,0,0,0,1,5,0,0,0,1,0,27,5,no,0,0.95,1.0,0,1.0,0,9.0
+faf10ced482aedfe9c58,strategyqa,yesno,Are there enough Jonny Cash records in the world to give one to each French citizen? Answer yes or no.,102,20,are,0,0,0,1,5,0,0,0,1,1,27,5,no,0,0.95,1.0,0,1.0,1,9.0
+09348bfb96097f3b4a99,strategyqa,yesno,Is Mickey Mouse hypothetically unlikely to make a purchase at Zazzle? Answer yes or no.,87,15,is,0,0,0,1,5,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+069c88860654c9c5df0b,strategyqa,yesno,Can a sea turtle play tennis using a tennis racket? Answer yes or no.,69,14,can,0,0,0,1,2,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+fab08cce89ad00ba8339,strategyqa,yesno,Are multiple Christmas Carol's named after Saints? Answer yes or no.,68,12,are,0,0,0,1,5,0,1,1,1,0,27,5,no,0,0.95,1.0,0,1.0,0,9.0
+bbf5422e2b837a2e1ff6,strategyqa,yesno,Could B be mistaken for an Arabic numeral? Answer yes or no.,60,12,could,0,0,0,1,3,0,0,0,1,0,27,5,no,0,0.95,1.0,0,1.0,1,9.0
+1cd4ba0baee559bf7a0f,strategyqa,yesno,Do white blood cells outnumber red blood cells in the human body? Answer yes or no.,83,16,do,0,0,0,1,2,0,0,1,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+38a0f2619ec98ba7fbd5,strategyqa,yesno,Would a binge watch of entire Young and the Restless take longer than a leap year? Answer yes or no.,100,20,would,0,0,0,1,4,0,0,1,1,1,28,5,yes,0,0.95,1.0,1,1.0,0,9.0
+ccb63564094c6ff09a14,strategyqa,yesno,Does Julia Roberts lose the prolific acting contest in her family? Answer yes or no.,84,15,does,0,0,0,1,4,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+9a1bf03a1359fa94eb7c,strategyqa,yesno,Is a krabby patty similar to a cheeseburger? Answer yes or no.,62,12,is,0,0,0,1,2,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+47cb228abaa8a8106df9,strategyqa,yesno,Was Hundred Years' War a misnomer? Answer yes or no.,52,10,was,0,0,0,1,5,0,1,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+6296b8c3a16680a826eb,strategyqa,yesno,Does a Generation Y member satisfy NYPD police officer age requirement? Answer yes or no.,89,15,does,0,0,0,1,3,0,0,0,1,0,27,5,no,0,0.95,1.0,0,1.0,1,9.0
+b4c61fdd96959a52f996,strategyqa,yesno,Would the tunnels at CERN fit onto the High Speed 1 rails? Answer yes or no.,76,16,would,1,0,0,1,4,0,0,0,1,0,27,5,no,0,0.95,1.0,0,1.0,0,9.0
+29cbf28f323d10a53c4d,strategyqa,yesno,Would ramen be bad for someone with heart failure? Answer yes or no.,68,13,would,0,0,0,1,2,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+cb08864902f07be76e77,strategyqa,yesno,Do Flat Earthers doubt the existence of Earth's magnetic field? Answer yes or no.,81,15,do,0,0,0,1,5,0,1,0,1,0,24,4,no,0,1.0,1.0,0,1.0,1,9.0
+aeea08d186f49c455038,strategyqa,yesno,Can you use the T-Mobile tuesdays app if you aren't a T-Mobile customer? Answer yes or no.,90,20,can,0,1,0,1,4,0,1,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+3a0a8c5869df571f0b93,strategyqa,yesno,Has Billy Joel sold out Astana Arena? Answer yes or no.,55,11,has,0,0,0,1,6,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+40b7c34188d5b36bc486,strategyqa,yesno,Can Lamborghini's fastest model win a race against a Porsche 911? Answer yes or no.,83,16,can,1,0,0,1,4,0,1,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+dfdc7f7197f90ec78844,strategyqa,yesno,Did Julius Caesar read books on Pharmacology? Answer yes or no.,63,11,did,0,0,0,1,5,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+c2c6e32ccdd81e5df7f6,strategyqa,yesno,Would Jimmy Vee be eligible to compete in the Paralympic Games? Answer yes or no.,81,15,would,0,0,0,1,6,0,0,0,1,0,24,4,no,0,1.0,1.0,0,1.0,0,9.0
+af6afbc6da7065d522ee,strategyqa,yesno,Is Ludacris in same music genre as 2000's Binaural? Answer yes or no.,69,14,is,1,0,0,1,4,0,1,1,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+26aefc40b2d04ca6b78b,strategyqa,yesno,Is xenophobia hypothetically unimportant between Saladin and Ali Askari? Answer yes or no.,90,13,is,0,0,0,1,5,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+f66cf3ddea2d87e8e572,strategyqa,yesno,Would Lee Sedol understand the complexities of the Sicilian Defence? Answer yes or no.,86,14,would,0,0,0,1,6,0,0,0,1,0,28,5,yes,0,0.95,1.0,0,1.0,1,9.0
+f07a6acf27e25dedbb8d,strategyqa,yesno,Does Andrew Johnson's presidential number exceed Elagabalus's Emperor number? Answer yes or no.,95,15,does,0,0,0,1,6,0,1,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+b528be028d2232b34887,strategyqa,yesno,Would a lullaby be enough to wake Hellen Keller up? Answer yes or no.,69,14,would,0,0,0,1,4,0,0,0,1,1,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+a6f593e93ca87c53a0a1,strategyqa,yesno,Does crucifixion violate US eighth amendment? Answer yes or no.,63,10,does,0,0,0,1,2,0,0,0,1,0,24,4,no,0,1.0,1.0,0,1.0,1,9.0
+2e80843bfed38cc06df2,strategyqa,yesno,Is letter C crucial to spelling the two most common words in English language? Answer yes or no.,96,18,is,0,0,0,1,3,0,0,1,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+d8ba1dd2575be52d80be,strategyqa,yesno,Are peaches best eaten when firm? Answer yes or no.,51,10,are,0,0,0,1,2,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+a9d3a5f8cd6eb6b2c19a,strategyqa,yesno,Can Spartina Patens thrive in the Sahara Desert? Answer yes or no.,66,12,can,0,0,0,1,6,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+404ab9200fe1935e7f4c,strategyqa,yesno,"Is an inappropriate lullaby Love Song from November 11, 2000? Answer yes or no.",79,14,is,2,0,0,1,5,0,0,0,1,0,27,5,no,0,0.95,1.0,0,1.0,1,9.0
+29551a9093ea19c1e7c3,strategyqa,yesno,Would 1996 leap year baby technically be 1 year old in 2000? Answer yes or no.,78,16,would,3,0,0,1,2,0,0,0,1,0,24,4,no,0,1.0,1.0,0,1.0,0,9.0
+d47c38cb1ab436fe2f64,strategyqa,yesno,Could all of the 2008 Summer Olympics women find a hookup athlete partner? Answer yes or no.,92,17,could,1,0,0,1,4,0,0,0,1,1,24,4,no,0,1.0,1.0,0,1.0,1,9.0
+3ae8644164c547560eda,strategyqa,yesno,Was King Arthur at the beheading of Anne Boleyn? Answer yes or no.,66,13,was,0,0,0,1,6,0,0,0,1,0,26,5,no,0,1.0,1.0,1,1.0,1,9.0
+7dc74fd9b62e514750c2,strategyqa,yesno,Are queen bees unnecessary for growing apples? Answer yes or no.,64,11,are,0,0,0,1,2,0,0,0,1,0,27,5,no,0,0.95,1.0,0,1.0,1,9.0
+86b893746c5eeece6760,strategyqa,yesno,Would Michael Phelps be good at pearl hunting? Answer yes or no.,64,12,would,0,0,0,1,4,0,0,0,1,0,27,5,no,0,0.95,1.0,0,1.0,0,9.0
+2b5b926a732d43620065,strategyqa,yesno,"During the time immediately after 9/11, was don't ask don't tell still in place? Answer yes or no.",98,21,during,2,1,0,1,2,0,1,1,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+f6184f20db14b18f1401,strategyqa,yesno,Did Hamlet's author use email? Answer yes or no.,48,10,did,0,0,0,1,3,0,1,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+ee95615e3dafa5e19020,strategyqa,yesno,Is watching  Star Wars necessary to know who Darth Vader is? Answer yes or no.,78,15,is,0,0,0,1,6,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+d0ed74f42be54dc99ec5,strategyqa,yesno,Could a dichromat probably easily distinguish chlorine gas from neon gas? Answer yes or no.,91,15,could,0,0,0,1,2,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,0,9.0
+1eb8a833f2f5f1698b52,strategyqa,yesno,Are Tom and Jerry featured in a ride at Disneyland? Answer yes or no.,69,14,are,0,0,0,1,5,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+ba8d04adf8848e0d28a7,strategyqa,yesno,"If he were poor, would Christopher Reeve have lived? Answer yes or no.",70,13,if,0,0,0,1,4,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+a076d2cbd7e4eafad35b,strategyqa,yesno,Does The Jungle Book contain racist subtext? Answer yes or no.,62,11,does,0,0,0,1,5,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+341375fa1c7cb93278f5,strategyqa,yesno,Would 7 zucchini's satisfy potassium USDA daily recommendation? Answer yes or no.,81,13,would,1,0,0,1,2,0,1,0,1,0,27,5,no,0,0.95,1.0,0,1.0,1,9.0
+6fe2a7efe785ac391298,strategyqa,yesno,Is Norman Oklahoma named after a viking? Answer yes or no.,58,11,is,0,0,0,1,4,0,0,1,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+d513fadf58cbb9cd1d9d,strategyqa,yesno,Are the founders of Skype from Asia? Answer yes or no.,54,11,are,0,0,0,1,4,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+2e1482cb04970fe7c449,strategyqa,yesno,Did Richard III know his grandson? Answer yes or no.,52,10,did,0,0,0,1,3,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+45c4f7aad64b5fdd76e9,strategyqa,yesno,Would a Rockette look odd with a moustache?  Answer yes or no.,62,12,would,0,0,0,1,3,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+6662006c915a62db5a89,strategyqa,yesno,Is Hamlet more common on IMDB than Comedy of Errors? Answer yes or no.,70,14,is,0,0,0,1,5,0,0,1,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+1d923b8a2778448a9716,strategyqa,yesno,Should cactus soil always be damp? Answer yes or no.,52,10,should,0,0,0,1,2,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+7d6b8191f43b8526074e,strategyqa,yesno,Will Chick Fil A be open on Halloween 2021? Answer yes or no.,61,13,will,1,0,0,1,5,0,0,0,1,0,27,5,yes,0,0.9,1.0,0,1.0,1,9.0
+310968736449680ee61e,strategyqa,yesno,Would Emma Roberts's Nancy Drew be considered a private investigator? Answer yes or no.,87,15,would,0,0,0,1,6,0,1,0,1,0,27,5,no,0,0.95,1.0,1,1.0,0,9.0
+89da908a20fe2c0cc7b1,strategyqa,yesno,Was The Great Gatsby inspired by the novel 1984? Answer yes or no.,66,13,was,1,0,0,1,5,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+0dd4ab1e6386856acf76,strategyqa,yesno,Will NY Stock Exchange closing bell be heard in Universal Music Group's headquarters? Answer yes or no.,103,18,will,0,0,0,1,7,0,1,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+c7a1cb4992a5eafa99ec,strategyqa,yesno,Would a Bengal cat be afraid of catching a fish? Answer yes or no.,66,14,would,0,0,0,1,3,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+1bed1742cceb9b51f41d,strategyqa,yesno,Would Eye surgery on a fly be in vain? Answer yes or no.,56,13,would,0,0,0,1,3,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+f251e2b2a577f7dccc0e,strategyqa,yesno,Would the Cookie Monster decline an offer of free Keebler products? Answer yes or no.,85,15,would,0,0,0,1,5,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+d313600f79f3713c9809,strategyqa,yesno,Does Snoopy look like Chance from Homeward Bound? Answer yes or no.,67,12,does,0,0,0,1,6,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+0abc0874b74e714f943e,strategyqa,yesno,Did Northwest Airlines' longevity surpass Betty White? Answer yes or no.,72,11,did,0,0,0,1,6,0,1,0,1,0,28,5,yes,0,0.95,1.0,0,1.0,1,9.0
+1a8fb1401bdae961beea,strategyqa,yesno,Is winter associated with hot temperatures? Answer yes or no.,61,10,is,0,0,0,1,2,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+dcb503515e6282a1b30f,strategyqa,yesno,Would a compass attuned to Earth's magnetic field be a bad gift for a Christmas elf?? Answer yes or no.,103,21,would,0,0,0,2,4,0,1,0,1,0,27,5,no,0,0.95,1.0,0,1.0,1,9.0
+d949f30354c842f5562a,strategyqa,yesno,Could a monarch butterfly rule a kingdom? Answer yes or no.,59,11,could,0,0,0,1,2,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+5c03103b5a70117cbdf0,strategyqa,yesno,"Could Elizabeth I of England have seen the play Dido, Queen of Carthage ? Answer yes or no.",91,17,could,0,0,0,1,7,0,0,0,1,0,27,5,no,0,0.95,1.0,0,1.0,1,9.0
+833413ca3a67a6d1c572,strategyqa,yesno,Is Garfield known for hating italian cuisine? Answer yes or no.,63,11,is,0,0,0,1,3,0,0,0,1,0,28,5,yes,0,0.95,1.0,0,1.0,1,9.0
+3de88c80f0914eb08caf,strategyqa,yesno,Does the texture of leaves remain the same independent of their coloring changing? Answer yes or no.,100,17,does,0,0,0,1,2,0,0,1,1,0,27,5,no,0,0.95,1.0,1,1.0,0,9.0
+965b4af72fa11cbda5d1,strategyqa,yesno,Would Terence Tao outperform Eminem in a math competition? Answer yes or no.,76,13,would,0,0,0,1,5,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+18d50392cc241326112b,strategyqa,yesno,Does Ronda Rousey avoid BBQ restaraunts? Answer yes or no.,58,10,does,0,0,0,1,4,0,0,0,1,0,27,5,no,0,0.95,1.0,0,1.0,0,9.0
+c928aaf3842cb87e3642,strategyqa,yesno,Would alligator best saltwater crocodile in hypothetical Lake Urmia battle? Answer yes or no.,93,14,would,0,0,0,1,4,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+236c7a57f3788a60e47f,strategyqa,yesno,Was Gandalf present at the death of Eomer? Answer yes or no.,60,12,was,0,0,0,1,4,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+c5d50d6e2d1747880aed,strategyqa,yesno,Do people put creatures from the Black Sea on their pizza? Answer yes or no.,76,15,do,0,0,0,1,4,0,0,0,1,0,27,5,no,0,0.95,1.0,0,1.0,1,9.0
+59acb3e278f8a75eac86,strategyqa,yesno,Are Chipotle Cinnamon Pork Chops appropriate for a Seder? Answer yes or no.,75,13,are,0,0,0,1,7,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+01254b50648f4fb08b51,strategyqa,yesno,Could two newborn American Black Bear cubs fit on a king size bed? Answer yes or no.,84,17,could,0,0,0,1,5,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+ab70365febc75dcda77d,strategyqa,yesno,Is radioactive waste a plot device for many shows? Answer yes or no.,68,13,is,0,0,0,1,2,0,0,0,1,1,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+c89862fb8a7e09c34f47,strategyqa,yesno,Are Scottish people Albidosi? Answer yes or no.,47,8,are,0,0,0,1,4,0,0,0,1,0,24,4,no,0,1.0,1.0,0,1.0,0,9.0
+9f1ea9c12c748ea7e456,strategyqa,yesno,Can giant pandas sell out a Metallica show? Answer yes or no.,61,12,can,0,0,0,1,3,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+82059a3aaefe9bb821d9,strategyqa,yesno,Did the Football War last at least a month? Answer yes or no.,61,13,did,0,0,0,1,4,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+9cd06c9dc94ad737d0a6,strategyqa,yesno,Would a Beaver's teeth rival that of a Smilodon? Answer yes or no.,66,14,would,0,0,0,1,4,0,1,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+953c8cb086cf494fb849,strategyqa,yesno,Are brown rock fish found in the waters surrounding Saint Kitts and Nevis? Answer yes or no.,92,17,are,0,0,0,1,5,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+f240c88676b6ac6896ad,strategyqa,yesno,Is the kayak a traditional boat in New Zealand? Answer yes or no.,65,13,is,0,0,0,1,4,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+42025ba75ec5d0f0f291,strategyqa,yesno,Are black and white prison uniforms made to resemble a zebra? Answer yes or no.,79,15,are,0,0,0,1,2,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+05fe6e26626c69b65ac1,strategyqa,yesno,Do mollymawks live where albatrosses cannot? Answer yes or no.,62,10,do,0,0,0,1,2,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+20abc7ba538a2fd1dd76,strategyqa,yesno,Will the small intenstine break down a cotton ball? Answer yes or no.,69,13,will,0,0,0,1,2,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+7a096b2fc559fd5c7919,strategyqa,yesno,Is a paleo dieter unlikely to color beverages green for St. Patrick's Day? Answer yes or no.,92,18,is,0,0,0,1,5,0,1,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+e304827eeb573bb2612e,strategyqa,yesno,Can you make an MP3 from the Golden Gate Bridge? Answer yes or no.,66,14,can,1,0,0,1,5,0,0,0,1,0,24,4,no,0,1.0,1.0,0,1.0,1,9.0
+75b9eafe50ef589e8f78,strategyqa,yesno,Would a snake have reasons to fear a honey badger? Answer yes or no.,68,14,would,0,0,0,1,2,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+9aed4083afb75e9f247c,strategyqa,yesno,Have Douglas fir been used to fight wars? Answer yes or no.,59,12,have,0,0,0,1,3,0,0,0,1,0,27,5,no,0,0.95,1.0,0,1.0,0,9.0
+3502d54b8241e79903a9,strategyqa,yesno,Were the first missionaries required to attend mass on Sundays? Answer yes or no.,81,14,were,0,0,0,1,3,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+a843854a5eabf03cf56f,strategyqa,yesno,Can music be used as a weapon? Answer yes or no.,48,11,can,0,0,0,1,2,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+3d80646ef0844fac8da5,strategyqa,yesno,Could the Spice Girls compete against ŽRK Kumanovo? Answer yes or no.,69,12,could,0,0,0,1,5,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+3b70f1178fdb45ad2a24,strategyqa,yesno,Does Ariana Grande's signature style combine comfort items and high fashion? Answer yes or no.,94,16,does,0,0,0,1,4,0,1,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+20744bd481b4245333fa,strategyqa,yesno,Has Gorillaz creator been in more bands than Bernard Sumner? Answer yes or no.,78,14,has,0,0,0,1,5,0,0,1,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+4fe90b9eab197be78729,strategyqa,yesno,Was ethanol beneficial to Jack Kerouac's health? Answer yes or no.,66,12,was,0,0,0,1,4,0,1,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+6693c842968f27dd04ce,strategyqa,yesno,"While viewing ""Scary Movie"" is the viewer likely to experience an increase in adrenaline? Answer yes or no.",107,18,while,0,0,0,1,4,0,1,0,1,0,28,5,yes,0,0.95,1.0,0,1.0,1,9.0
+ea627ac7d9ba306324d3,strategyqa,yesno,Does Metallica use Soulseek? Answer yes or no.,46,8,does,0,0,0,1,4,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+687b694d02f9ebe82b96,strategyqa,yesno,Could the Dominican Order hypothetically defeat Blessed Gerard's order? Answer yes or no.,89,14,could,0,0,0,1,6,0,1,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+11cc9b01c009823d5f82,strategyqa,yesno,Has Cesar Millan ever tamed a short-eared dog? Answer yes or no.,64,13,has,0,1,0,1,4,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+91917c5e30dbf8552b34,strategyqa,yesno,Would a vegan eat a traditional Paella dish? Answer yes or no.,62,12,would,0,0,0,1,3,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+bda79ddfa59d6d51e081,strategyqa,yesno,Did Jesus know anyone who spoke Estonian? Answer yes or no.,59,11,did,0,0,0,1,4,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+f79592a376f1793f29cb,strategyqa,yesno,Did Cleopatra have ethnicity closer to Egyptians than Greeks? Answer yes or no.,79,13,did,0,0,0,1,5,0,0,1,1,0,28,5,yes,0,0.95,1.0,0,1.0,1,9.0
+71cb683bdb77f668dce0,strategyqa,yesno,Could you drive from New England to a Sainsbury's? Answer yes or no.,68,14,could,0,0,0,1,5,0,1,0,1,0,26,5,no,0,1.0,1.0,1,1.0,1,9.0
+4f8557872837e3b95781,strategyqa,yesno,Did Jackson 5 members exceed number in The Osmonds? Answer yes or no.,69,13,did,1,0,0,1,5,0,0,0,1,0,25,4,yes,0,1.0,1.0,0,1.0,1,9.0
+e3ec5d1638cbf5a6ae53,strategyqa,yesno,Would a bodybuilder choose maize over chicken breast for dinner? Answer yes or no.,82,14,would,0,0,0,1,2,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+2295eaf3cdbecc17ca0a,strategyqa,yesno,Was historical Dracula from a town in Bucharest? Answer yes or no.,66,12,was,0,0,0,1,4,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+9390df61207ef77f8ba0,strategyqa,yesno,Would WWF be angrier if you killed koala instead of black swan? Answer yes or no.,81,16,would,0,0,0,1,2,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+b1dc0601af214a930eb2,strategyqa,yesno,Were French people involved in the American Civil War? Answer yes or no.,72,13,were,0,0,0,1,6,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+2a9cf64b15df1b841f25,strategyqa,yesno,Does Santa Claus hypothetically give Joffrey Baratheon presents? Answer yes or no.,82,12,does,0,0,0,1,6,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+3f3050d10948d4d99cff,strategyqa,yesno,Is Casio's founding year a composite number? Answer yes or no.,62,12,is,0,0,0,1,3,0,1,0,1,0,25,4,yes,0,1.0,1.0,1,1.0,1,9.0
+6571aafb3bae1b2e75e9,strategyqa,yesno,Did Johann Sebastian Bach ever win a Grammy Award? Answer yes or no.,68,13,did,0,0,0,1,7,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+e530682239bb5e59ebf0,strategyqa,yesno,Could a cat ride Panzer VIII Maus tank missile from Barcelona to Madrid? Answer yes or no.,90,17,could,0,0,0,1,6,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+deb934107d390914b5b0,strategyqa,yesno,Would Topa Inca Yupanqui have encountered the western honey bee? Answer yes or no.,82,14,would,0,0,0,1,5,0,0,0,1,0,26,5,no,0,1.0,1.0,1,1.0,1,9.0
+519de84458db613f0364,strategyqa,yesno,Is dopamine snorted nasally by drug users? Answer yes or no.,60,11,is,0,0,0,1,2,0,0,0,1,0,28,5,yes,0,0.95,1.0,0,1.0,1,9.0
+a61bbe3edc4de5272c0c,strategyqa,yesno,Is honey associated with queens? Answer yes or no.,50,9,is,0,0,0,1,2,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+b9f5942431b6ae3ef7bd,strategyqa,yesno,Did compact discs make computer gaming more popular? Answer yes or no.,70,12,did,0,0,0,1,2,0,0,1,1,0,27,5,no,0,0.95,1.0,0,1.0,1,9.0
+5d0248445c0be4f1dc13,strategyqa,yesno,Can Poland Spring make money in the Sahara? Answer yes or no.,61,12,can,0,0,0,1,5,0,0,0,1,0,27,5,no,0,0.95,1.0,0,1.0,1,9.0
+4f08d9a0fba58ad9ca73,strategyqa,yesno,Will more people go in and out of Taco Bell than a Roy Rogers each year? Answer yes or no.,90,20,will,0,0,0,1,6,0,0,1,1,1,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+183a6e39a27a2432989c,strategyqa,yesno,Could Christopher Nolan borrow pants from Danny Devito? Answer yes or no.,73,12,could,0,0,0,1,6,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+636b557a0eb102ce04b5,strategyqa,yesno,Do you find glutamic acid in a severed finger? Answer yes or no.,64,13,do,0,0,0,1,2,0,0,0,1,0,24,4,no,0,1.0,1.0,0,1.0,1,9.0
+566d1ac4f66f33b71aee,strategyqa,yesno,Are red legs a sign of failing health in those with Anorexia Nervosa? Answer yes or no.,87,17,are,0,0,0,1,4,0,0,0,1,0,27,5,no,0,0.95,1.0,0,1.0,0,9.0
+06ebd3ca1fe98d5796f7,strategyqa,yesno,Did Douglas Adams use email as a child? Answer yes or no.,57,12,did,0,0,0,1,4,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+5416d6ace8e5bef7e467,strategyqa,yesno,Could a nymph tick pass through a standard hole punch? Answer yes or no.,72,14,could,0,0,0,1,2,0,0,0,1,0,27,5,no,0,0.95,1.0,0,1.0,1,9.0
+24f0e80c50384b28484e,strategyqa,yesno,Does Neville Longbottom have more courage as a child than as an adult? Answer yes or no.,88,17,does,0,0,0,1,4,0,0,1,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+bac94f0b8587bf0e8f5e,strategyqa,yesno,Would a cauliflower farmer prosper at a latitude of 75° N? Answer yes or no.,76,15,would,1,0,0,1,2,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+4810297f474b0e97ed78,strategyqa,yesno,Could ten gallons of seawater crush a six year old? Answer yes or no.,69,14,could,0,0,0,1,2,0,0,0,1,0,24,4,no,0,1.0,1.0,0,1.0,0,9.0
+4c088a5366459f2256c6,strategyqa,yesno,Did Van Gogh suffer from a mental disorder? Answer yes or no.,61,12,did,0,0,0,1,4,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+44a7b241fe98fc12b215,strategyqa,yesno,Do people with DID have a good memory? Answer yes or no.,56,12,do,0,0,0,1,2,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+86434d8eecff8b7ddb50,strategyqa,yesno,Did the 23rd amendment give Puerto Ricans the right to vote for president? Answer yes or no.,92,17,did,1,0,0,1,4,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+73520a07f183b7111236,strategyqa,yesno,Were karaoke and the turtle power tiller patented in the same country? Answer yes or no.,88,16,were,0,0,0,1,2,0,0,1,1,0,27,5,no,0,0.95,1.0,0,1.0,0,9.0
+27e9e6d368cab11438c4,strategyqa,yesno,NATO doesn't recognize double triangle flag countries? Answer yes or no.,72,12,nato,0,0,0,1,1,0,1,0,1,0,24,4,no,0,1.0,1.0,0,1.0,0,9.0
+cd1a9cb828c1cbc7b2d1,strategyqa,yesno,Does open heart surgery finish before entirety of American Ballet Theatre's Swan Lake? Answer yes or no.,104,18,does,0,0,0,1,7,0,1,1,1,0,28,5,yes,0,0.95,1.0,0,1.0,1,9.0
+b3443bf3c312c9d144e4,strategyqa,yesno,Is there a full Neptunian orbit between the first two burials of women in the Panthéon? Answer yes or no.,105,20,is,0,0,0,1,3,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+d8bed090b4755e2f7b67,strategyqa,yesno,Are the knights in the Medieval Times show not authentic knights? Answer yes or no.,83,15,are,0,0,0,1,4,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+bcd77b200a2b90ca2ecc,strategyqa,yesno,Is it understandable to compare a blood spatter pattern to a Jackson Pollock piece? Answer yes or no.,101,18,is,0,0,0,1,4,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+c7b343171ca9bce49241,strategyqa,yesno,Could Sainsbury's buy Tesco? Answer yes or no.,46,9,could,0,0,0,1,4,0,1,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+23bde1810c6afe6f916c,strategyqa,yesno,Did anyone in the 1912 election take a majority of the popular vote? Answer yes or no.,86,17,did,1,0,0,1,2,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+90ac2bf04314d357f0e5,strategyqa,yesno,Would Phineas and Ferb enjoy winter? Answer yes or no.,54,10,would,0,0,0,1,4,0,0,0,1,0,28,5,yes,0,0.95,1.0,0,1.0,0,9.0
+0df67cbe1345f90555dd,strategyqa,yesno,Would Dave Chappelle pray over a Quran? Answer yes or no.,57,11,would,0,0,0,1,5,0,0,0,1,0,27,5,no,0,0.95,1.0,0,1.0,1,9.0
+385edf4addbd69573540,strategyqa,yesno,Is the foot part of the metric system? Answer yes or no.,56,12,is,0,0,0,1,2,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+e4115d4b10cb3447c7a2,strategyqa,yesno,Can you buy furniture and meatballs in the same store? Answer yes or no.,72,14,can,0,0,0,1,2,0,0,1,1,0,24,4,no,0,1.0,1.0,0,1.0,1,9.0
+f087d393e2ab1f8783f5,strategyqa,yesno,Can 1980 United States presidential election result be considered a photo finish? Answer yes or no.,99,16,can,1,0,0,1,4,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+bcf47774877e8bdd07a4,strategyqa,yesno,Did the population of the Warsaw Ghetto record secret police on cell phones? Answer yes or no.,94,17,did,0,0,0,1,4,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+7deb49d3ba50fb75a04f,strategyqa,yesno,Is Black Lives Matter connected with capsaicin? Answer yes or no.,65,11,is,0,0,0,1,5,0,0,0,1,0,24,4,no,0,1.0,1.0,0,1.0,0,9.0
+9eb2815f7551d7ea8b25,strategyqa,yesno,Did George Washington drive a Lexus? Answer yes or no.,54,10,did,0,0,0,1,5,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+9cf2cfed8753e1a1a3dc,strategyqa,yesno,Can an anchovy born in 2020 survive 25th US census? Answer yes or no.,69,14,can,2,0,0,1,2,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+ecc4a9173c24ace0215a,strategyqa,yesno,Is the Jurassic era a tourist destination? Answer yes or no.,60,11,is,0,0,0,1,3,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+60fe2d35b5abf0f0652a,strategyqa,yesno,Does Alec Baldwin have more children than Clint Eastwood? Answer yes or no.,75,13,does,0,0,0,1,6,0,0,1,1,0,28,5,yes,0,0.95,1.0,0,1.0,1,9.0
+e0f36bf27467cd086ecd,strategyqa,yesno,Did Leonardo da Vinci lack contemporary peers in his home city? Answer yes or no.,81,15,did,0,0,0,1,4,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+2cc59f4d25398d251fd6,strategyqa,yesno,"Is Olympia, Washington part of ""Ish river country""? Answer yes or no.",69,12,is,0,0,0,1,5,0,1,0,1,0,27,5,no,0,0.95,1.0,0,1.0,0,9.0
+12f49bcc3fdaebe88bd9,strategyqa,yesno,Do some people soak in olive oil and water? Answer yes or no.,61,13,do,0,0,0,1,2,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+570dad603aee73b5c88e,strategyqa,yesno,"In Doctor Who, did the war doctor get more screen time than his successor? Answer yes or no.",92,18,in,0,0,0,1,4,0,0,1,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+1479ad9ab9d5dbc5c140,strategyqa,yesno,Do the directors of The Matrix advocate for transgender rights? Answer yes or no.,81,14,do,0,0,0,1,4,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+a50ae7ec93a5ac585694,strategyqa,yesno,Is Noah's Ark an upgrade for Golden Age of Piracy pirates? Answer yes or no.,76,16,is,0,0,0,1,7,0,1,0,1,0,24,4,no,0,1.0,1.0,0,1.0,0,9.0
+e78288175362ef630c25,strategyqa,yesno,Could an escapee swim nonstop from Alcatraz island to Siberia? Answer yes or no.,80,14,could,0,0,0,1,4,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+42b5997366dc3f987db2,strategyqa,yesno,Could Javier Sotomayor jump over the head of the average giraffe? Answer yes or no.,83,15,could,0,0,0,1,4,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+d21ae4c7ee26f90b9574,strategyqa,yesno,Would a greyhound be able to outrun a greyhound bus? Answer yes or no.,70,14,would,0,0,0,1,2,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+f51a52b400daa8f80388,strategyqa,yesno,Is it hard to get a BLT in Casablanca? Answer yes or no.,56,13,is,0,0,0,1,3,0,0,0,1,0,26,5,no,0,0.9,1.0,0,1.0,1,9.0
+b69c53d2e6196bee9a92,strategyqa,yesno,Can you drown in a Swan Lake performance? Answer yes or no.,59,12,can,0,0,0,1,4,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+48da75d87c66754ccc2e,strategyqa,yesno,Was only woman to serve as U.S. Speaker of the House alive during the attack on Pearl Harbor? Answer yes or no.,111,23,was,0,0,0,1,6,0,0,0,1,1,28,5,yes,0,0.95,1.0,1,1.0,0,9.0
+1b747c9c67380c83b6d5,strategyqa,yesno,Did the phone Alexander Graham Bell use have call waiting? Answer yes or no.,76,14,did,0,0,0,1,5,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+425324eb79a7fc1916ef,strategyqa,yesno,Did Andy Warhol influence Art Deco style? Answer yes or no.,59,11,did,0,0,0,1,6,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+760a0d26a50972656345,strategyqa,yesno,Could the Port of Baltimore handle the entire world's cargo production of ginger each year? Answer yes or no.,109,20,could,0,0,0,1,4,0,1,0,1,1,27,5,no,0,0.95,1.0,0,1.0,0,9.0
+58be99559ef0ccdbb36c,strategyqa,yesno,Do restaurants associate meatballs with the wrong country of origin? Answer yes or no.,86,14,do,0,0,0,1,2,0,0,0,1,0,27,5,no,0,0.95,1.0,0,1.0,1,9.0
+71e9bed5efda19d9c4ce,strategyqa,yesno,Does Pikachu like Charles Darwin? Answer yes or no.,51,9,does,0,0,0,1,5,0,0,0,1,0,24,4,no,0,1.0,1.0,0,1.0,0,9.0
+a1be20a22026cc661660,strategyqa,yesno,Is Drew Carey important to the history of wrestling? Answer yes or no.,70,13,is,0,0,0,1,4,0,0,0,1,0,27,5,yes,0,0.9,1.0,1,1.0,0,9.0
+f7a32d14efd589015fe1,strategyqa,yesno,Can Herpes simplex virus spread on Venus? Answer yes or no.,59,11,can,0,0,0,1,4,0,0,0,1,0,26,5,no,0,1.0,1.0,1,1.0,1,9.0
+3fc25e1cccc76bb79a68,strategyqa,yesno,Does Ludacris perform classical music? Answer yes or no.,56,9,does,0,0,0,1,3,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+665445900ef590e47ed0,strategyqa,yesno,Were veterans of the War in Vietnam (1945–46) given free education by the Soviet Union? Answer yes or no.,105,20,were,2,0,0,1,6,1,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+bf739e062c0321178c7a,strategyqa,yesno,Will speed reader devour The Great Gatsby before the Raven? Answer yes or no.,77,14,will,0,0,0,1,6,0,0,1,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+bb9c5fc3b21e60bf9c7f,strategyqa,yesno,Was Lorenzo de Medici's patronage of Da Vinci exclusive? Answer yes or no.,74,14,was,0,0,0,1,6,0,1,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+a0362ec2c3b195e02315,strategyqa,yesno,Is anyone at the Last Supper celebrated in Islam? Answer yes or no.,67,13,is,0,0,0,1,5,0,0,0,1,0,24,4,no,0,1.0,1.0,0,1.0,0,9.0
+9a87e2e0f53e5d8689f2,strategyqa,yesno,Would food made with black salt smell of sulfur? Answer yes or no.,66,13,would,0,0,0,1,2,0,0,0,1,0,27,5,no,0,0.95,1.0,0,1.0,1,9.0
+15ea72669f16beecac5a,strategyqa,yesno,Did Confederate States Army influence West Point fashion? Answer yes or no.,75,12,did,0,0,0,1,7,0,0,0,1,0,27,5,no,0,0.95,1.0,0,1.0,0,9.0
+f58d326656e75b07d288,strategyqa,yesno,Do solo pianists require a conductor? Answer yes or no.,55,10,do,0,0,0,1,2,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+0fe658b221ff8ad08a14,strategyqa,yesno,Does the FDA require sell by dates using Roman Numerals? Answer yes or no.,74,14,does,0,0,0,1,4,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+4454659b2638172ab151,strategyqa,yesno,Can you transport a coin along a sea of mercury? Answer yes or no.,66,14,can,0,0,0,1,2,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+0fe3edf35bd1a1e662a9,strategyqa,yesno,Is Gandalf hypothetically a formidable foe for Charmed's Barbas? Answer yes or no.,82,14,is,0,0,0,1,5,0,1,0,1,0,27,5,yes,0,0.9,1.0,0,1.0,0,9.0
+bb8107d755f91675e0a0,strategyqa,yesno,Does Long John Silver's serve sea otter? Answer yes or no.,58,12,does,0,0,0,1,5,0,1,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+f0d6a1bed84099f2f841,strategyqa,yesno,Would three commas be sufficient for displaying US 2018 GDP? Answer yes or no.,78,14,would,1,0,0,1,2,0,0,0,1,0,28,5,yes,0,0.95,1.0,0,1.0,1,9.0
+f3d045e08844bf0d4e53,strategyqa,yesno,Was a person sold a Creative Commons License for Boticelli's The Birth of Venus ripped off? Answer yes or no.,109,21,was,0,0,0,1,9,0,1,0,1,0,24,4,no,0,1.0,1.0,0,1.0,1,9.0
+27db273aab9c056e306f,strategyqa,yesno,Did Ada Lovelace die tragically young for her era? Answer yes or no.,68,13,did,0,0,0,1,4,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,0,9.0
+abcfc72e32a9c180db0f,strategyqa,yesno,Can you avoid internet trolls on reddit? Answer yes or no.,58,11,can,0,0,0,1,2,0,0,0,1,0,28,5,yes,0,0.95,1.0,0,1.0,0,9.0
+076ec1a4009a6e453c69,strategyqa,yesno,Was latest Republican governor of New Jersey as of 2020 heftiest politician ever? Answer yes or no.,99,17,was,1,0,0,1,5,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+3176e76e4fa2af4e62b0,strategyqa,yesno,Would downloading Mario 64 on an emulator be legal? Answer yes or no.,69,13,would,1,0,0,1,3,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+4a0bd486029477dc8249,strategyqa,yesno,Did Lionel Richie ever have dinner with Abraham Lincoln? Answer yes or no.,74,13,did,0,0,0,1,6,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+1c7e71e10fc88c8c8f2c,strategyqa,yesno,Are LinkedIn and LeafedIn related companies? Answer yes or no.,62,10,are,0,0,0,1,2,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+d723358c3932de9ce765,strategyqa,yesno,Do German Shepherds worry about the Abitur? Answer yes or no.,61,11,do,0,0,0,1,5,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+eb4f40e76cc557e81cf0,strategyqa,yesno,Do you need lactobacillus to make pickles? Answer yes or no.,60,11,do,0,0,0,1,2,0,0,0,1,0,28,5,yes,0,0.95,1.0,0,1.0,0,9.0
+1b5275d230fa30272cb5,strategyqa,yesno,Could Chuck Norris ride a horse? Answer yes or no.,50,10,could,0,0,0,1,4,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+3157a0f428531ebed7b9,strategyqa,yesno,Are any minor league baseball teams named after felines? Answer yes or no.,74,13,are,0,0,0,1,2,0,0,1,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+effcb862cfb341b8774c,strategyqa,yesno,Is Shiva's divine dance an ancient physical fitness pose? Answer yes or no.,75,14,is,0,0,0,1,3,0,1,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+93eafc413d86df9c0755,strategyqa,yesno,Could an ocelot subsist on a single bee hummingbird per day? Answer yes or no.,78,15,could,0,0,0,1,2,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+265dd54c248f8b048851,strategyqa,yesno,Do the anchors on Rede Globo speak Chinese? Answer yes or no.,61,12,do,0,0,0,1,5,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+83e79d9b291f5619b6ed,strategyqa,yesno,Was Mother Theresa a follower of atheism? Answer yes or no.,59,11,was,0,0,0,1,4,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+3bba4ea27500361cb141,strategyqa,yesno,Will Oasis cruise boat traverse the Lincoln Tunnel? Answer yes or no.,69,12,will,0,0,0,1,5,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+64354cb6ee6d987d4f0f,strategyqa,yesno,Would a diet of ice eventually kill a person? Answer yes or no.,63,13,would,0,0,0,1,2,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+2325fcbd3c9d829d366e,strategyqa,yesno,Is Cape Town south of the Equator? Answer yes or no.,52,11,is,0,0,0,1,5,0,0,0,1,0,25,4,yes,0,1.0,1.0,1,1.0,1,9.0
+a87b94672fd08c0a2f0e,strategyqa,yesno,Would the United States Military Academy reject an applicant with multiple sclerosis? Answer yes or no.,103,16,would,0,0,0,1,6,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+af024277ec12d7845001,strategyqa,yesno,Is being 5 year Capital One Venture member more cost effective than being in Church of Satan? Answer yes or no.,111,21,is,1,0,0,1,7,0,0,1,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+2ed50522610a3683933f,strategyqa,yesno,Is jalapeno heat outclassed by Bhut jolokia? Answer yes or no.,62,11,is,0,0,0,1,3,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+0bde4bdfecce47fbf7de,strategyqa,yesno,Could Amazon afford The Mona Lisa? Answer yes or no.,52,10,could,0,0,0,1,6,0,0,0,1,0,27,5,no,0,0.95,1.0,0,1.0,1,9.0
+ed6d9f875c9787e1817c,strategyqa,yesno,Could George Washington's own speeches have been recorded live to a compact disc? Answer yes or no.,99,18,could,0,0,0,1,4,0,1,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+0a87a031e804912db8df,strategyqa,yesno,Did Harry Houdini's wife make psychics look foolish? Answer yes or no.,70,13,did,0,0,0,1,4,0,1,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+903178c36c89e5f55a20,strategyqa,yesno,Does actress Leila George lack the height to be a model? Answer yes or no.,74,15,does,0,0,0,1,4,0,0,0,1,0,28,5,yes,0,0.95,1.0,0,1.0,1,9.0
+70b2122323424f6e80c2,strategyqa,yesno,Would LeBron James hypothetically glance upwards at Yuri Gagarin? Answer yes or no.,83,13,would,0,0,0,1,5,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,0,9.0
+f2c7e13e2f02dd6c8849,strategyqa,yesno,Are Saturn's famous rings solid? Answer yes or no.,50,10,are,0,0,0,1,3,0,1,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+1e0f0676ee91a330262a,strategyqa,yesno,Does a lapidary work with items that are studied by geologists? Answer yes or no.,81,15,does,0,0,0,1,2,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+07b9fcd269bd1f8b0803,strategyqa,yesno,Can musicians become knights? Answer yes or no.,47,8,can,0,0,0,1,2,0,0,0,1,0,24,4,no,0,1.0,1.0,0,1.0,1,9.0
+7d435d8dd86f55ae536c,strategyqa,yesno,Is Canon Inc. a Kabushiki gaisha? Answer yes or no.,51,10,is,0,0,0,1,5,0,0,0,1,0,25,4,yes,0,1.0,1.0,1,1.0,1,9.0
+ec3eecce8a13f2742ee4,strategyqa,yesno,Is number of stars in Milky Way at least ten times earth's population? Answer yes or no.,88,18,is,0,0,0,1,4,0,1,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+5a2e62e3c0ded7a4bddd,strategyqa,yesno,Did Thomas Greenhill's parents violate the concept of monogamy? Answer yes or no.,81,14,did,0,0,0,1,4,0,1,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+bd7193627e010af0ecba,strategyqa,yesno,Would 1943-S penny be good for making silverware? Answer yes or no.,67,13,would,1,1,0,1,2,0,0,0,1,0,24,4,no,0,1.0,1.0,0,1.0,0,9.0
+2206eb47fc70f106a91d,strategyqa,yesno,Do calico cat patterns cover every drain fly color variety? Answer yes or no.,77,14,do,0,0,0,1,2,0,0,0,1,1,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+94a6b752d22abe932964,strategyqa,yesno,Was song of Roland protagonist friendly with group that had sagas? Answer yes or no.,84,15,was,0,0,0,1,3,0,0,0,1,0,28,5,yes,0,0.95,1.0,0,1.0,1,9.0
+646d3503f3a3939e2e63,strategyqa,yesno,Would the top of Mount Fuji stick out of the Sea of Japan?  Answer yes or no.,77,17,would,0,0,0,1,6,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+e12fef0504a959e49b23,strategyqa,yesno,Can someone from New England profit by growing coffee? Answer yes or no.,72,13,can,0,0,0,1,4,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+a2c4d25423867e3fc195,strategyqa,yesno,Could Hurricane Harvey catch a Peregrine falcon? Answer yes or no.,66,11,could,0,0,0,1,5,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,0,9.0
+10bf1b31f79f8d9e03fe,strategyqa,yesno,Could a firewall be destroyed by a hammer? Answer yes or no.,60,12,could,0,0,0,1,2,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+86726670e41a9401da0f,strategyqa,yesno,Can Ford F-350 tow entire Yale University student body? Answer yes or no.,73,14,can,1,1,0,1,5,0,0,0,1,1,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+3fe8e6070086a6cb0a8c,strategyqa,yesno,Is the tibia required for floor exercises? Answer yes or no.,60,11,is,0,0,0,1,2,0,0,0,1,0,25,4,yes,0,1.0,1.0,1,1.0,1,9.0
+3faba436f8387f1b7567,strategyqa,yesno,Is the Greek alphabet as common as Sumerian cuneiform? Answer yes or no.,72,13,is,0,0,0,1,4,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+c70d40b57fa67ea13ed6,strategyqa,yesno,Does a person using tonsure have hair at the top of their scalp? Answer yes or no.,82,17,does,0,0,0,1,2,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+a2a5a06a55c24bf2d408,strategyqa,yesno,Do women often need new shoes during their pregnancy? Answer yes or no.,71,13,do,0,0,0,1,2,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+97ffbaa790ff9df718ec,strategyqa,yesno,Are all the elements plants need for photosynthesis present in atmosphere of Mars? Answer yes or no.,100,17,are,0,0,0,1,3,0,0,0,1,1,27,5,no,0,0.95,1.0,0,1.0,0,9.0
+1969318e30a31e49e5ca,strategyqa,yesno,Could eating Chinook salmon help Ryan Reynolds? Answer yes or no.,65,11,could,0,0,0,1,5,0,0,0,1,0,27,5,no,0,0.95,1.0,0,1.0,1,9.0
+307c7850922085972bd1,strategyqa,yesno,Did Al Pacino act in a movie during World War II? Answer yes or no.,67,15,did,0,0,0,1,6,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+6d62de0fed9d8151b413,strategyqa,yesno,Does Happy Gilmore Productions CEO own a Torah? Answer yes or no.,65,12,does,0,0,0,1,6,0,0,0,1,0,27,5,no,0,0.95,1.0,0,1.0,0,9.0
+3503e8d41364eb0b33bc,strategyqa,yesno,Would a responsible bartender make a drink for Millie Bobby Brown? Answer yes or no.,84,15,would,0,0,0,1,5,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+f69c8412d57ad726d658,strategyqa,yesno,Is Cholera alive? Answer yes or no.,35,7,is,0,0,0,1,3,0,0,0,1,0,24,4,no,0,1.0,1.0,0,1.0,1,9.0
+f9d0edee44a2e73f9765,strategyqa,yesno,Could a hundred thousand lolcats fit on a first generation iPhone? Answer yes or no.,84,15,could,0,0,0,1,2,0,0,0,1,0,27,5,no,0,0.95,1.0,0,1.0,0,9.0
+6047d085ff9246481d12,strategyqa,yesno,Could Little Women have been a book read by veterans of the civil war? Answer yes or no.,88,18,could,0,0,0,1,4,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+288a22ad708fe41454cb,strategyqa,yesno,Is snoring a sign of good breathing while sleeping? Answer yes or no.,69,13,is,0,0,0,1,2,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+3b1834a6dd331eb1d791,strategyqa,yesno,Would a CEO typically clean the toilets in a company's building? Answer yes or no.,82,16,would,0,0,0,1,2,0,1,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+5a20b692ab755caf4ae9,strategyqa,yesno,Are paratroopers good at mountain rescue? Answer yes or no.,59,10,are,0,0,0,1,2,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,0,9.0
+be1c91b7d7c455b614bc,strategyqa,yesno,Can a diamond float on water? Answer yes or no.,47,10,can,0,0,0,1,2,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+e29d4982a58b5e70410e,strategyqa,yesno,Would  bald eagle deliver an urgent message before B-52? Answer yes or no.,74,14,would,1,1,0,1,2,0,0,1,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+d717f5321d1e1d3d5e37,strategyqa,yesno,Did the Pearl Harbor attack occur during autumn? Answer yes or no.,66,12,did,0,0,0,1,4,0,0,0,1,0,27,5,no,0,0.95,1.0,0,1.0,0,9.0
+881286dcdded13a96e3b,strategyqa,yesno,Can you find Bob Marley's face in most smoke shops? Answer yes or no.,69,15,can,0,0,0,1,4,0,1,1,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+a8088fd4d533c2eaa365,strategyqa,yesno,Can spiders help eggplant farmers control parasites? Answer yes or no.,70,11,can,0,0,0,1,2,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+f778fcf4fce27aa1f7ae,strategyqa,yesno,Is entire Common Era minuscule to lifespan of some trees? Answer yes or no.,75,14,is,0,0,0,1,4,0,0,0,1,1,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+bc8b9bd5c95738769076,strategyqa,yesno,Did Elizabeth I of England own any viscose fiber? Answer yes or no.,67,13,did,0,0,0,1,4,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+935002dcfa70239e715f,strategyqa,yesno,Would Firefighters be included in a September 11th memorial? Answer yes or no.,78,13,would,1,0,0,1,4,0,0,0,1,0,25,4,yes,0,1.0,1.0,1,1.0,1,9.0
+a9d639b7f43108848d99,strategyqa,yesno,Did François Mitterrand serve under Napoleon Bonapart in the French army? Answer yes or no.,91,15,did,0,0,0,1,6,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+40eb773857f1933b4b36,strategyqa,yesno,Can a jet plane be made without society? Answer yes or no.,58,12,can,0,0,0,1,2,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+87acce77a8b6362f4f96,strategyqa,yesno,Would 2020 Toyota Supra lag behind at a Nascar rally? Answer yes or no.,71,14,would,1,0,0,1,5,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+25cb5d3136c997326121,strategyqa,yesno,Can Larry King's ex-wives form a water polo team? Answer yes or no.,67,15,can,0,1,0,1,4,0,1,0,1,0,27,5,no,0,0.95,1.0,0,1.0,1,9.0
+c3ee8ac44eff4db19ffb,strategyqa,yesno,Could a wandering albatross fly from Bucharest to New York City without a rest? Answer yes or no.,97,18,could,0,0,0,1,6,0,0,0,1,0,27,5,no,0,0.95,1.0,0,1.0,0,9.0
+e475171d9c62141a6835,strategyqa,yesno,Can Curiosity take samples of rocks from Lacus Temporis? Answer yes or no.,74,13,can,0,0,0,1,5,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+29c9d972bd56437185ee,strategyqa,yesno,Did Karl Marx influence the communist party of China? Answer yes or no.,71,13,did,0,0,0,1,5,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+95c7c7b36b2dd981b820,strategyqa,yesno,Is a doctorate required to teach at a SUNY School? Answer yes or no.,68,14,is,0,0,0,1,3,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+b1d517cad0745d8618d2,strategyqa,yesno,Could Intel products be purchased at McDonald's? Answer yes or no.,66,12,could,0,0,0,1,3,0,1,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+f8de728cbf65a3f0f1d6,strategyqa,yesno,Would a kaffir lime be a good ingredient for making a candle? Answer yes or no.,79,16,would,0,0,0,1,2,0,0,0,1,0,24,4,no,0,1.0,1.0,0,1.0,0,9.0
+7a90cbd4a6c6f4c78f31,strategyqa,yesno,Can the Department of Defense perform a solo? Answer yes or no.,63,12,can,0,0,0,1,4,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+46ee63236516c42f3267,strategyqa,yesno,Would Brian Warner be a good singer for a soul music band? Answer yes or no.,76,16,would,0,0,0,1,4,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+e44e24c2c3b8599b85ad,strategyqa,yesno,Could a llama birth twice during War in Vietnam (1945-46)? Answer yes or no.,76,15,could,2,1,0,1,4,1,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+52a5095ce9ac6b3c7ae0,strategyqa,yesno,Can a software engineer work during a power outage? Answer yes or no.,69,13,can,0,0,0,1,2,0,0,0,1,0,28,5,yes,0,0.95,1.0,0,1.0,0,9.0
+3486b6b5c69878bb088d,strategyqa,yesno,Do more Cauliflower grow in Arizona than California? Answer yes or no.,70,12,do,0,0,0,1,5,0,0,1,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+f815aaa22d608f1dcb84,strategyqa,yesno,Would Eminem perform well at the International Mathematical Olympiad? Answer yes or no.,87,13,would,0,0,0,1,6,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+9ad0135c76557f64f7e9,strategyqa,yesno,Can a Muslim eat a McRib sandwich? Answer yes or no.,52,11,can,0,0,0,1,3,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+9b00b215a02a7e4a8aa1,strategyqa,yesno,Would Mount Wycheproof be a breeze for Edmund Hillary? Answer yes or no.,72,13,would,0,0,0,1,6,0,0,0,1,0,27,5,no,0,0.95,1.0,0,1.0,1,9.0
+0d6eda5f7e8e806c4d78,strategyqa,yesno,Can an asteroid be linked with virginity? Answer yes or no.,59,11,can,0,0,0,1,2,0,0,0,1,0,24,4,no,0,1.0,1.0,0,1.0,0,9.0
+15586c73003c301ef18f,strategyqa,yesno,Could SNL be why Jenny McCarthy does not get along with her cousin? Answer yes or no.,85,17,could,0,0,0,1,3,0,0,0,1,0,26,5,no,0,0.9,1.0,0,1.0,0,9.0
+b679b7210ebf7fec17b8,strategyqa,yesno,Are there options for students who struggle to understand the writing style of Othello? Answer yes or no.,105,18,are,0,0,0,1,3,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+1517e4258ddaf94d85c7,strategyqa,yesno,Is the Berlin University of the Arts a Baroque period relic? Answer yes or no.,78,15,is,0,0,0,1,6,0,0,0,1,0,27,5,no,0,0.95,1.0,0,1.0,1,9.0
+c7a4b7ed963de3d9cd92,strategyqa,yesno,Would it be difficult for Kami Rita to climb Mount Emei? Answer yes or no.,74,15,would,0,0,0,1,6,0,0,0,1,0,28,5,yes,0,0.95,1.0,0,1.0,1,9.0
+353bf34cd9457f69b870,strategyqa,yesno,Is it normal for people to sing when the YMCA is mentioned? Answer yes or no.,77,16,is,0,0,0,1,2,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+76468dce5b02e75851b2,strategyqa,yesno,Did William Shaespeare read the Daily Mirror? Answer yes or no.,63,11,did,0,0,0,1,6,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+6574229a8596e013f8e6,strategyqa,yesno,Could white rice go rancid before sesame seeds? Answer yes or no.,65,12,could,0,0,0,1,2,0,0,1,1,0,28,5,yes,0,0.95,1.0,0,1.0,1,9.0
+3301cea644c68aa24894,strategyqa,yesno,"If you were at an Apple store, would most of the computers be running Ubuntu? Answer yes or no.",95,19,if,0,0,0,1,4,0,0,1,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+f332153ae800b78d0959,strategyqa,yesno,Can you hide a basketball in a sand cat's ear? Answer yes or no.,64,15,can,0,0,0,1,2,0,1,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+04863d35bf4e68084907,strategyqa,yesno,Are psychiatric patients welcome to join the United States Air Force? Answer yes or no.,87,15,are,0,0,0,1,6,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+ae4cedb73e82c7f8de75,strategyqa,yesno,Would an art dealer prize a print of a Van Goh?  Answer yes or no.,66,15,would,0,0,0,1,4,0,0,0,1,0,28,5,yes,0,0.95,1.0,0,1.0,1,9.0
+73defbf5e28a5bacdb7d,strategyqa,yesno,Would it be difficult to host Stanley Cup Finals at Rock in Rio? Answer yes or no.,82,17,would,0,0,0,1,7,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+4ea450758bcead502050,strategyqa,yesno,Is the Royal Air Force ensign on the moon? Answer yes or no.,60,13,is,0,0,0,1,5,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+5f1b1891c28dd8ef8bcf,strategyqa,yesno,Does the cuisine of Hawaii embrace foods considered gross in the continental US? Answer yes or no.,98,17,does,0,0,0,1,3,0,0,0,1,0,28,5,yes,0,0.95,1.0,1,1.0,1,9.0
+33f7f8c55b4acedb061a,strategyqa,yesno,Is purchasing food for a Lolcat unnecessary? Answer yes or no.,62,11,is,0,0,0,1,3,0,0,0,1,0,27,5,no,0,0.95,1.0,0,1.0,1,9.0
+8dc182aaa2d2117c4091,strategyqa,yesno,Has CNES planted a French flag on the lunar surface? Answer yes or no.,70,14,has,0,0,0,1,3,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+bbd4e385d8867b66aa60,strategyqa,yesno,Could Aretha Franklin vote for a president when her second child was born? Answer yes or no.,92,17,could,0,0,0,1,4,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+598be3dcddbd7775a827,strategyqa,yesno,Could Bob Marley's children hypothetically win tug of war against Kublai Khan's children? Answer yes or no.,107,19,could,0,0,0,1,6,0,1,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+f6cc5e1c7456dd41a094,strategyqa,yesno,Are there multiple Disney Zorro? Answer yes or no.,50,9,are,0,0,0,1,4,0,0,0,1,0,25,4,yes,0,1.0,1.0,1,1.0,1,9.0
+30c3a32157acb4861555,strategyqa,yesno,Could someone theoretically use an armadillo as a shield? Answer yes or no.,75,13,could,0,0,0,1,2,0,0,0,1,0,24,4,no,0,1.0,1.0,0,1.0,0,9.0
+1a65b1ecd37a63767bf7,strategyqa,yesno,Can the Persian Gulf fit in New Jersey? Answer yes or no.,57,12,can,0,0,0,1,6,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+b9e623a3ea2aa739facf,strategyqa,yesno,Is it dangerous to consume chlorine when mixed with sodium? Answer yes or no.,77,14,is,0,0,0,1,2,0,0,0,1,0,28,5,yes,0,0.95,1.0,0,1.0,1,9.0
+34ef40fff88e669f154f,strategyqa,yesno,Would four shoes be insufficient for a set of octuplets? Answer yes or no.,74,14,would,0,0,0,1,2,0,0,0,1,0,25,4,yes,0,1.0,1.0,1,1.0,1,9.0
+5278f0501c540dff6407,strategyqa,yesno,Has Freemasonry been represented on the Moon? Answer yes or no.,63,11,has,0,0,0,1,4,0,0,0,1,0,24,4,no,0,1.0,1.0,0,1.0,0,9.0
+14a58de5d05e976c09cb,strategyqa,yesno,Does a game engine have a fuel injector? Answer yes or no.,58,12,does,0,0,0,1,2,0,0,0,1,0,24,4,no,0,1.0,1.0,1,1.0,1,9.0
+ec71dcb7d6ace3e73ef9,strategyqa,yesno,Is shoe soup innocuous? Answer yes or no.,41,8,is,0,0,0,1,2,0,0,0,1,0,27,5,no,0,0.95,1.0,0,1.0,1,9.0
+4c00343e96364ec24227,strategyqa,yesno,Do drag kings take testosterone to look masculine? Answer yes or no.,68,12,do,0,0,0,1,2,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+d808a0c72dbe605309ab,strategyqa,yesno,Does Felix Potvin have a position on a dodgeball team? Answer yes or no.,72,14,does,0,0,0,1,4,0,0,0,1,0,27,5,no,0,0.95,1.0,1,1.0,1,9.0
+a7e8f2cbec209b317b8f,strategyqa,yesno,Are there people who are men who experience menstruation? Answer yes or no.,75,13,are,0,0,0,1,2,0,0,0,1,0,24,4,no,0,1.0,1.0,0,1.0,1,9.0

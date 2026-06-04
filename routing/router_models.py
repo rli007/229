@@ -50,39 +50,46 @@ def feature_pipeline(
 
 
 def base_router_estimators(random_state: int) -> dict[str, object]:
+    # Hyperparameters were selected by a per-family sweep on the headline pair
+    # gemini_flash + llama_70b across 5 stratified seeds, picking the
+    # configuration with the highest mean test accuracy. See
+    # scripts/run_hyperparam_sweep.py and results/class_hyperparam_sweep.csv.
     return {
-        "logistic_router": LogisticRegression(max_iter=2000, class_weight="balanced"),
+        "logistic_router": LogisticRegression(
+            C=0.1, max_iter=2000, class_weight="balanced",
+        ),
         "linear_svm_router": LinearSVC(
+            C=0.1,
             class_weight="balanced",
             max_iter=5000,
             random_state=random_state,
         ),
         "knn_router": KNeighborsClassifier(
-            n_neighbors=15,
+            n_neighbors=5,
             weights="distance",
         ),
         "decision_tree_router": DecisionTreeClassifier(
-            max_depth=6,
+            max_depth=3,
             min_samples_leaf=5,
             random_state=random_state,
             class_weight="balanced",
         ),
         "random_forest_router": RandomForestClassifier(
             n_estimators=300,
-            min_samples_leaf=3,
+            min_samples_leaf=5,
             random_state=random_state,
             class_weight="balanced_subsample",
         ),
         "extra_trees_router": ExtraTreesClassifier(
-            n_estimators=500,
+            n_estimators=1000,
             min_samples_leaf=2,
             random_state=random_state,
             class_weight="balanced",
         ),
         "mlp_router": MLPClassifier(
-            hidden_layer_sizes=(64, 32),
+            hidden_layer_sizes=(128, 64),
             activation="relu",
-            alpha=1e-3,
+            alpha=1e-4,
             max_iter=1000,
             random_state=random_state,
         ),
@@ -92,10 +99,10 @@ def base_router_estimators(random_state: int) -> dict[str, object]:
 def text_router_estimators(random_state: int) -> dict[str, object]:
     return {
         "tfidf_logistic_router": LogisticRegression(
-            max_iter=2000,
-            class_weight="balanced",
+            C=0.1, max_iter=2000, class_weight="balanced",
         ),
         "tfidf_linear_svm_router": LinearSVC(
+            C=0.1,
             class_weight="balanced",
             max_iter=5000,
             random_state=random_state,
@@ -103,7 +110,7 @@ def text_router_estimators(random_state: int) -> dict[str, object]:
         "tfidf_mlp_router": MLPClassifier(
             hidden_layer_sizes=(128, 64),
             activation="relu",
-            alpha=1e-3,
+            alpha=1e-4,
             max_iter=1000,
             random_state=random_state,
         ),

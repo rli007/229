@@ -1,0 +1,753 @@
+example_id,task_type,answer_type,prompt,prompt_chars,prompt_words,question_start,num_numbers,has_math_symbols,has_code_like_text,question_mark_count,capitalized_word_count,contains_parenthesis,contains_quote,has_comparison_word,has_negation_word,has_quantity_word,cheap_answer_chars,cheap_answer_words,cheap_parsed_answer,cheap_contains_uncertainty,cheap_self_confidence,cheap_sample_agreement,mistral_nemo_correct,mistral_nemo_cost,qwen_235b_correct,qwen_235b_cost,gemini_flash_correct,gemini_flash_cost,llama_70b_correct,llama_70b_cost,deepseek_v3_correct,deepseek_v3_cost
+mmlu_humanities_00014_world_religions,humanities,choice,"Which Guru was martyred when he refused to embrace Islam?
+A. Guru Ram Das
+B. Guru Tegh Bahadur
+C. Guru Gobind Singh
+D. Guru Har Rai",131,26,which,0,0,0,1,15,0,0,0,0,0,174,30,other,0,1.0,1.0,1,4.58e-06,1,5.82e-05,1,0.0001019,1,3.565e-05,1,7.201e-05
+gsm8k_00105,math,number,"A married couple and their 6 children are ordering some pizza. If the couple want 3 slices each and the children want 1 slice each, how many 4-slice pizzas should they order?",174,33,a,4,1,0,1,1,0,0,0,0,1,313,61,other,0,1.0,1.0,1,5.77e-06,1,6.279e-05,1,0.0002023,1,4.4425e-05,1,8.5e-05
+sciq_00004,science,choice,"What is the largest level of organization?
+A. organelle
+B. genome
+C. organism
+D. protein",88,15,what,0,0,0,1,1,0,0,0,0,0,389,54,other,0,1.0,1.0,1,4.78e-06,1,4.254e-05,1,0.0002477,1,4.048e-05,1,5.632e-05
+mmlu_humanities_00077_high_school_world_history,humanities,choice,"This question refers to the following information.
+The city of Ghana consists of two towns. One is inhabited by Muslims and has twelve mosques, salaried imams and muezzins, and jurists and scholars. In the environs are wells with sweet water, from which they drink and with which they grow vegetables. . . . The king's interpreters, the official in charge of his treasury and the majority of his ministers are Muslims. Only royalty may wear sewn clothes. All other people wear robes of cotton, silk, or brocade, according to their means. . . . The king adorns himself like a woman, wearing necklaces round his neck and bracelets on his forearms. . . . He sits . . . in a domed pavilion around which stand ten horses. When people who profess the same religion as the king approach him they fall on their knees and sprinkle dust on their heads, for this is their way of greeting him. As for the Muslims, they greet him only by clapping their hands. [The people's] religion is paganism and the worship of idols. . . . On every donkey-load of salt when it is brought into the country their king levies one golden dinar, and two dinars when it is sent out. From a load of copper the king's due is five mithqals, and from a load of other goods ten mithqals. . . . The nuggets found in all the mines of his country are reserved for the king, only this gold dust being left for the people. But for this the people would accumulate gold until it lost its value. Beyond this country lies another called Malal, the king of which was sincerely attached to Islam, while the common people of his kingdom remained polytheists. Since then their rulers have been given the title of al-musulmani .
+—The Book of Routes and Realms , by Abu Ubaydallah al-Bakri, eleventh-century Muslim historian and geographer
+Based on the excerpt, which of the following statements correctly describes Islam's influence in Africa during this time period?
+A. Imams and muezzins ensured that all Africans adhered to Islamic law.
+B. Some elites converted to Islam, but lower classes kept their traditional beliefs.
+C. Muslim merchants refused to do business with anyone who was not Muslim.
+D. African kings required Muslims to conform to pagan customs at court.",2222,380,this,0,1,0,1,44,0,1,1,1,1,875,138,other,1,0.6,1.0,1,1.729e-05,1,0.00010215,1,0.0003922,1,9.29e-05,1,0.00023223
+strategyqa_566d1ac4f66f33b71aee,commonsense,yesno,Are red legs a sign of failing health in those with Anorexia Nervosa? Answer yes or no.,87,17,are,0,0,0,1,4,0,0,0,1,0,486,82,yes,0,0.95,1.0,1,5.29e-06,0,1.1396e-05,1,0.0001247,1,2.7465e-05,1,4.0424e-05
+mmlu_humanities_00028_philosophy,humanities,choice,"Stevenson identifies the meaning of a term with:
+A. the empirical observations to which it applies.
+B. all the psychological causes and effects that attend its utterance.
+C. the psychological causes and effects it has a tendency to be connected with.
+D. the set of other words that are synonyms to the original word.",316,54,stevenson,0,0,0,0,1,0,0,0,0,1,423,69,other,0,0.95,1.0,0,5.56e-06,1,9.24e-05,1,0.0002931,1,5.6615e-05,1,8.2e-05
+gsm8k_00138,math,number,"The teacher brings in 14 mini-cupcakes and 12 donut holes for the class. There are 13 students in the class. If each student gets the exact same amount, how many desserts does each student get?",193,36,the,3,1,0,1,3,0,0,1,0,1,314,55,other,0,1.0,1.0,1,6.32e-06,1,6.48e-05,1,8.69e-05,1,3.422e-05,1,5.871e-05
+sciq_00075,science,choice,"A crater can usually be found on the top of what kind of volcanoes?
+A. Shield
+B. composite
+C. Compound
+D. Dome",110,22,a,0,0,0,1,3,0,0,0,0,0,365,56,other,0,0.95,1.0,1,5.56e-06,1,8.528e-05,1,0.000197,0,4.544e-05,0,7.922e-05
+mmlu_humanities_00070_philosophy,humanities,choice,"Moore defines good as:
+A. pleasure.
+B. that which we desire.
+C. that which we desire to desire.
+D. none of the above.",117,23,moore,0,0,0,0,1,0,0,0,0,0,403,75,other,0,0.95,1.0,0,6.4e-06,1,1.6603e-05,1,0.0002935,1,5.238e-05,1,6.157e-05
+mmlu_humanities_00134_world_religions,humanities,choice," Which Roman statesman encouraged civic religion in his work The Laws?
+A. Varro
+B. Plato
+C. Cicero
+D. Augustus",110,19,which,0,0,0,1,8,0,0,0,0,0,576,96,other,0,0.95,1.0,0,6.43e-06,1,5.608e-05,1,0.0002889,1,4.876e-05,1,5.543e-05
+mmlu_humanities_00109_world_religions,humanities,choice," The theological term homoousios means which of the following?
+A. of a similar substance
+B. of the same substance
+C. of like substance
+D. of human substance",156,27,the,0,0,0,1,1,0,0,1,0,0,372,60,other,0,1.0,1.0,1,5.94e-06,1,1.7558e-05,1,0.0002916,1,8.222e-05,1,9.325e-05
+strategyqa_e3ec5d1638cbf5a6ae53,commonsense,yesno,Would a bodybuilder choose maize over chicken breast for dinner? Answer yes or no.,82,14,would,0,0,0,1,2,0,0,0,1,0,378,64,no,0,0.95,1.0,1,5.34e-06,1,5.24e-05,1,0.0001432,1,2.5855e-05,1,4.362e-05
+strategyqa_89da908a20fe2c0cc7b1,commonsense,yesno,Was The Great Gatsby inspired by the novel 1984? Answer yes or no.,66,13,was,1,0,0,1,5,0,0,0,1,0,274,44,no,0,1.0,1.0,1,5.12e-06,1,1.0783e-05,1,0.0001488,1,3.684e-05,1,6.011e-05
+mmlu_humanities_00005_philosophy,humanities,choice,"According to Moore, we are thinking about good whenever we think about:
+A. pleasure.
+B. things that we desire.
+C. intrinsic value.
+D. none of the above.",152,27,according,0,0,0,0,2,0,0,0,0,0,545,91,other,0,0.95,1.0,0,7.2e-06,0,2.05e-05,1,0.000315,1,5.02e-05,0,8.308e-05
+sciq_00135,science,choice,"What property is defined as the magnitude or size of displacement between two positions?
+A. Distance
+B. passing
+C. distance
+D. gravity",134,22,what,0,0,0,1,2,0,0,0,0,0,405,64,other,0,1.0,1.0,0,5.9e-06,0,1.0261e-05,0,0.0004045,0,4.898e-05,0,5.57e-05
+gsm8k_00051,math,number,"Every 4 weeks, Helen hand washes her silk pillowcases.  It takes 30 minutes to hand wash all of them.  In 1 year, how much time does Helen spend hand washing her pillowcases?",174,32,every,3,0,0,1,5,0,0,0,0,1,281,52,other,0,1.0,1.0,1,6.26e-06,1,7.518e-05,1,0.0002135,1,3.927e-05,1,6.992e-05
+sciq_00008,science,choice,"Attraction of a material by a magnet is an example of what type of property?
+A. thermal
+B. physical
+C. chemical
+D. transitive",125,23,attraction,0,0,0,1,1,0,0,0,0,0,622,108,other,0,0.95,1.0,1,7.74e-06,1,5.502e-05,1,0.0001826,1,3.744e-05,1,4.6288e-05
+mmlu_humanities_00052_high_school_world_history,humanities,choice,"This question refers to the following information.
+Source 1:
+""It is impossible to demand that an impossible position should be cleared up by peaceful revision and at the same time constantly reject peaceful revision. It is also impossible to say that he who undertakes to carry out these revisions for himself transgresses a law, since the Versailles ""Diktat"" is not law to us. A signature was forced out of us with pistols at our head and with the threat of hunger for millions of people. And then this document, with our signature, obtained by force, was proclaimed as a solemn law.""
+Adolf Hitler, speech to the Reichstag, September 1, 1939
+Source 2:
+""We shall not flag or fail. We shall go on to the end. We shall fight in France, we shall fight on the seas and the oceans, we shall fight with growing confidence and growing strength in the air, we shall defend our island, whatever the cost may be. We shall fight on the beaches, we shall fight on the landing grounds, we shall fight in the fields and in the streets, we shall fight in the hills; we shall never surrender.""
+Winston Churchill, speech before Parliament, June 4, 1940
+Winston Churchill's speech in Source 2 is best understood in the context of which of the following?
+A. British support for growing resistance movements in Eastern Europe
+B. British trade deals with American manufacturers of military hardware
+C. British appeasement of the Axis powers
+D. British fears about a possible invasion attempt by Nazi Germany",1486,258,this,7,0,0,1,34,0,1,1,1,0,897,152,other,0,0.9,1.0,0,1.588e-05,1,0.00015004,1,0.0003192,1,0.00010224,1,0.00013582
+gsm8k_00055,math,number,"A man is purchasing a pair of sneakers at a club store where he receives a membership discount of 10% off any purchase.  In addition to the membership discount, the man also has a coupon for $10 off any pair of sneakers.  If the man wants to purchase a $120 pair of sneakers and the membership discount must be applied after the coupon, how much will he pay for the sneakers after using both the coupon and membership discount?",427,79,a,3,0,0,1,2,0,0,1,0,0,357,64,other,0,1.0,1.0,1,7.26e-06,1,5.539e-05,1,0.0001207,1,5.322e-05,1,6.542e-05
+gsm8k_00148,math,number,Erik's dog can run 24 miles per hour. It is chasing a rabbit that can run 15 miles per hour. The rabbit has a head start of .6 miles. How many minutes does it take for the dog to catch up to the rabbit?,202,45,erik,3,0,0,1,4,0,1,0,0,1,635,125,other,0,1.0,1.0,1,9.92e-06,1,1.93e-05,1,0.000264,1,6.383e-05,1,7.1544e-05
+sciq_00002,science,choice,"What is the substance called whenatoms of different elements join together?
+A. plants
+B. crusts
+C. crystals
+D. compounds",120,19,what,0,0,0,1,1,0,0,1,0,0,466,72,other,0,1.0,1.0,1,6e-06,1,5.32e-05,1,0.0002067,1,3.401e-05,1,3.5296e-05
+mmlu_humanities_00069_world_religions,humanities,choice,"Which deity is the Roman counterpart to the Greek god Zeus?
+A. Jupiter
+B. Juno
+C. Dionysius
+D. Neptune",102,19,which,0,0,0,1,8,0,0,0,0,0,200,36,other,0,1.0,1.0,1,1.329e-05,1,1.58e-05,1,0.0001139,1,2.702e-05,1,4.388e-05
+strategyqa_b3443bf3c312c9d144e4,commonsense,yesno,Is there a full Neptunian orbit between the first two burials of women in the Panthéon? Answer yes or no.,105,20,is,0,0,0,1,3,0,0,0,1,0,346,60,no,0,1.0,1.0,1,6.14e-06,1,1.5151e-05,1,0.0002509,0,0.0001147,1,8.3296e-05
+sciq_00130,science,choice,"What type of organisms are helpless at birth and require lots of help from their parents?
+A. precocial organisms
+B. altricial organisms
+C. multicellular organisms
+D. Microorganisms",180,27,what,0,0,0,1,2,0,0,0,0,0,700,102,other,0,1.0,1.0,1,6.77e-06,1,4.26075e-05,1,0.0001872,1,5.188e-05,1,5.99e-05
+mmlu_humanities_00037_philosophy,humanities,choice,"Stevenson claims that the primary use of ethical judgments is to:
+A. state facts.
+B. influence the interests of others.
+C. describe one’s own approval of things.
+D. none of the above.",183,33,stevenson,0,0,0,0,1,0,0,0,0,0,520,84,other,0,0.95,1.0,1,6.86e-06,1,1.7184e-05,1,0.0002121,1,3.32e-05,1,5.24e-05
+mmlu_humanities_00061_philosophy,humanities,choice,"Bentham claims that actions are right or wrong in virtue of:
+A. the motives behind them.
+B. their consequences.
+C. both a and b.
+D. neither a nor b.",148,29,bentham,0,0,0,0,1,0,0,0,0,0,401,63,other,0,0.95,1.0,1,5.98e-06,1,1.21e-05,1,0.0001956,1,4.371e-05,1,5.975e-05
+gsm8k_00075,math,number,"The state of Virginia had 3.79 inches of rain in March, 4.5 inches of rain in April, 3.95 inches of rain in May, 3.09 inches of rain in June and 4.67 inches in July.  What is the average rainfall amount, in inches, in Virginia?",227,49,the,5,0,0,1,9,0,0,0,0,0,424,78,other,0,1.0,1.0,0,8.44e-06,1,2.17e-05,1,0.0001463,1,4.304e-05,1,3.823e-05
+strategyqa_7d6b8191f43b8526074e,commonsense,yesno,Will Chick Fil A be open on Halloween 2021? Answer yes or no.,61,13,will,1,0,0,1,5,0,0,0,1,0,361,60,yes,0,0.9,1.0,0,4.3e-06,1,3.374e-05,1,9.38e-05,0,2.532e-05,1,3.562e-05
+mmlu_humanities_00085_high_school_world_history,humanities,choice,"This question refers to the following information.
+By what principle of reason then, should these foreigners send in return a poisonous drug? Without meaning to say that the foreigners harbor such destructive intentions in their hearts, we yet positively assert that from their inordinate thirst after gain, they are perfectly careless about the injuries they inflict upon us! And such being the case, we should like to ask what has become of that conscience which heaven has implanted in the breasts of all men? We have heard that in your own country opium is prohibited with the utmost strictness and severity. This is a strong proof that you know full well how hurtful it is to mankind. Since you do not permit it to injure your own country, you ought not to have this injurious drug transferred to another country, and above all others, how much less to the Inner Land! Of the products which China exports to your foreign countries, there is not one which is not beneficial to mankind in some shape or other.
+Lin Zexu, Chinese trade commissioner, letter to Queen Victoria, 1839
+Which of the following background facts persuaded Europeans to engage in the actions described in the passage?
+A. China had recently placed an embargo on exports of silk.
+B. The price of Chinese tea had risen higher than European buyers found acceptable.
+C. China refused to allow a meaningful volume of European goods to be sold there.
+D. China's emperor had repeatedly insulted the British ambassador.",1485,253,this,1,0,1,3,26,0,1,1,1,1,726,128,other,0,0.85,1.0,0,1.466e-05,1,8.995e-05,1,0.0004093,1,0.00031189,1,0.00012726
+mmlu_humanities_00133_philosophy,humanities,choice,"According to Sartre, what existentialists have in common is that they think that _____.
+A. essence precedes existence
+B. objectivity must be a starting point
+C. existence is a myth
+D. existence precedes essence",210,34,according,0,0,0,0,2,0,0,0,0,0,556,83,other,0,1.0,1.0,1,2.463e-05,1,1.64e-05,1,0.0001562,1,5.069e-05,1,6.725e-05
+mmlu_humanities_00080_philosophy,humanities,choice,"Paley maintains that the key difference between the “contrivance” of a watch and that of nature is that the latter is _____.
+A. simpler
+B. more natural
+C. older
+D. greater and grander",183,33,paley,0,0,0,0,1,0,0,1,0,0,436,74,other,0,0.95,1.0,0,5.67e-06,1,1.3368e-05,1,0.0002146,1,4.283e-05,1,6.365e-05
+strategyqa_7dc74fd9b62e514750c2,commonsense,yesno,Are queen bees unnecessary for growing apples? Answer yes or no.,64,11,are,0,0,0,1,2,0,0,0,1,0,264,39,no,0,1.0,1.0,0,3.46e-06,0,0.000124,1,0.000147,1,3.569e-05,0,3.4296e-05
+sciq_00081,science,choice,"Canoe paddles, nutcracker, and hammer are examples of what type of simple machine?
+A. lever
+B. pivot
+C. lock
+D. handle",118,21,canoe,0,0,0,1,1,0,0,0,0,0,551,103,other,0,1.0,1.0,1,2.904e-05,1,1.0916e-05,1,0.0001482,1,2.772e-05,1,7.456e-05
+mmlu_humanities_00036_philosophy,humanities,choice,"What are the two principal answers to whether life has any meaning for us?
+A. the external view and the internal view
+B. the pessimist'sview and the optimist'sview
+C. the religious view and the liberal view
+D. the theistic view and the agnostics view",250,46,what,0,0,0,1,1,0,1,0,0,0,796,133,other,0,0.95,1.0,0,9.86e-06,0,7.48e-05,0,0.0003016,0,7.145e-05,0,8.865e-05
+gsm8k_00074,math,number,"Barbara got a great deal on a new chest of drawers, but she has to take a lot of paper out of the drawers to be able to use it. She found 3 bundles of colored paper, 2 bunches of white paper, and 5 heaps of scrap paper. If a bunch holds 4 sheets of paper, a bundle holds 2 sheets of paper, and a heap holds 20 sheets of paper, how many sheets of paper did Barbara remove from the chest of drawers?",397,84,barbara,6,0,0,1,4,0,0,0,0,1,474,85,other,0,1.0,1.0,1,9.22e-06,1,2.27e-05,0,0.000125,1,6.7325e-05,1,0.00010077
+strategyqa_310968736449680ee61e,commonsense,yesno,Would Emma Roberts's Nancy Drew be considered a private investigator? Answer yes or no.,87,15,would,0,0,0,1,6,0,1,0,1,0,847,137,yes,0,0.85,1.0,0,8.94e-06,0,1.18e-05,0,0.0001385,0,2.608e-05,0,3.248e-05
+sciq_00099,science,choice,"What is the movement of muscle in the digestive system called?
+A. apoptosis
+B. acid reflux
+C. labor contractions
+D. peristalsis",127,21,what,0,0,0,1,1,0,0,0,0,0,472,73,other,0,1.0,1.0,1,5.27e-06,1,7.266e-05,1,0.0001598,1,6.284e-05,1,4.1888e-05
+strategyqa_f251e2b2a577f7dccc0e,commonsense,yesno,Would the Cookie Monster decline an offer of free Keebler products? Answer yes or no.,85,15,would,0,0,0,1,5,0,0,0,1,0,274,47,no,0,0.95,1.0,1,3.82e-06,1,1.07e-05,1,8.13e-05,1,2.01e-05,1,5.4072e-05
+mmlu_humanities_00051_high_school_world_history,humanities,choice,"This question refers to the following information.
+You are the United States,
+you are the future invader
+of the native America that has Indian blood,
+that still prays to Jesus Christ and still speaks Spanish.
+. . .
+you are Alexander-Nebuchadnezzar.
+You think that life is fire,
+that progress is eruption,
+that wherever you shoot
+you hit the future.
+No.
+. . .
+But our America, that has had poets
+since the ancient times of Netzahualcoyotl,
+. . .
+that consulted the stars, that knew Atlantis
+whose resounding name comes to us from Plato,
+that since the remote times of its life
+has lived on light, on fire, on perfume, on love,
+America of the great Montezuma, of the Inca,
+the fragrant America of Christopher Columbus,
+Catholic America, Spanish America,
+the America in which noble Cuauhtémoc said:
+""I'm not in a bed of roses"", that America
+that trembles in hurricanes and lives on love,
+it lives, you men of Saxon eyes and barbarous soul.
+And it dreams. And it loves, and it vibrates, and it is the daughter of the sun.
+Be careful. Viva Spanish America!
+There are a thousand cubs loosed from the Spanish lion.
+Roosevelt, one would have to be, through God himself,
+the-fearful rifleman and strong hunter,
+to manage to grab us in your iron claws.
+And, although you count on everything, you lack one thing: God!
+—Adapted from ""To Roosevelt"" by Ruben Dario, 1904
+What was the poet's purpose in discussing ""our America, that has had poets since ancient times, . . . that consulted the stars""?
+A. Latin America has excelled in poetry.
+B. Latin America had made significant scientific contributions.
+C. Latin America had a prophecy regarding these events.
+D. Latin America has had a rich culture for centuries.",1701,287,this,1,1,0,1,58,0,1,0,1,0,574,87,other,0,0.95,1.0,1,3.921e-05,1,0.00022675,1,0.0002789,1,8.802e-05,1,0.000159864
+sciq_00139,science,choice,"A problem with using food chains to describe ecosystems is that some organisms can feed on or be consumed by species from more than one of what level?
+A. biome level
+B. trophic level
+C. habitat level
+D. pH level",211,40,a,0,0,0,1,0,0,0,1,0,0,419,70,other,0,1.0,1.0,1,5.21e-06,1,5.52e-05,1,0.0001249,1,5.282e-05,1,8.184e-05
+strategyqa_cb08864902f07be76e77,commonsense,yesno,Do Flat Earthers doubt the existence of Earth's magnetic field? Answer yes or no.,81,15,do,0,0,0,1,5,0,1,0,1,0,357,63,yes,0,1.0,1.0,1,5.2e-06,0,1.36e-05,0,0.0001388,1,3.002e-05,1,5.275e-05
+strategyqa_75b9eafe50ef589e8f78,commonsense,yesno,Would a snake have reasons to fear a honey badger? Answer yes or no.,68,14,would,0,0,0,1,2,0,0,0,1,0,344,55,yes,0,0.95,1.0,1,4.32e-06,1,4.02e-05,1,9.29e-05,1,2.912e-05,1,3.45e-05
+mmlu_humanities_00094_high_school_world_history,humanities,choice,"This question refers to the following information.
+""The question as to who, and what, is responsible for African underdevelopment can be answered at two levels. Firstly, the answer is that the operation of the imperialist system bears major responsibility for African economic retardation by draining African wealth and by making it impossible to develop more rapidly the resources of the continent. Secondly, one has to deal with those who manipulate the system and those who are either agents or unwitting accomplices of the said system. The capitalists of Western Europe were the ones who actively extended their exploitation from inside Europe to cover the whole of Africa.""
+Walter Rodney, historian, How Europe Underdeveloped Africa, 1974
+Which of the following best explains the importance of trading contacts with Europeans for Sub-Saharan Africans in the period 1450 to 1750 C.E.?
+A. Sub-Saharan Africans relied on European merchants to sustain population growth through the constant importation of New World foodstuffs.
+B. Sub-Saharan Africans consolidated new states and kingdoms by trading with the Europeans for firearms.
+C. Sub-Saharan Africans depended on European merchants as the sole purchasers of slaves.
+D. Sub-Saharan Africans allied with European powers to evict Muslim and Arab merchant princes from encroaching on their sovereignty.",1355,210,this,3,1,0,1,43,0,1,1,0,0,606,100,other,0,0.95,1.0,0,1.228e-05,1,0.000131859,1,0.0004316,1,0.00026795,1,0.00011708
+strategyqa_b07fd13daa6e17e6273c,commonsense,yesno,Is a pottery kiln inappropriate for use with glass blowing? Answer yes or no.,77,14,is,0,0,0,1,2,0,0,0,1,0,478,76,yes,0,1.0,1.0,0,5.76e-06,0,4.342e-05,0,0.0001254,0,3.181e-05,0,3.479e-05
+mmlu_humanities_00002_high_school_world_history,humanities,choice,"This question refers to the following information.
+""When the gods fashioned Gilgamesh*, to him they gave a perfect form. The glorious sun Shamash bestowed upon him glory; Adad the terrible god of storms bestowed upon him courage. The great gods perfected his magnificence beyond all others, terrible like the great wild bull. Two thirds god they made him; one third man they made him.
+Of Uruk, its great rampart he built, and the wall of the sacred Eanna temple, the holy sanctuary. Behold the outer walls which gleam with the brilliance of copper; see the inner wall which none might rival. Touch the threshold stone—it is from ancient days. Goest thou into the Eanna temple, yea, the dwelling place of Ishtar, the like of which no subsequent king or living man might equal. Ascend and walk about on the wall of Uruk, inspect the corner-stone, and examine its brick-work, whether its wall is not made of burned brick, and its foundation laid by the Seven Sages. One third for city, one third for garden, one third for field, and a precinct for the temple of Ishtar. These parts and the precinct comprise Uruk.""
+The Epic of Gilgamesh, ca. 2100 B.C.E.
+*Gilgamesh was a king of Uruk.
+Which of the following best describes the origins of epic poetry such as the Epic of Gilgamesh?
+A. The rise of a literate class of scribes in cities who could record poems
+B. The rise of a merchant class in cities who could sponsor the creation of original art
+C. The rise of a religious caste dedicated to solely recording the deeds of God-Kings
+D. The rise of a warrior elite whose deeds were worthy of praise and recording",1607,291,this,1,1,1,1,38,0,1,0,1,1,540,90,other,0,0.95,1.0,1,1.416e-05,1,5.11e-05,0,0.0003377,1,7.18e-05,1,0.00014775
+gsm8k_00089,math,number,"John climbs up 9 flights of stairs.  Each flight is 10 feet.  If each step is 18 inches, how many steps does he climb up?",121,25,john,3,0,0,1,3,0,0,0,0,1,522,97,other,0,1.0,1.0,1,8.32e-06,1,1.4577e-05,1,0.0001483,1,3.174e-05,1,6.92e-05
+strategyqa_341375fa1c7cb93278f5,commonsense,yesno,Would 7 zucchini's satisfy potassium USDA daily recommendation? Answer yes or no.,81,13,would,1,0,0,1,2,0,1,0,1,0,399,68,no,0,0.95,1.0,0,5.59e-06,0,1.207e-05,0,0.0002157,0,3.368e-05,1,5.526e-05
+sciq_00096,science,choice,"What is the name of the galaxy we live in?
+A. Centaurus A
+B. milky way
+C. Andromeda
+D. Bode's Galaxy",100,22,what,0,0,0,1,5,0,1,0,0,0,245,46,other,0,1.0,1.0,1,4.98e-06,1,1.57e-05,1,9.76e-05,1,3.224e-05,1,4.585e-05
+sciq_00017,science,choice,"Potential energy is not only associated with the location of matter, but also with the structure of matter. even a spring on the ground has potential energy if it is what?
+A. compressed
+B. watched
+C. coupled
+D. ignored",218,39,potential,0,0,0,1,1,0,0,0,1,1,267,47,other,0,1.0,1.0,1,4.43e-06,1,1.271e-05,1,0.0001202,1,3.924e-05,1,4.996e-05
+strategyqa_1eb8a833f2f5f1698b52,commonsense,yesno,Are Tom and Jerry featured in a ride at Disneyland? Answer yes or no.,69,14,are,0,0,0,1,5,0,0,0,1,0,368,60,no,0,0.95,1.0,1,5.14e-06,1,7.899e-06,1,9.04e-05,1,3.622e-05,1,5.533e-05
+mmlu_humanities_00017_philosophy,humanities,choice,"Why is it ""easier said than done"" to ensure that the principle of informed consent is adhered to?
+A. It is not practicable to present every participant with all the information about the study.
+B. Sometimes it is desirable to withhold certain pieces of information, such as the length of time an interview will take.
+C. If the participants knew exactly what the researcher was intending to study, they might change their behavior.
+D. All of the above.",451,78,why,0,0,0,1,5,0,1,1,1,1,671,98,other,0,0.95,1.0,0,8.36e-06,1,8.358e-05,1,0.000229,1,3.8e-05,1,8.337e-05
+mmlu_humanities_00054_world_religions,humanities,choice," How old was Guru Nanak when he started to preach the message of the divine Name?
+A. 30
+B. 40
+C. 33
+D. 52",105,24,how,4,0,0,1,4,0,0,0,0,0,225,38,other,0,1.0,1.0,1,5.12e-06,1,1.6642e-05,1,0.0001128,1,3.7635e-05,1,6.991e-05
+gsm8k_00084,math,number,"It’s spring! The gardener at Parc Municipal orders flowers. He takes 250 tulips, 375 carnations and 320 roses. Each flower is sold for 2€. Calculate the total expenses.",168,29,it,4,0,0,0,7,0,0,0,0,1,647,99,other,0,1.0,1.0,1,7.54e-06,1,1.3571e-05,1,0.0001266,1,2.858e-05,1,5.392e-05
+strategyqa_3b70f1178fdb45ad2a24,commonsense,yesno,Does Ariana Grande's signature style combine comfort items and high fashion? Answer yes or no.,94,16,does,0,0,0,1,4,0,1,0,1,0,481,70,yes,0,0.95,1.0,1,5.94e-06,1,3.78e-05,1,0.0001363,1,3.088e-05,1,4.5272e-05
+sciq_00095,science,choice,"Tissues of marine bony fishes gain what from their surroundings?
+A. excess salts
+B. mercury
+C. absorb salts
+D. toxins",117,20,tissues,0,0,0,1,1,0,0,0,0,0,243,37,other,0,1.0,1.0,1,3.71e-06,1,4.23085e-05,1,0.0003342,0,2.626e-05,1,6.343e-05
+sciq_00122,science,choice,"What term means the amount of a substance required to form a saturated solution in a given amount of solvent at a specified temperature?
+A. solubility
+B. turbidity
+C. concentration
+D. viscosity",193,32,what,0,0,0,1,1,0,0,0,0,0,526,91,other,0,1.0,1.0,1,7.32e-06,1,1.78e-05,1,0.000225,1,4.498e-05,1,7.386e-05
+mmlu_humanities_00107_philosophy,humanities,choice,"According to Socrates, a clear sign that a person has _____ is her exclusive pursuit of social status, wealth, power, and pleasure.
+A. philosophical ambition
+B. worldly wisdom
+C. exceptional desires
+D. an unhealthy soul",219,35,according,0,0,0,0,2,0,0,0,0,0,800,132,other,0,0.95,1.0,0,7.97e-06,1,3.359e-05,1,0.0001621,1,4.936e-05,1,5.573e-05
+mmlu_humanities_00071_high_school_world_history,humanities,choice,"This question refers to the following information.
+""The question as to who, and what, is responsible for African underdevelopment can be answered at two levels. Firstly, the answer is that the operation of the imperialist system bears major responsibility for African economic retardation by draining African wealth and by making it impossible to develop more rapidly the resources of the continent. Secondly, one has to deal with those who manipulate the system and those who are either agents or unwitting accomplices of the said system. The capitalists of Western Europe were the ones who actively extended their exploitation from inside Europe to cover the whole of Africa.""
+Walter Rodney, historian, How Europe Underdeveloped Africa, 1974
+Based on your knowledge of world history, which of the following contributed LEAST to Europe's ability to penetrate Africa in the period 1750 to 1900 C.E.?
+A. The invention of the machine gun
+B. The invention of vaccines for tropical diseases
+C. The development of the joint-stock company
+D. The invention of steam-powered ships",1072,173,this,3,1,0,1,25,0,1,1,0,0,794,121,other,0,0.95,1.0,0,1.278e-05,0,3.5267e-05,1,0.0005637,0,8.602e-05,1,0.0002014
+sciq_00098,science,choice,"Gas, liquid, and solid describe what property of matter?
+A. states
+B. Physical
+C. Chemical
+D. Quatitative",105,17,gas,0,0,0,1,4,0,0,0,0,0,282,43,other,0,1.0,1.0,0,4.72e-06,1,4.0365e-05,1,0.0001117,1,2.8155e-05,1,4.033e-05
+mmlu_humanities_00141_high_school_world_history,humanities,choice,"This question refers to the following information.
+Woman, wake up; the bell of reason is being heard throughout the whole universe; discover your rights. Enslaved man has multiplied his strength, [but] having become free, he has become unjust to his companion. Oh, women, women! When will you cease to be blind? What advantage have you received from the Revolution? A more pronounced scorn, a more marked disdain. If our leaders persist, courageously oppose the force of reason to their empty pretentions of superiority. Regardless of what barriers confront you, it is in your power to free yourselves!
+Olympe de Gouges, ""Declaration of the Rights of Woman and the Female Citizen,"" 1791
+The independence? Nothing of what I hoped for was achieved. I had expected that my children would be able to have an education, but they did not get it. We were poor peasants then, we are poor peasants now. Nothing has changed. Everything is the same. The only thing is that we are free, the war is over, we work without fear—but apart from that, nothing has changed.
+Halima Ghomri, interviewed in the 1970s, after Algeria's war of independence
+Publication of the first passage was followed by which of the political outcomes described below?
+A. French women, like Jews, Protestants, and freed blacks, attained political equality after only a short delay.
+B. French women quickly gained the right to vote, but not to hold political office.
+C. French women found their status even lower than it had been before the French Revolution.
+D. French women remained without full political rights until well into the following century.",1613,269,this,2,0,0,4,34,0,1,1,1,1,633,101,other,0,0.95,1.0,1,1.254e-05,1,0.00015492,1,0.0003455,1,0.00010532,1,0.00013332
+mmlu_humanities_00145_world_religions,humanities,choice,"Which monk developed Pure Land Buddhism as we know it today?
+A. Genshin
+B. Dogen
+C. Honen
+D. Shinran",100,19,which,0,0,0,1,8,0,0,0,0,0,765,136,other,0,-1.0,1.0,0,1.004e-05,1,1.4803e-05,1,0.0002523,1,5.216e-05,1,7.712e-05
+mmlu_humanities_00108_world_religions,humanities,choice," Which Hindu festival involves decorating the house with lights, setting off firecrackers and wearing new clothes?
+A. Deepavali
+B. Holi
+C. Diwali
+D. Navaratri",158,24,which,0,0,0,1,6,0,0,0,0,0,707,117,other,0,1.0,1.0,1,9.36e-06,0,5.219e-05,0,0.0001416,0,4.57e-05,0,6.583e-05
+mmlu_humanities_00124_world_religions,humanities,choice," In Buddhism, what are ordained women known as?
+A. Bhikshus
+B. Bhikshunis
+C. The Sangha
+D. Arhats",97,17,in,0,0,0,1,7,0,0,0,0,0,352,55,other,0,1.0,1.0,1,6.06e-06,1,7.038e-05,1,0.000151,1,3.902e-05,1,7.014e-05
+gsm8k_00023,math,number,"Sasha added 48 cards into a box. Her sister, Karen, then took out 1/6 of the cards Sasha added. If there are now 83 cards in the box, how many cards were originally in the box?",176,37,sasha,4,1,0,1,5,0,0,0,0,1,395,81,other,0,1.0,1.0,1,7.78e-06,1,1.91e-05,1,0.0002525,1,4.577e-05,1,0.00010852
+strategyqa_71cb683bdb77f668dce0,commonsense,yesno,Could you drive from New England to a Sainsbury's? Answer yes or no.,68,14,could,0,0,0,1,5,0,1,0,1,0,250,44,no,0,1.0,1.0,1,1.389e-05,1,3.365e-05,1,0.0001007,0,5.318e-05,1,6.132e-05
+strategyqa_02f5f11bf98632578d50,commonsense,yesno,Can the Great Depression be treated with Prozac? Answer yes or no.,66,12,can,0,0,0,1,5,0,0,0,1,0,479,66,no,0,1.0,1.0,1,5.74e-06,1,3.86e-05,1,0.0001326,1,5.483e-05,1,4.837e-05
+gsm8k_00079,math,number,There are 180 school days in the academic year. Aliyah packs a lunch half the time. Becky packs her lunch half as much as Aliyah. How many days a year does Becky pack her lunch?,177,35,there,1,0,0,1,6,0,0,0,0,1,211,43,other,0,1.0,1.0,1,5.38e-06,1,4.045e-05,1,0.0001707,1,3.408e-05,1,4.709e-05
+sciq_00044,science,choice,"What powerful microscopes use a beam of subatomic particles instead of a beam of light?
+A. electron microscopes
+B. nuclear microscopes
+C. scientific microscopes
+D. complex microscopes",183,27,what,0,0,0,1,1,0,0,0,0,0,462,70,other,0,1.0,1.0,1,6.9e-06,1,5.502e-05,1,0.0001903,1,4.46e-05,1,5.225e-05
+sciq_00090,science,choice,"Where does much of the blood that enters the atria flow?
+A. muscles
+B. lungs
+C. arteries
+D. ventricles",102,19,where,0,0,0,1,1,0,0,0,0,0,377,66,other,0,1.0,1.0,1,5.84e-06,1,4.17105e-05,1,0.0001567,1,3.106e-05,1,4.187e-05
+mmlu_humanities_00056_world_religions,humanities,choice," What does ""Svetambara"" mean?
+A. ""Sky-clad""
+B. ""Naked""
+C. ""White-clad""
+D. ""Clothed""",83,14,what,0,1,0,1,6,0,1,0,0,0,217,32,other,0,1.0,1.0,1,4.26e-06,1,6.6e-05,1,0.0001497,1,4.4165e-05,1,8.567e-05
+sciq_00131,science,choice,"What basic units are neither created nor destroyed during a chemical change, but are instead rearranged?
+A. Electrons
+B. atoms
+C. molecules
+D. particles",152,24,what,0,0,0,1,2,0,0,0,0,0,412,66,other,0,1.0,1.0,0,5.03e-06,1,1.0616e-05,1,0.0001679,1,3.49e-05,1,6.12e-05
+strategyqa_9a1bf03a1359fa94eb7c,commonsense,yesno,Is a krabby patty similar to a cheeseburger? Answer yes or no.,62,12,is,0,0,0,1,2,0,0,0,1,0,397,68,yes,0,0.95,1.0,1,6.28e-06,1,6.74e-05,1,0.0001229,1,0.00012096,1,6.275e-05
+sciq_00060,science,choice,"To figure out the height of a wave you measure the distance between the crest and what?
+A. crater
+B. core
+C. trough
+D. drift",124,25,to,0,0,0,1,1,0,0,0,0,0,243,45,other,0,1.0,1.0,1,4.12e-06,1,3.876e-05,1,0.0001079,1,2.432e-05,1,4.316e-05
+mmlu_humanities_00092_high_school_world_history,humanities,choice,"This question refers to the following information.
+Source 1:
+""Moreover, Sir, in our Kingdoms there is another great inconvenience which is of little service to God, and this is that many of our people, keenly desirous as they are of the wares and things of your Kingdoms, which are brought here by your people, and in order to satisfy their voracious appetite, seize many of our people, freed and exempt men, and very often it happens that they kidnap even noblemen and our relatives, and take them to be sold to the white men who are in our kingdoms.""
+Letter from King Afonso I of Kongo to King John III of Portugal, 1526
+Source 2:
+""This expedition has cost us much: it would be unreasonable to send it home with empty hands. Although our [principal] wish is to serve God and the pleasure of the king of Kongo, none the less you will make him understand—as though speaking in our name—what he should do to fill the ships, whether with slaves, or copper, or ivory.""
+Instructions from King Manuel of Portugal to his envoy in Kongo, 1512
+The tone of the first letter best reflects which of the following developments in early modern Africa?
+A. A growing dependence on trade with Europe for manufactured goods
+B. Vigorous resistance to European expeditions of conquest
+C. The establishment of Portuguese trading posts along the coastline
+D. The consolidation of states along the Atlantic coast of Africa",1400,246,this,4,0,0,1,34,0,1,1,0,1,867,144,other,0,0.95,1.0,1,1.328e-05,1,3.3299e-05,1,0.0003017,1,8.618e-05,1,0.00017336
+mmlu_humanities_00136_world_religions,humanities,choice,"What is the mi'raj?
+A. Muhammad's miraculous ascent to heaven
+B. Muhammad's migration to Mecca
+C. Muhammad's first community in Mecca
+D. Muhammad's revelations of the Qur'an",173,33,what,0,0,0,1,8,0,1,0,0,0,505,90,other,0,0.95,1.0,1,2.761e-05,1,5.06e-05,1,9.96e-05,1,4.662e-05,1,4.6688e-05
+gsm8k_00130,math,number,Delaney has to catch a bus that leaves at 8:00. a.m to school every day. He always takes 30 minutes to reach the pick-up point from his home. One day he woke up late and left his home at 7:50. How much time did he miss the bus by when he reached the pick-up point?,264,60,delaney,5,1,0,1,4,0,0,0,0,1,328,67,other,0,1.0,1.0,1,7.14e-06,1,1.5975e-05,1,0.0002781,1,4.9275e-05,1,8.5112e-05
+strategyqa_5416d6ace8e5bef7e467,commonsense,yesno,Could a nymph tick pass through a standard hole punch? Answer yes or no.,72,14,could,0,0,0,1,2,0,0,0,1,0,435,77,yes,0,1.0,1.0,1,6.06e-06,1,4.62e-05,1,0.0001354,1,2.598e-05,1,5.2e-05
+strategyqa_ad97256b5f0ab80b948a,commonsense,yesno,Are parodies of the President of the United States illegal? Answer yes or no.,77,14,are,0,0,0,1,5,0,0,0,1,0,303,45,no,0,1.0,1.0,1,3.72e-06,1,3.472e-05,1,0.0001257,1,3.421e-05,1,5.989e-05
+gsm8k_00054,math,number,"In India, it cost $1 to purify a gallon of fresh water. Each person needs 1/2 a gallon of fresh water a day. In a family of 6, how much will it cost for fresh water for the day?",177,40,in,4,1,0,1,4,0,0,0,0,1,409,80,other,0,1.0,1.0,1,7.38e-06,1,1.55e-05,1,9.47e-05,1,4.352e-05,1,8.911e-05
+sciq_00062,science,choice,"The three classes of elements are metals, nonmetals, and what?
+A. ionic compounds
+B. metalloids
+C. molecules
+D. atoms",117,19,the,0,0,0,1,1,0,0,0,0,0,839,151,no,0,0.9,1.0,0,1.002e-05,1,1.31e-05,1,0.0001198,1,4.426e-05,1,6.408e-05
+strategyqa_c5d50d6e2d1747880aed,commonsense,yesno,Do people put creatures from the Black Sea on their pizza? Answer yes or no.,76,15,do,0,0,0,1,4,0,0,0,1,0,314,52,yes,0,0.95,1.0,1,5.1e-06,1,9.07e-06,1,8.57e-05,1,2.109e-05,1,4.963e-05
+strategyqa_23bde1810c6afe6f916c,commonsense,yesno,Did anyone in the 1912 election take a majority of the popular vote? Answer yes or no.,86,17,did,1,0,0,1,2,0,0,0,1,0,483,75,no,0,1.0,1.0,1,5.46e-06,1,1.54e-05,1,0.0001825,1,0.0001632,1,6.225e-05
+strategyqa_ab70365febc75dcda77d,commonsense,yesno,Is radioactive waste a plot device for many shows? Answer yes or no.,68,13,is,0,0,0,1,2,0,0,0,1,1,347,56,yes,0,0.95,1.0,1,4.31e-06,1,4.452e-05,1,0.0001001,1,2.396e-05,1,4.0888e-05
+strategyqa_d8ba1dd2575be52d80be,commonsense,yesno,Are peaches best eaten when firm? Answer yes or no.,51,10,are,0,0,0,1,2,0,0,0,1,0,329,58,no,0,0.95,1.0,1,5.1e-06,1,2.914e-05,1,0.0001042,1,2.312e-05,1,3.26e-05
+sciq_00077,science,choice,"One of the five fundamental conservation laws in the universe refers to conservation of what, which is the product of mass and velocity?
+A. energy
+B. light
+C. momentum
+D. fluid",176,31,one,0,0,0,1,1,0,0,0,0,0,550,96,other,0,1.0,1.0,0,7.38e-06,1,2.649e-05,1,0.000105,1,2.79e-05,1,4.55e-05
+mmlu_humanities_00113_high_school_world_history,humanities,choice,"This question refers to the following information.
+""To slacken the tempo would mean falling behind. And those who fall behind get beaten. But we do not want to be beaten. No, we refuse to be beaten! One feature of the history of old Russia was the continual beatings she suffered because of her backwardness. She was beaten by the Mongol khans. She was beaten by the Turkish beys. She was beaten by the Swedish feudal lords. She was beaten by the Polish and Lithuanian gentry. She was beaten by the British and French capitalists. She was beaten by the Japanese barons. All beat her––because of her backwardness, because of her military backwardness, cultural backwardness, political backwardness, industrial backwardness, agricultural backwardness. They beat her because it was profitable and could be done with impunity. You remember the words of the pre-revolutionary poet: ""You are poor and abundant, mighty and impotent, Mother Russia."" Those gentlemen were quite familiar with the verses of the old poet. They beat her, saying: ""You are abundant,"" so one can enrich oneself at your expense. They beat her, saying: ""You are poor and impotent,"" so you can be beaten and plundered with impunity. Such is the law of the exploiters––to beat the backward and the weak. It is the jungle law of capitalism. You are backward, you are weak––therefore you are wrong; hence you can be beaten and enslaved. You are mighty––therefore you are right; hence we must be wary of you.
+That is why we must no longer lag behind.""
+Joseph Stalin, speech delivered at the first All-Union Conference of Leading Personnel of Socialist Industry, February 4, 1931
+The speech as a whole is best understood in the context of which of the following historical developments?
+A. Stalin's drive to motivate Soviet industry for the Winter War with Finland
+B. Stalin's push to make the Soviet Union a nuclear nation
+C. Stalin's implementation of five-year plans for the Soviet economy
+D. Stalin's purges of dissidents and other political prisoners",2016,344,this,2,1,0,1,59,0,1,1,1,1,684,112,other,0,0.95,1.0,1,1.572e-05,1,0.00014174,1,0.0003441,1,0.00043381,1,0.00019025
+strategyqa_b528be028d2232b34887,commonsense,yesno,Would a lullaby be enough to wake Hellen Keller up? Answer yes or no.,69,14,would,0,0,0,1,4,0,0,0,1,1,357,60,no,0,0.95,1.0,1,5.28e-06,1,5.488e-05,1,0.0001032,1,2.116e-05,1,3.4496e-05
+mmlu_humanities_00031_high_school_world_history,humanities,choice,"This question refers to the following information.
+""We are not Europeans; we are not Indians; we are but a mixed species of aborigines and Spaniards. Americans by birth and Europeans by law, we find ourselves engaged in a dual conflict: we are disputing with the natives for titles of ownership, and at the same time we are struggling to maintain ourselves in the country that gave us birth against the opposition of the invaders. Thus our position is most extraordinary and complicated. But there is more. As our role has always been strictly passive and political existence nil, we find that our quest for liberty is now even more difficult of accomplishment; for we, having been placed in a state lower than slavery, had been robbed not only of our freedom but also of the right to exercise an active domestic tyranny…We have been ruled more by deceit than by force, and we have been degraded more by vice than by superstition. Slavery is the daughter of darkness: an ignorant people is a blind instrument of its own destruction. Ambition and intrigue abuses the credulity and experience of men lacking all political, economic, and civic knowledge; they adopt pure illusion as reality; they take license for liberty, treachery for patriotism, and vengeance for justice. If a people, perverted by their training, succeed in achieving their liberty, they will soon lose it, for it would be of no avail to endeavor to explain to them that happiness consists in the practice of virtue; that the rule of law is more powerful than the rule of tyrants, because, as the laws are more inflexible, every one should submit to their beneficent austerity; that proper morals, and not force, are the bases of law; and that to practice justice is to practice liberty.""
+Simón de Bolívar, Message to the Congress of Angostura, 1819
+The author of this text expresses a belief in which of the following as requirements for a properly functioning legal system?
+A. Truth and religion
+B. Freedom and democracy
+C. Intelligence and order
+D. Morality and justice",2040,348,this,1,0,0,1,22,0,1,1,1,1,702,113,other,0,0.95,1.0,1,1.624e-05,1,5.56e-05,1,0.0002659,1,9.281e-05,1,0.00018398
+sciq_00097,science,choice,"Bivalvia and gastropoda are classes of what phylum?
+A. fishes
+B. diatoms
+C. Insects
+D. mollusks",95,16,bivalvia,0,0,0,1,2,0,0,0,0,0,469,74,other,0,1.0,1.0,1,7.34e-06,1,4.2757e-05,1,0.000122,1,4.376e-05,1,4.709e-05
+strategyqa_05fe6e26626c69b65ac1,commonsense,yesno,Do mollymawks live where albatrosses cannot? Answer yes or no.,62,10,do,0,0,0,1,2,0,0,0,1,0,321,48,yes,0,0.9,1.0,0,5.3e-06,1,1.63e-05,1,9.82e-05,0,4.159e-05,1,3.7136e-05
+mmlu_humanities_00023_high_school_world_history,humanities,choice,"This question refers to the following information.
+Whether the question be to continue or to discontinue the practice of sati, the decision is equally surrounded by an awful responsibility. To consent to the consignment year after year of hundreds of innocent victims to a cruel and untimely end, when the power exists of preventing it, is a predicament which no conscience can contemplate without horror. But, on the other hand, to put to hazard by a contrary course the very safety of the British Empire in India is an alternative which itself may be considered a still greater evil. When we had powerful neighbours and greater reason to doubt our own security, expediency might recommend a more cautious proceeding, but now that we are supreme my opinion is decidedly in favour of an open and general prohibition.
+William Bentinck, Govenor-General of India, ""On the Suppression of Sati,"" 1829
+I have made it my study to examine the nature and character of the Indians [who trade with us], and however repugnant it may be to our feelings, I am convinced they must be ruled with a rod of iron, to bring and keep them in a proper state of subordination, and the most certain way to effect this is by letting them feel their dependence on [the foodstuffs and manufactured goods we sell them].
+George Simpson, Head of Northern Department, Hudson's Bay Company, 1826
+The passages above are best understood in the context of which of the following practices?
+A. Legalization of slavery in overseas colonies
+B. Exercise of colonial administrative power over native peoples
+C. Western missionary efforts in colonized territories
+D. Mobilization of military resources from colonial possessions",1686,281,this,2,1,0,1,30,0,1,1,1,0,1000,152,other,0,-1.0,1.0,0,1.638e-05,1,0.0001176,1,0.0002816,1,7.891e-05,1,0.000117216
+strategyqa_42025ba75ec5d0f0f291,commonsense,yesno,Are black and white prison uniforms made to resemble a zebra? Answer yes or no.,79,15,are,0,0,0,1,2,0,0,0,1,0,313,54,yes,0,0.7,1.0,0,4.64e-06,1,5.09e-05,1,0.0001157,1,3.359e-05,1,5.334e-05
+gsm8k_00034,math,number,Frankie's parents let him have many pets. He has six more snakes than he has cats. He has one less parrot than cats. Six of his pets have four legs. He has 2 dogs. How many pets does he have in total?,200,43,frankie,1,0,0,1,6,0,1,1,0,1,580,118,other,0,-1.0,1.0,0,1.022e-05,1,2.16e-05,1,0.0003231,1,4.666e-05,1,0.00012725
+sciq_00064,science,choice,"Drinking too much water too fast can lead to what potentially fatal condition, which causes dangerous changes to salt levels?
+A. osmosis
+B. inebriation
+C. water intoxication
+D. drowning",185,29,drinking,0,0,0,1,1,0,0,0,0,0,847,146,other,0,-1.0,1.0,0,1.026e-05,1,4.46e-05,1,0.0002553,1,5.51e-05,1,7.943e-05
+sciq_00065,science,choice,"What does the tires meeting the road cause when a car accelerates?
+A. friction
+B. vibration
+C. erosion
+D. thrust",112,20,what,0,0,0,1,1,0,0,0,0,0,295,51,other,0,1.0,1.0,1,4.25e-06,1,4.56e-05,1,0.0001314,1,3.769e-05,1,5.97e-05
+sciq_00025,science,choice,"What are bacteria and archaea examples of?
+A. eukaryotes
+B. prokaryotes
+C. plants
+D. fungi",90,15,what,0,0,0,1,1,0,0,0,0,0,259,39,other,0,1.0,1.0,1,4.72e-06,1,4.234e-05,1,0.0001705,1,3.174e-05,1,4.311e-05
+sciq_00083,science,choice,"What do voltmeters measure?
+A. voltage
+B. frequency
+C. amplitude
+D. temperature",79,12,what,0,0,0,1,1,0,0,0,0,0,364,61,other,0,1.0,1.0,1,4.5e-06,1,6.425e-05,1,0.0001168,1,2.79e-05,1,4.132e-05
+strategyqa_bbf5422e2b837a2e1ff6,commonsense,yesno,Could B be mistaken for an Arabic numeral? Answer yes or no.,60,12,could,0,0,0,1,3,0,0,0,1,0,239,47,no,0,1.0,1.0,0,5e-06,0,1.0657e-05,0,0.0001223,1,2.61e-05,1,3.45e-05
+mmlu_humanities_00034_philosophy,humanities,choice,"Aristotle says  that what makes things be what they are--their essence--does not exist apart from individ-uals that exist in the world.  So if all the members of a species were destroyed, then their essence or form:
+A. would likewise be destroyed.
+B. would be destroyed only if there were no one around to remember the species.
+C. would continue existing (as with Plato's Forms) in some other realm of being.
+D. would not be destroyed because there was no essence or form originally to be destroyed; there are only individuals, not universal essences or natures of things.",572,101,aristotle,0,1,0,0,4,1,1,0,1,1,478,79,other,0,1.0,1.0,1,7.26e-06,1,5.444e-05,1,0.0001908,1,7.958e-05,1,0.00011233
+strategyqa_3ae8644164c547560eda,commonsense,yesno,Was King Arthur at the beheading of Anne Boleyn? Answer yes or no.,66,13,was,0,0,0,1,6,0,0,0,1,0,300,52,no,0,1.0,1.0,1,5.12e-06,1,1.35e-05,1,0.0001332,1,4.428e-05,1,5.334e-05
+sciq_00124,science,choice,"What are the two classifications of natural resources?
+A. renewable and nonrenewable
+B. renewable and reusable
+C. recyclable and reversible
+D. productive and nonrenewable",170,24,what,0,0,0,1,1,0,0,0,0,0,360,51,other,0,1.0,1.0,1,4.49e-06,1,1.34e-05,1,0.0001557,1,4.3505e-05,1,4.83e-05
+sciq_00103,science,choice,"Birds possess a cloaca, a structure that allows water to be reabsorbed from waste back into this?
+A. eggs
+B. intestines
+C. skin
+D. blood stream",143,26,birds,0,0,0,1,1,0,0,0,0,0,468,73,other,0,1.0,1.0,0,6.5e-06,1,7.7e-05,1,0.0001541,1,0.000108,1,4.541e-05
+sciq_00112,science,choice,"When boron10 absorbs a neutron, what does it emit?
+A. proteins
+B. particle
+C. calcium
+D. light",94,17,when,1,0,0,1,1,0,0,0,0,0,488,79,other,0,1.0,1.0,1,5.93e-06,1,3.942e-05,1,0.0001439,1,4.922e-05,1,5.464e-05
+sciq_00115,science,choice,"The name of a monatomic cation is simply the name of the element followed by this word?
+A. ion
+B. amine
+C. bond
+D. laser",120,25,the,0,0,0,1,1,0,0,0,0,0,319,60,other,0,1.0,1.0,1,1.838e-05,1,5.812e-05,1,0.0001504,1,3.274e-05,1,3.825e-05
+strategyqa_0abc0874b74e714f943e,commonsense,yesno,Did Northwest Airlines' longevity surpass Betty White? Answer yes or no.,72,11,did,0,0,0,1,6,0,1,0,1,0,197,33,yes,0,1.0,1.0,0,4.12e-06,1,7.434e-05,1,0.0001598,1,2.724e-05,1,5.25e-05
+gsm8k_00082,math,number,"Ken had fifty pencils, and he wanted to share some of them with his two friends, Manny and Nilo. Ken gave ten pencils to Manny and ten more pencils to Nilo than he gave to Manny. He kept the rest of the pencils. How many pencils did Ken keep?",242,49,ken,0,0,0,1,10,0,0,1,0,1,352,67,other,0,1.0,1.0,1,8.4e-06,1,5.322e-05,1,0.0002521,1,5.892e-05,1,9.572e-05
+strategyqa_5c03103b5a70117cbdf0,commonsense,yesno,"Could Elizabeth I of England have seen the play Dido, Queen of Carthage ? Answer yes or no.",91,17,could,0,0,0,1,7,0,0,0,1,0,276,45,yes,0,1.0,1.0,1,4.24e-06,1,5.788e-05,1,0.0001344,1,4.059e-05,1,6.616e-05
+sciq_00051,science,choice,"What force opposes a motion of a moving body? for example a car breaking on a road.
+A. vibration
+B. thermal
+C. friction
+D. tension",130,25,what,0,0,0,1,1,0,0,0,0,0,499,94,other,0,1.0,1.0,1,6.14e-06,1,1.1845e-05,1,0.0001432,1,4.546e-05,1,4.584e-05
+gsm8k_00015,math,number,"Roy spends 2 hours on sports activities in school every day. He goes to school 5 days a week. If he missed 2 days within a week, how many hours did he spend on sports in school that week?",187,39,roy,3,0,0,1,3,0,0,0,0,1,323,62,other,0,1.0,1.0,1,6.02e-06,1,1.59e-05,1,0.0001288,1,3.23e-05,1,5.982e-05
+sciq_00050,science,choice,"What is required when electrons are removed from an atom, and released from the process when an electron is added?
+A. fuel
+B. nuclear
+C. energy
+D. proton",153,28,what,0,0,0,1,1,0,0,0,0,0,401,64,other,0,1.0,1.0,1,4.86e-06,1,1.2558e-05,1,0.0001391,1,3.833e-05,1,4.6488e-05
+mmlu_humanities_00068_philosophy,humanities,choice,"Bentham claims that utilitarian calculations:
+A. should be performed prior to each action.
+B. need not be performed before each action, but should always be kept in mind.
+C. are merely a formal device, and do not have practical application.
+D. are fundamentally flawed.",269,44,bentham,0,0,0,0,1,0,0,1,1,1,430,59,other,0,0.95,1.0,0,5.22e-06,1,4.716e-05,1,0.0002557,1,5.4735e-05,1,6.251e-05
+mmlu_humanities_00084_world_religions,humanities,choice," Which Christian denomination promotes a stripped-down Christianity?
+A. Greek Orthodox
+B. Roman Catholic
+C. Puritans
+D. Quakers",127,18,which,0,1,0,1,9,0,0,0,0,0,788,124,other,0,0.95,1.0,0,7.41e-06,0,1.159e-05,0,0.0001239,0,3.512e-05,0,0.00010444
+strategyqa_44a7b241fe98fc12b215,commonsense,yesno,Do people with DID have a good memory? Answer yes or no.,56,12,do,0,0,0,1,2,0,0,0,1,0,594,88,no,0,0.95,1.0,1,6.54e-06,1,9.157e-06,1,0.0001273,1,3.902e-05,1,3.562e-05
+mmlu_humanities_00116_high_school_world_history,humanities,choice,"This question refers to the following information.
+The following poem refers to an incident in Sharpeville, South Africa, in 1960. To protest the requirement that they carry papers documenting their identity and residence, black South Africans gathered in front of police stations without their papers. Though other protests ended peacefully, in Sharpeville, police fired into the crowd.
+What is important
+about Sharpeville
+is not that seventy died:
+nor even that they were shot in the back
+retreating, unarmed, defenceless
+and certainty not
+the heavy caliber slug
+that tore through a mother's back
+and ripped through the child in her arms
+killing it
+Remember Sharpeville
+bullet-in-the-back day
+Because it epitomized oppression
+and the nature of society
+More clearly than anything else;
+it was the classic event
+Nowhere is racial dominance
+more clearly defined
+nowhere the will to oppress
+more clearly demonstrated
+What the world whispers
+apartheid declares with snarling guns
+the blood the rich lust after
+South Africa spills dust
+Remember Sharpeville
+Remember bullet-in-the-back day
+And remember the unquenchable will for freedom
+Remember the dead
+and be glad
+—Dennis Brutus, 1973
+The discriminatory system referred to in the poem was known as
+A. Jim Crow.
+B. spheres of influence.
+C. Boer division.
+D. apartheid.",1315,210,this,2,1,0,0,31,0,1,1,1,0,599,92,other,0,1.0,1.0,1,1.304e-05,1,7.853e-05,1,0.0002555,1,7.334e-05,1,0.000126656
+sciq_00005,science,choice,"Bar, circle, and line are all types of what?
+A. algorithms
+B. maps
+C. theories
+D. graphs",88,17,bar,0,0,0,1,1,0,0,0,0,1,281,45,other,0,1.0,1.0,1,5.12e-06,1,2.822e-05,1,0.0001111,1,2.855e-05,1,5.257e-05
+sciq_00144,science,choice,"When solids change to gasses, they generally pass through what other state?
+A. liquid
+B. chemical
+C. carbon
+D. frozen",117,20,when,0,0,0,1,1,0,0,0,0,0,362,58,other,0,1.0,1.0,1,5.38e-06,1,1.1261e-05,1,0.0001945,1,2.402e-05,1,5.55e-05
+sciq_00042,science,choice,"Glucose and fructose are considered this type of sugar?
+A. polysaccharides
+B. monosaccharides, or simple
+C. complex carbohydrates
+D. alcohols",141,20,glucose,0,0,0,1,1,0,0,0,0,0,390,56,other,0,1.0,1.0,1,4.8e-06,1,7.225e-05,1,0.0001095,1,3.264e-05,1,5.064e-05
+gsm8k_00052,math,number,"Annie calculated she has three times more toys than Mike, and two less than Tom. Mike has 6 toys. How many toys do Annie, Mike, and Tom have in total?",150,30,annie,1,0,0,1,8,0,0,1,0,1,333,69,other,0,1.0,1.0,0,7.18e-06,1,5.905e-05,0,0.0002611,0,6.374e-05,0,0.00011228
+strategyqa_60aa0b975babf5475cf1,commonsense,yesno,Was story of Jesus inspired by Egyptian myth? Answer yes or no.,63,12,was,0,0,0,1,4,0,0,0,1,0,433,72,yes,0,0.95,1.0,1,5.88e-06,0,5.881e-05,0,0.0002198,1,0.00010152,0,3.523e-05
+sciq_00125,science,choice,"What in saliva protects the lining of the mouth from abrasion and lubricates food for easier swallowing?
+A. hairs
+B. spores
+C. phloem
+D. mucus",142,25,what,0,0,0,1,1,0,0,0,0,0,749,123,other,0,0.95,1.0,1,9.08e-06,1,1.52e-05,1,0.000166,1,2.972e-05,1,4.963e-05
+mmlu_humanities_00001_high_school_world_history,humanities,choice,"This question refers to the following information.
+This great purity of the French Revolution is precisely what causes both our strength and our weakness. Our strength, because it gives to us rights of the public interest over private interests; our weakness, because it rallies all vicious men against us. We must smother the internal and external enemies of the Republic or perish with it; now in this situation, the first maxim of your policy ought to be to lead the people by reason and the people's enemies by terror. Terror is nothing other than justice, prompt, severe, inflexible; it is therefore an emanation of virtue; it is not so much a special principle as it is a consequence of the general principle of democracy applied to our country's most urgent needs.
+French revolutionary leader Maximilien Robespierre, 1794
+The passage above appears to articulate which of the following political principles?
+A. From each according to his abilities, to each according to his needs
+B. Might makes right
+C. The end justifies the means
+D. The government is best that governs least",1082,182,this,1,0,0,1,16,0,1,1,1,1,903,152,other,0,-1.0,1.0,0,1.384e-05,1,2.6422e-05,1,0.000214,1,5.8605e-05,1,0.000112648
+strategyqa_3502d54b8241e79903a9,commonsense,yesno,Were the first missionaries required to attend mass on Sundays? Answer yes or no.,81,14,were,0,0,0,1,3,0,0,0,1,0,394,63,yes,0,0.95,1.0,1,5.26e-06,1,6.102e-05,0,0.0002279,1,3.528e-05,1,4.976e-05
+gsm8k_00073,math,number,"Forty percent of the students have elected to learn from home during the pandemic. The remaining students are divided into two equal groups, only one of which is physically in school on any day. What percent of students are present in school?",242,42,forty,0,0,0,1,3,0,0,0,0,1,405,74,other,0,1.0,1.0,1,6.27e-06,1,1.2658e-05,1,0.0001638,1,3.825e-05,1,5.6168e-05
+gsm8k_00058,math,number,"Chris buys 2 and a half dozen donuts on his way to work to share with his co-workers.  While driving, he eats 10% of the donuts.  Once inside, he grabs another 4 donuts for his afternoon snack.  How many donuts are left for his co-workers?",239,47,chris,3,1,0,1,4,0,0,0,0,1,380,80,other,0,1.0,1.0,1,7.42e-06,1,1.9536e-05,1,9.89e-05,1,6.374e-05,1,7.04e-05
+strategyqa_404ab9200fe1935e7f4c,commonsense,yesno,"Is an inappropriate lullaby Love Song from November 11, 2000? Answer yes or no.",79,14,is,2,0,0,1,5,0,0,0,1,0,392,69,yes,0,0.95,1.0,1,6.34e-06,1,7.182e-05,0,0.0002303,1,7.076e-05,0,6.65e-05
+sciq_00133,science,choice,"What is the interaction of waves with other waves called?
+A. wave induction
+B. wave dancing
+C. wave mixing
+D. wave interference",127,22,what,0,0,0,1,1,0,0,0,0,0,575,103,other,0,0.95,1.0,1,7.58e-06,1,4.851e-05,1,0.0001145,1,4.229e-05,1,4.5856e-05
+gsm8k_00047,math,number,"Lori owns 15 times as many beanie babies as Sydney. If Lori has 300 beanie babies, how many beanie babies do they have in total?",128,25,lori,2,0,0,1,4,0,0,0,0,1,213,38,other,0,1.0,1.0,1,2.85e-05,1,7.05e-05,1,0.0001977,1,3.238e-05,1,6.92e-05
+strategyqa_3de88c80f0914eb08caf,commonsense,yesno,Does the texture of leaves remain the same independent of their coloring changing? Answer yes or no.,100,17,does,0,0,0,1,2,0,0,1,1,0,274,42,yes,0,1.0,1.0,0,4.1e-06,0,1.29e-05,0,9.13e-05,0,2.404e-05,0,3.981e-05
+strategyqa_f6184f20db14b18f1401,commonsense,yesno,Did Hamlet's author use email? Answer yes or no.,48,10,did,0,0,0,1,3,0,1,0,1,0,271,45,no,0,1.0,1.0,1,4.86e-06,1,9.5e-06,1,0.0001095,1,2.809e-05,1,3.98e-05
+strategyqa_2a9cf64b15df1b841f25,commonsense,yesno,Does Santa Claus hypothetically give Joffrey Baratheon presents? Answer yes or no.,82,12,does,0,0,0,1,6,0,0,0,1,0,389,67,yes,0,1.0,1.0,0,4.57e-06,1,1.23e-05,1,0.000126,0,3.506e-05,1,4.366e-05
+gsm8k_00096,math,number,"Tobias went to a swimming pool for 3 hours. Swimming every 100 meters took him 5 minutes, but every 25 minutes he had to take a 5-minute pause. How many meters did Tobias swim during his visit to the swimming pool?",214,42,tobias,5,1,0,1,4,0,0,0,0,1,676,131,other,0,-1.0,1.0,0,1.03e-05,1,0.0001050985,1,0.0003968,1,7.354e-05,0,0.00024177
+mmlu_humanities_00082_philosophy,humanities,choice," In his discussion of the Divided Line, Plato says that, in contrast to mere belief or opinion, knowledge is a belief for which we give reasons or justifications by appealing:
+A. to what our senses reveal to us about how things appear to us, not how they  really are.
+B. beyond the Forms to images of goodness, beauty, and truth obtained from particular objects.
+C. to what we sincerely believe is true about the Forms based on our experiences in the world.
+D. beyond sense experience to unchanging ideas (Forms) that are perceived as rationally ordered.",554,96,in,0,0,0,0,7,1,0,0,1,0,981,156,other,0,-1.0,1.0,1,9.82e-06,1,2.1538e-05,1,0.0002381,1,9.032e-05,1,8.394e-05
+mmlu_humanities_00076_world_religions,humanities,choice,"In the Jaina traditions ""bad karma"" is known by which of the following terms?
+A. Paap
+B. Punya
+C. Pudgala
+D. Akash",114,22,in,0,0,0,1,6,0,1,0,0,0,339,58,other,0,1.0,1.0,1,5.28e-06,1,1.78e-05,1,0.0001616,1,3.772e-05,1,8.54e-05
+mmlu_humanities_00120_high_school_world_history,humanities,choice,"This question refers to the following information.
+He contains all works and desires and all perfumes and all tastes. He enfolds the whole universe and in silence is loving to all. This is the Spirit that is in my heart, this is Brahman. To him I shall come when I go beyond this life, and to him will come he who has faith and doubts not.
+—The Upanishads, India, c. 1000 BCE
+Based on the quotation, what is true of Brahman?
+A. He is found everywhere and contained in everything.
+B. He resides in a form of paradise, like Heaven.
+C. He is found only inside the hearts of the faithful.
+D. He is a vengeful God, punishing those who sin.",634,121,this,1,0,0,1,18,0,0,0,1,1,557,90,other,0,0.95,1.0,1,8.47e-06,1,2.3378e-05,1,0.0002029,1,4.132e-05,1,0.00011355
+strategyqa_ccb63564094c6ff09a14,commonsense,yesno,Does Julia Roberts lose the prolific acting contest in her family? Answer yes or no.,84,15,does,0,0,0,1,4,0,0,0,1,0,629,111,no,0,0.95,1.0,0,7.58e-06,0,5.922e-05,0,0.0001807,1,2.861e-05,0,4.891e-05
+strategyqa_ea627ac7d9ba306324d3,commonsense,yesno,Does Metallica use Soulseek? Answer yes or no.,46,8,does,0,0,0,1,4,0,0,0,1,0,401,66,no,0,0.7,1.0,1,5.36e-06,1,6.316e-05,1,0.0003164,1,2.462e-05,1,6.1e-05
+gsm8k_00030,math,number,"Gina is considered a bad tipper because she tipped 5%. If good tippers tip at least 20%, how many more cents than normal would Gina have to tip on a bill of $26 to be considered a good tipper?",192,39,gina,3,0,0,1,3,0,0,1,0,1,470,93,other,0,1.0,1.0,1,7.4e-06,1,8.84e-05,1,0.0001325,1,6.651e-05,1,7.088e-05
+gsm8k_00141,math,number,"When Hannah was 6 years old, her age was double the age of her sister July. Now, 20 years later, if July's husband is 2 years older than her, how old is he?",156,34,when,3,0,0,1,5,0,1,1,0,0,277,60,other,0,1.0,1.0,1,6.5e-06,1,1.4145e-05,1,0.000151,1,4.112e-05,1,8.737e-05
+mmlu_humanities_00149_world_religions,humanities,choice,"What does the Hebrew word mashiach mean?
+A. Anointed one
+B. God
+C. Prophet
+D. The line of David",95,19,what,0,0,0,1,7,0,0,0,0,0,341,52,other,0,1.0,1.0,1,5.96e-06,1,1.1561e-05,1,0.000117,1,4.114e-05,1,5.577e-05
+strategyqa_519626e90b19ecb3886f,commonsense,yesno,Will Donald Duck hypothetically purchase bell-bottoms for himself? Answer yes or no.,84,13,will,0,1,0,1,4,0,0,0,1,0,550,92,yes,0,0.85,1.0,0,6.42e-06,1,1.12e-05,1,7.85e-05,0,4.261e-05,1,4.764e-05
+mmlu_humanities_00079_high_school_world_history,humanities,choice,"This question refers to the following information.
+Source 1:
+""It is impossible to demand that an impossible position should be cleared up by peaceful revision and at the same time constantly reject peaceful revision. It is also impossible to say that he who undertakes to carry out these revisions for himself transgresses a law, since the Versailles ""Diktat"" is not law to us. A signature was forced out of us with pistols at our head and with the threat of hunger for millions of people. And then this document, with our signature, obtained by force, was proclaimed as a solemn law.""
+Adolf Hitler, speech to the Reichstag, September 1, 1939
+Source 2:
+""We shall not flag or fail. We shall go on to the end. We shall fight in France, we shall fight on the seas and the oceans, we shall fight with growing confidence and growing strength in the air, we shall defend our island, whatever the cost may be. We shall fight on the beaches, we shall fight on the landing grounds, we shall fight in the fields and in the streets, we shall fight in the hills; we shall never surrender.""
+Winston Churchill, speech before Parliament, June 4, 1940
+What is the historical background for Adolf Hitler's condemnation of the Treaty of Versailles mentioned in Source 1?
+A. Hitler's belief that Poland's territorial borders should not be violated
+B. A rising intolerance of ethnic and political minority groups
+C. A widespread belief in Germany that it had been unfairly treated at the end of World War I
+D. Hitler's attempted collaboration with Italian leader Benito Mussolini",1559,273,this,7,0,0,1,36,0,1,1,1,0,636,114,other,0,0.95,1.0,1,1.424e-05,1,0.00016044,1,0.0002812,1,8.787e-05,1,0.00012041
+mmlu_humanities_00000_world_religions,humanities,choice," The Maccabean Revolt is associated with which ruler?
+A. Julius Caesar
+B. Alexander the Great
+C. Cyrus of Persia
+D. Antiochus IV Epiphanes",138,23,the,0,0,0,1,11,0,0,0,0,0,446,70,other,0,1.0,1.0,1,6.96e-06,1,1.58e-05,1,0.0001466,1,4.448e-05,1,6.197e-05
+sciq_00105,science,choice,"What is the term for  a close relationship between two species in which at least one species benefits.
+A. extosis
+B. symbiosis
+C. candiasis
+D. endosymbiosis",156,26,what,0,0,0,0,1,0,0,0,0,0,489,77,other,0,1.0,1.0,1,5.77e-06,1,9.051e-05,1,0.0001878,1,7.132e-05,1,5.6152e-05
+sciq_00145,science,choice,"What part of the brain is attached to the brain stem but considered a separate region of the adult brain?
+A. cerebellum
+B. parietal lobe
+C. frontal lobe
+D. temporal lobe",169,31,what,0,0,0,1,1,0,0,0,0,0,334,59,other,0,1.0,1.0,1,5.56e-06,1,1.65e-05,1,0.0002547,1,3.33e-05,1,5.484e-05
+gsm8k_00094,math,number,"Susan had a sum of money. She spent 1/5 of it in September, 1/4 of it in October, and $120 in November. After spending these amounts of money, she still had $540 left. How much money did she have at first?",205,43,susan,6,1,0,1,7,0,0,1,0,0,503,110,other,0,-1.0,1.0,0,1.04e-05,0,0.00016914,1,0.0004855,1,7.156e-05,1,0.00010671
+sciq_00106,science,choice,"What do waves do when they are unable to pass through an object?
+A. produce off
+B. develop off
+C. reflect off
+D. Roll over.",123,25,what,0,0,0,1,2,0,0,0,0,0,350,56,other,0,1.0,1.0,1,5.68e-06,1,5.08e-05,1,0.0001107,1,3.048e-05,1,4.625e-05
+sciq_00052,science,choice,"How many mass distinctions have radically altered the history of life?
+A. one
+B. six
+C. four
+D. five",100,19,how,0,0,0,1,1,0,0,0,0,1,504,79,other,0,1.0,1.0,0,7.2e-06,1,5.258e-05,1,0.0001111,1,3.943e-05,1,5.373e-05
+strategyqa_b1dc0601af214a930eb2,commonsense,yesno,Were French people involved in the American Civil War? Answer yes or no.,72,13,were,0,0,0,1,6,0,0,0,1,0,675,99,yes,0,0.95,1.0,1,7.4e-06,1,8.728e-06,1,0.0001276,1,2.46e-05,1,3.158e-05
+gsm8k_00018,math,number,"Phantom's mom gave him $50 to buy printer-inks. At the store, he bought two black printer inks which cost $11 each, three red printer inks which cost $15 each, and two yellow printer inks which cost $13 each. Phantom found out that his money is not enough to buy all the printer inks. How much more money should he ask his mom to be able to buy the printer inks?",362,72,phantom,4,1,0,1,4,0,1,1,1,1,422,80,other,0,1.0,1.0,1,9.34e-06,1,1.9795e-05,0,0.0001092,1,4.31e-05,0,0.000197256
+mmlu_humanities_00062_philosophy,humanities,choice,"Wolf claims that interpreting Kant’s ethics so that it consists of a finite set of constraints:
+A. yields an unattractive picture of moral sainthood.
+B. implausibly places an “upper bound” on moral worthiness.
+C. yields a theory that is too demanding.
+D. transforms the theory into a form of contractarianism.",309,51,wolf,0,0,0,0,2,0,0,0,0,0,711,120,other,0,0.95,1.0,0,7.94e-06,1,5.761e-05,1,0.0002671,0,4.409e-05,1,6.604e-05
+sciq_00104,science,choice,"What is the study of matter and energy referred to as?
+A. geology
+B. cosmology
+C. physical science
+D. biology",109,20,what,0,0,0,1,1,0,0,0,0,0,666,116,other,0,0.95,1.0,1,6.7e-06,1,4.46e-05,1,0.0001539,1,4.902e-05,1,5.399e-05
+strategyqa_e530682239bb5e59ebf0,commonsense,yesno,Could a cat ride Panzer VIII Maus tank missile from Barcelona to Madrid? Answer yes or no.,90,17,could,0,0,0,1,6,0,0,0,1,0,378,75,no,0,1.0,1.0,1,4.96e-06,1,4.378e-05,1,0.0001488,1,4.152e-05,1,4.851e-05
+mmlu_humanities_00140_world_religions,humanities,choice," Which term in the dharma texts of the classical period denotes the four stages of life?
+A. Kama
+B. Samnyasin
+C. Ashramas
+D. Arthas",131,24,which,0,0,0,1,5,0,0,0,0,0,758,128,other,0,-1.0,1.0,0,1.02e-05,1,9.764e-05,1,0.0002663,1,3.548e-05,1,8.975e-05
+strategyqa_236c7a57f3788a60e47f,commonsense,yesno,Was Gandalf present at the death of Eomer? Answer yes or no.,60,12,was,0,0,0,1,4,0,0,0,1,0,517,95,yes,0,1.0,1.0,0,7.28e-06,1,7.665e-05,1,8.54e-05,1,4.008e-05,1,4.9e-05
+sciq_00057,science,choice,"What is the term for the movement of substances due to random thermal molecular motion?
+A. diffusion
+B. convection
+C. Transfusion
+D. condensation",145,23,what,0,0,0,1,2,0,0,0,0,0,583,91,other,0,1.0,1.0,1,2.595e-05,1,1.69e-05,1,0.0001851,1,4.154e-05,1,6.998e-05
+sciq_00067,science,choice,"Over time, what changes solid rock into pieces?
+A. metamorphosis
+B. weathering
+C. creep
+D. leaching",99,16,over,0,0,0,1,1,0,0,0,0,0,594,97,other,0,0.95,1.0,1,7.34e-06,1,7.77e-05,1,0.0001605,1,3.769e-05,1,5.686e-05
+sciq_00069,science,choice,"Evolving from a single common ancestor, what group of organisms was perhaps the dominant life form on earth 250 million years ago?
+A. acids
+B. fungi
+C. atoms
+D. proteins",169,30,evolving,1,0,0,1,1,0,0,0,0,0,494,84,other,0,0.95,1.0,1,2.473e-05,1,2.07e-05,0,0.0005109,1,4.13e-05,1,6.4072e-05
+mmlu_humanities_00089_philosophy,humanities,choice,"Aesthetic values have to do with _______
+A. the moral value of works of art and other objects that could be judged beautiful
+B. good and bad works of art and other objects that could be judged beautiful
+C. the moral values of artists and critics
+D. pragmatic decisions regarding the display of art",297,54,aesthetic,0,0,0,0,1,0,0,0,0,0,614,102,other,0,0.95,1.0,1,8.26e-06,1,9.52e-05,1,0.0002466,0,4.011e-05,1,6.013e-05
+sciq_00086,science,choice,"The name carbon tetrachloride implies one carbon atom and four of which other atoms?
+A. iodine
+B. nitrogen
+C. chlorine
+D. calcium",129,22,the,0,0,0,1,1,0,0,0,0,0,274,40,other,0,1.0,1.0,1,4.27e-06,1,3.358e-05,1,0.0001045,1,3.167e-05,1,3.574e-05
+gsm8k_00011,math,number,A window is made up of 8 glass panes. Each pane has a length of 12 inches and a width of 8 inches. What is the area of the window?,130,30,a,3,0,0,1,2,0,0,0,0,1,319,59,other,0,1.0,1.0,1,4.98e-06,1,6.796e-05,1,0.0001486,1,4.383e-05,1,5.485e-05
+strategyqa_4b2e265815601bfa4152,commonsense,yesno,Is it difficult to conduct astrophotography in the summer in Sweden? Answer yes or no.,86,15,is,0,0,0,1,3,0,0,0,1,0,701,104,yes,0,0.95,1.0,1,7.58e-06,1,6.625e-05,1,0.0001113,1,0.0001014,1,3.9112e-05
+strategyqa_31328c97391c0e047f44,commonsense,yesno,Are there five different single-digit Fibonacci numbers? Answer yes or no.,74,12,are,0,1,0,1,3,0,0,1,1,0,310,56,other,0,-1.0,1.0,0,7.58e-06,1,1.47e-05,1,0.0002276,1,4.852e-05,0,8.25e-05
+gsm8k_00065,math,number,Toby is in a juggling contest with a friend. The winner is whoever gets the most objects rotated around in 4 minutes. Toby has 5 baseballs and each one makes 80 rotations. His friend has 4 apples and each one makes 101 rotations. How many total rotations of objects are made by the winner?,289,54,toby,5,0,0,1,5,0,0,1,0,1,386,60,other,0,1.0,1.0,1,6.1e-06,1,1.5491e-05,1,0.0001907,1,4.656e-05,1,6.4008e-05
+mmlu_humanities_00015_high_school_world_history,humanities,choice,"This question refers to the following information.
+Gunpowder Weaponry: Europe vs. China
+In Western Europe during the 1200s through the 1400s, early cannons, as heavy and as slow to fire as they were, proved useful enough in the protracted sieges that dominated warfare during this period that governments found it sufficiently worthwhile to pay for them and for the experimentation that eventually produced gunpowder weapons that were both more powerful and easier to move. By contrast, China, especially after the mid-1300s, was threatened mainly by highly mobile steppe nomads, against whom early gunpowder weapons, with their unwieldiness, proved of little utility. It therefore devoted its efforts to the improvement of horse archer units who could effectively combat the country's deadliest foe.
+What traditional view of world history does this passage seem to challenge?
+A. That China has always been less technologically adept than most Afro-Eurasian societies
+B. That China's rigid form of dictatorial rule suppressed any spirit of military or technological innovation
+C. That China was hindered by religious fundamentalism when it came to modernizing efforts
+D. That China was surpassed by Europe in global power because it turned a blind eye to the obvious benefits of technological change",1299,203,this,3,1,0,1,23,0,1,1,0,1,481,75,other,0,0.95,1.0,1,1.012e-05,1,0.0001164,1,0.0002579,1,5.664e-05,0,0.00017635
+sciq_00030,science,choice,"What controls the opening to the airway and gut?
+A. teeth
+B. tongue
+C. electrons
+D. mandible",92,17,what,0,0,0,1,1,0,0,0,0,0,349,64,other,0,1.0,1.0,0,5.38e-06,0,1.39e-05,0,0.0002105,0,5.75e-05,1,4.666e-05
+gsm8k_00140,math,number,"Bill and Ted went into the forest to gather some wild mushrooms. Bill gathered 12 red mushrooms and 6 brown mushrooms.  Ted gathered 14 green mushrooms and 6 blue mushrooms.  If half of the blue mushrooms, two-thirds of the red mushrooms, and all of the brown mushrooms have white spots, how many white-spotted mushrooms did they gather?",337,59,bill,4,1,0,1,5,0,0,0,0,1,375,69,other,0,1.0,1.0,1,7.56e-06,1,2.1946e-05,1,0.0002281,1,4.624e-05,1,8.1144e-05
+mmlu_humanities_00008_high_school_world_history,humanities,choice,"This question refers to the following information.
+Source 1:
+""You may well ask: ""Why direct action? Why sit-ins, marches and so forth? Isn't negotiation a better path?"" You are quite right in calling, for negotiation. Indeed, this is the very purpose of direct action. Nonviolent direct action seeks to create such a crisis and foster such a tension that a community which has constantly refused to negotiate is forced to confront the issue. It seeks so to dramatize the issue that it can no longer be ignored. My citing the creation of tension as part of the work of the nonviolent-resister may sound rather shocking. But I must confess that I am not afraid of the word ""tension."" I have earnestly opposed violent tension, but there is a type of constructive, nonviolent tension which is necessary for growth. Just as Socrates felt that it was necessary to create a tension in the mind so that individuals could rise from the bondage of myths and half-truths to the unfettered realm of creative analysis and objective appraisal, we must we see the need for nonviolent gadflies to create the kind of tension in society that will help men rise from the dark depths of prejudice and racism to the majestic heights of understanding and brotherhood.""
+Martin Luther King, Jr., Letter from a Birmingham Jail, 1966
+Source 2:
+""We, men and women, who hereby constitute ourselves as the National Organization for Women, believe that the time has come for a new movement toward true equality for all women in America, and toward a fully equal partnership of the sexes, as part of the world-wide revolution of human rights now taking place within and beyond our national borders.
+The purpose of NOW is to take action to bring women into full participation in the mainstream of American society now, exercising all the privileges and responsibilities thereof in truly equal partnership with men.
+We believe the time has come to move beyond the abstract argument, discussion and symposia over the status and special nature of women which has raged in America in recent years; the time has come to confront, with concrete action, the conditions that now prevent women from enjoying the equality of opportunity and freedom of which is their right, as individual Americans, and as human beings.""
+National Organization for Women, Statement of Purpose, 1966
+Source 3:
+""The long-term goal of Gay Liberation, which inevitably brings us into conflict with the institutionalized sexism of this society, is to rid society of the gender-role system which is at the root of our oppression. This can only be achieved by eliminating the social pressures on men and women to conform to narrowly defined gender roles. It is particularly important that children and young people be encouraged to develop their own talents and interests and to express their own individuality rather than act out stereotyped parts alien to their nature.
+As we cannot carry out this revolutionary change alone, and as the abolition of gender rotes is also a necessary condition of women's liberation, we will work to form a strategic alliance with the women's liberation movement, aiming to develop our ideas and our practice in close inter-relation. In order to build this alliance, the brothers in gay liberation will have to be prepared to sacrifice that degree of male chauvinism and male privilege that they still all possess.""
+Gay Liberation Front, Manifesto, 1971
+The author of Source 1 endorses which of the following tactics as a means of achieving his aims?
+A. Violent overthrow of the government
+B. Nonviolent resistance
+C. Appeasement
+D. Legal action",3612,610,this,7,1,0,4,55,0,1,1,1,1,391,61,other,0,1.0,1.0,1,1.893e-05,1,0.0002226,1,0.0003969,1,0.000401799,1,0.000203912
+strategyqa_9390df61207ef77f8ba0,commonsense,yesno,Would WWF be angrier if you killed koala instead of black swan? Answer yes or no.,81,16,would,0,0,0,1,2,0,0,0,1,0,389,62,yes,0,0.95,1.0,1,5.34e-06,1,1.37e-05,1,9.16e-05,1,3.808e-05,1,4.138e-05
+gsm8k_00114,math,number,John uses 5 liters of fuel per km to travel. How many liters of fuel should John plan to use if he plans to travel on two trips of 30 km and 20 km?,147,34,john,3,0,0,1,3,0,0,0,0,1,310,63,other,0,1.0,1.0,1,7.2e-06,1,4.784e-05,1,0.0001048,1,5.009e-05,1,4.617e-05
+strategyqa_c89862fb8a7e09c34f47,commonsense,yesno,Are Scottish people Albidosi? Answer yes or no.,47,8,are,0,0,0,1,4,0,0,0,1,0,245,40,no,0,1.0,1.0,0,3.53e-06,0,3.775e-05,0,7.92e-05,0,6.678e-05,0,4.532e-05
+strategyqa_ba8d04adf8848e0d28a7,commonsense,yesno,"If he were poor, would Christopher Reeve have lived? Answer yes or no.",70,13,if,0,0,0,1,4,0,0,0,1,0,184,29,no,0,1.0,1.0,1,1.096e-05,1,5.54e-05,1,0.0001482,1,3.4255e-05,1,2.988e-05
+sciq_00137,science,choice,"What is the sequence of elementary steps that together comprise an entire chemical reaction called?
+A. reaction circle
+B. basic reaction
+C. reaction mechanism
+D. mechanical mechanism",182,27,what,0,0,0,1,1,0,0,0,0,1,503,82,other,0,1.0,1.0,0,7.16e-06,1,3.126e-05,1,0.0001285,1,3.759e-05,1,4.502e-05
+gsm8k_00029,math,number,Mrs. Wilsborough saved $500 to buy concert tickets for her family. She bought 2 VIP tickets at $100 each and 3 regular tickets at $50 each. How much of her savings does Mrs. Wilsborough have after she buys the tickets?,218,40,mrs,5,0,0,1,6,0,0,1,0,1,392,68,other,0,1.0,1.0,1,3.99e-05,1,5.804e-05,1,0.0001152,1,4.206e-05,1,6.844e-05
+gsm8k_00024,math,number,"Gabe has three songs on his playlist. “The Best Day” is 3 minutes, “Raise the Roof” is 2 minutes, and “Rap Battle” is 3 minutes. How many times can Gabe listen to his entire playlist on the 40-minute ride to his wrestling match?",228,44,gabe,4,1,0,1,10,0,0,0,0,1,608,102,other,0,1.0,1.0,1,8.8e-06,1,1.82e-05,1,0.0001636,1,4.926e-05,1,5.745e-05
+mmlu_humanities_00007_philosophy,humanities,choice,"According to Sartre, the first principle of existentialism is that _____.
+A. God is dead
+B. man is all-powerful
+C. man is nothing else but what he makes of himself
+D. man is nothing",181,35,according,0,1,0,0,3,0,0,0,0,1,795,129,other,0,0.95,1.0,1,8.04e-06,1,1.6e-05,1,0.0001193,1,5.912e-05,1,5.875e-05
+strategyqa_01254b50648f4fb08b51,commonsense,yesno,Could two newborn American Black Bear cubs fit on a king size bed? Answer yes or no.,84,17,could,0,0,0,1,5,0,0,0,1,0,287,55,yes,0,0.95,1.0,1,5.2e-06,1,9.583e-06,1,0.0001313,1,4.188e-05,1,5.036e-05
+gsm8k_00064,math,number,Janice gave all three dozens of pebbles from her trip to her friends. Each of her friends got 4 pebbles. How many friends received pebbles?,139,25,janice,1,0,0,1,3,0,0,0,0,1,275,52,other,0,1.0,1.0,1,5.03e-06,1,1.48e-05,1,0.000149,1,3.61e-05,1,5.4672e-05
+strategyqa_e304827eeb573bb2612e,commonsense,yesno,Can you make an MP3 from the Golden Gate Bridge? Answer yes or no.,66,14,can,1,0,0,1,5,0,0,0,1,0,335,60,yes,0,0.95,1.0,1,4.29e-06,0,1.167e-05,0,0.0001607,1,3.6e-05,0,3.556e-05
+gsm8k_00021,math,number,"James won a money prize at a charity raffle. He donated half of his winnings back to the charity, then spent $2 on a hot dog to celebrate his win. He had $55 left over. How many dollars did he win?",197,41,james,2,0,0,1,4,0,0,0,0,1,330,72,other,0,1.0,1.0,1,7.52e-06,1,1.89e-05,1,0.0002497,1,3.868e-05,1,6.736e-05
+strategyqa_904898291b7b33f260e7,commonsense,yesno,Would Jacques Duèze have been friends with Richard Dawkins? Answer yes or no.,77,13,would,0,0,0,1,5,0,0,0,1,0,697,114,no,0,0.95,1.0,1,8.84e-06,1,5.00825e-05,1,0.0001682,1,3.642e-05,1,6.0896e-05
+gsm8k_00025,math,number,"Gentry assembled a new 24 foot round pool in her backyard.  To fill the pool with water, she used four hoses.  Two of the hoses each deliver water at a rate of 2 gallons per minute.  The other two hoses each deliver water at a rate of 3 gallons per minute.  With a volume of 15,000 gallons, how many hours will it take to fill the pool?",336,68,gentry,5,0,0,1,5,0,0,0,0,1,679,127,other,0,-1.0,1.0,0,3.968e-05,1,9.3288e-05,1,0.0001692,1,7.639e-05,1,8.578e-05
+strategyqa_e4115d4b10cb3447c7a2,commonsense,yesno,Can you buy furniture and meatballs in the same store? Answer yes or no.,72,14,can,0,0,0,1,2,0,0,1,1,0,186,30,yes,0,1.0,1.0,1,3.8e-06,1,9.47e-06,1,7.29e-05,1,2.701e-05,1,5.875e-05
+strategyqa_385edf4addbd69573540,commonsense,yesno,Is the foot part of the metric system? Answer yes or no.,56,12,is,0,0,0,1,2,0,0,0,1,0,391,74,no,0,1.0,1.0,1,5.52e-06,1,1.02e-05,1,0.0001123,1,2.43e-05,1,4.362e-05
+strategyqa_2b5b926a732d43620065,commonsense,yesno,"During the time immediately after 9/11, was don't ask don't tell still in place? Answer yes or no.",98,21,during,2,1,0,1,2,0,1,1,1,0,282,51,yes,0,1.0,1.0,1,5.98e-06,1,5.2624e-05,1,0.0001818,1,3.324e-05,1,7.25e-05
+sciq_00149,science,choice,"What is the name of the tube that joins the mouth to the digestive and respiratory tracts?
+A. fallopian tube
+B. esophagus
+C. larynx
+D. pharynx",142,26,what,0,0,0,1,1,0,0,0,0,0,265,45,other,0,1.0,1.0,1,4.92e-06,1,9.56e-05,1,0.0002188,1,7.654e-05,1,9.025e-05
+mmlu_humanities_00063_world_religions,humanities,choice," The Continental Reformation started in what year?
+A. 1545
+B. 1517
+C. 1492
+D. 1705",82,15,the,4,0,0,1,3,0,0,0,0,0,403,64,other,0,1.0,1.0,1,6.3e-06,1,1.55e-05,1,0.0001347,1,3.056e-05,1,4.814e-05
+gsm8k_00067,math,number,"Edmund owns a gift wrapping shop, he uses 18 inches of gift wrapper per gift box. If Edmund has 90 inches of gift wrapper per day, how many gift boxes will he be able to wrap every 3 days?",188,39,edmund,3,0,0,1,3,0,0,0,0,1,713,143,other,0,-1.0,1.0,1,3.796e-05,1,6.925e-05,1,9.72e-05,1,5.262e-05,1,7.327e-05
+strategyqa_a61bbe3edc4de5272c0c,commonsense,yesno,Is honey associated with queens? Answer yes or no.,50,9,is,0,0,0,1,2,0,0,0,1,0,242,42,yes,0,1.0,1.0,1,3.56e-06,1,1.37e-05,1,9.14e-05,1,2.536e-05,1,3.8264e-05
+mmlu_humanities_00138_world_religions,humanities,choice," Where is the key to liberation found within Sikhism?
+A. In the community
+B. In faith in God
+C. In ascetic renunciation
+D. In the life of the householder",153,29,where,0,0,0,1,7,0,0,0,0,0,594,98,other,0,0.95,1.0,0,8.24e-06,0,0.00010948,1,0.000235,1,4.357e-05,0,8.2552e-05
+gsm8k_00139,math,number,John won $155250 in the lottery and decided to give one-thousandth of the $155250  to each of the top 100 students in his college. Calculate the total amount received by the hundred students of his college.,206,37,john,3,1,0,0,2,0,0,0,0,1,488,89,other,0,1.0,1.0,0,7.31e-06,1,0.0001016,1,0.0001746,1,3.4e-05,1,3.906e-05
+gsm8k_00104,math,number,"Bella bought stamps at the post office. Some of the stamps had a snowflake design, some had a truck design, and some had a rose design. Bella bought 11 snowflake stamps. She bought 9 more truck stamps than snowflake stamps, and 13 fewer rose stamps than truck stamps. How many stamps did Bella buy in all?",305,56,bella,3,0,0,1,6,0,0,1,0,1,341,60,other,0,1.0,1.0,1,6.7e-06,1,0.00010824,1,0.0001557,1,4.2875e-05,1,0.000107992
+gsm8k_00050,math,number,Jane picked 64 apples at the orchard. She sorted them into 4 different baskets to send to her friends. When Jane wasn't looking her sister took 3 apples from each of the baskets. How many apples are in each basket now?,218,42,jane,3,0,0,1,5,0,1,1,0,1,239,44,other,0,1.0,1.0,1,4.86e-06,1,1.3942e-05,1,0.0001378,1,3.804e-05,1,5.637e-05
+gsm8k_00046,math,number,"There are 70 cookies in a jar. If there are only 28 cookies left after a week, and Paul took out the same amount each day, how many cookies did he take out in four days?",169,36,there,2,0,0,1,3,0,0,1,0,1,407,77,other,0,1.0,1.0,1,7.18e-06,1,6.386e-05,1,0.0001732,1,5.968e-05,1,8.366e-05
+gsm8k_00078,math,number,"In Mary's class, there are 25 students. Their teacher told them they could pay $50 each to finance a big science project that they and their society would benefit greatly from. They all paid the full amount except for 4 students, who paid half. How much was the class able to gather together?",292,54,in,3,0,1,1,5,0,1,0,0,1,312,54,other,0,1.0,1.0,1,6.45e-06,1,7.48e-05,1,0.0001273,1,4.001e-05,1,8.747e-05
+sciq_00037,science,choice,"In plants, a cell plate is formed during cell cytokinesis by golgi vesicles fusing at the what?
+A. mitosis plate
+B. chromosomes plate
+C. metaphase plate
+D. tectonic plate",170,29,in,0,0,0,1,1,0,0,0,0,0,372,60,other,0,1.0,1.0,0,4.98e-06,1,2.28e-05,1,0.0001506,1,5.125e-05,1,4.743e-05
+mmlu_humanities_00122_world_religions,humanities,choice," What are the rabbinical commentaries produced after the Mishnah called?
+A. Septuagint
+B. Talmud
+C. Yeshiva
+D. Gemarah",118,18,what,0,0,0,1,6,0,0,1,0,0,390,63,other,0,1.0,1.0,1,5.07e-06,0,2.63e-05,1,0.0003582,1,4.476e-05,1,7.218e-05
+strategyqa_2295eaf3cdbecc17ca0a,commonsense,yesno,Was historical Dracula from a town in Bucharest? Answer yes or no.,66,12,was,0,0,0,1,4,0,0,0,1,0,314,54,no,0,1.0,1.0,1,4.88e-06,1,1.23e-05,0,0.0001498,1,4.04e-05,0,3.686e-05
+mmlu_humanities_00087_philosophy,humanities,choice,"Disagreements about the aesthetic value or social relevance of a piece of art are _____.
+A. uncommon
+B. common
+C. vacuous
+D. never serious",138,24,disagreements,0,0,0,0,1,0,0,0,1,0,308,48,other,0,1.0,1.0,1,4.98e-06,1,2.836e-05,1,0.0001235,1,3.047e-05,1,4.189e-05
+strategyqa_86b893746c5eeece6760,commonsense,yesno,Would Michael Phelps be good at pearl hunting? Answer yes or no.,64,12,would,0,0,0,1,4,0,0,0,1,0,513,80,yes,0,0.9,1.0,1,6.44e-06,0,1.16e-05,1,9.73e-05,1,2.724e-05,0,4.439e-05
+strategyqa_f240c88676b6ac6896ad,commonsense,yesno,Is the kayak a traditional boat in New Zealand? Answer yes or no.,65,13,is,0,0,0,1,4,0,0,0,1,0,457,70,no,0,0.95,1.0,1,5.72e-06,1,8.728e-06,1,9.26e-05,1,4.595e-05,1,3.828e-05

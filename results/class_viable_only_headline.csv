@@ -1,0 +1,16 @@
+group,models,best_fixed,fixed_acc,best_learned,learned_acc,gain_pp,oracle
+gemini_flash_llama_70b,"gemini_flash,llama_70b",always_llama_70b,0.8950930626057529,extra_trees_router,0.9106598984771573,1.5566835871404394,0.9458544839255498
+gemini_flash_granite_8b,"gemini_flash,granite_8b",always_gemini_flash,0.8769881556683587,random_forest_router,0.8849407783417935,0.7952622673434773,0.9253807106598985
+gemini_flash_qwen_30b,"gemini_flash,qwen_30b",always_qwen_30b,0.8998307952622674,extra_trees_router,0.9055837563451777,0.5752961082910346,0.9414551607445009
+gemini_flash_deepseek_v3,"gemini_flash,deepseek_v3",always_deepseek_v3,0.9071065989847715,extra_trees_router,0.9109983079526227,0.3891708967851182,0.9455160744500846
+deepseek_v3_granite_8b,"deepseek_v3,granite_8b",always_deepseek_v3,0.9071065989847715,random_forest_router,0.9091370558375634,0.20304568527919065,0.9428087986463621
+llama_70b_granite_8b,"llama_70b,granite_8b",always_llama_70b,0.8950930626057529,linear_svm_router,0.8962774957698816,0.11844331641286399,0.9431472081218274
+llama_70b_deepseek_v3,"llama_70b,deepseek_v3",always_deepseek_v3,0.9071065989847715,linear_svm_router,0.9079526226734348,0.08460236886632666,0.9500846023688664
+gemini_flash_lite_gemini_flash,"gemini_flash_lite,gemini_flash",always_gemini_flash_lite,0.9292724196277496,knn_router,0.9292724196277496,0.0,0.9458544839255499
+gemini_flash_lite_granite_8b,"gemini_flash_lite,granite_8b",always_gemini_flash_lite,0.9292724196277496,knn_router,0.9292724196277496,0.0,0.9592216582064298
+gemini_flash_lite_llama_70b,"gemini_flash_lite,llama_70b",always_gemini_flash_lite,0.9292724196277496,knn_router,0.9292724196277496,0.0,0.9566835871404399
+qwen_30b_granite_8b,"qwen_30b,granite_8b",always_qwen_30b,0.8998307952622674,knn_router,0.8998307952622674,0.0,0.9324873096446701
+qwen_30b_llama_70b,"qwen_30b,llama_70b",always_qwen_30b,0.8998307952622674,knn_router,0.8998307952622674,0.0,0.9461928934010152
+gemini_flash_lite_deepseek_v3,"gemini_flash_lite,deepseek_v3",always_gemini_flash_lite,0.9292724196277496,knn_router,0.9291032148900169,-0.016920473773274214,0.9570219966159053
+gemini_flash_lite_qwen_30b,"gemini_flash_lite,qwen_30b",always_gemini_flash_lite,0.9292724196277496,knn_router,0.9291032148900169,-0.016920473773274214,0.9568527918781726
+qwen_30b_deepseek_v3,"qwen_30b,deepseek_v3",always_deepseek_v3,0.9071065989847715,decision_tree_router,0.905922165820643,-0.11844331641285288,0.9445008460236887

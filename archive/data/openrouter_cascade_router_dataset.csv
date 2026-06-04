@@ -1,0 +1,6 @@
+example_id,task_type,answer_type,prompt,prompt_chars,prompt_words,num_numbers,has_math_symbols,has_code_like_text,question_mark_count,cheap_answer_chars,cheap_answer_words,cheap_contains_uncertainty,cheap_self_confidence,cheap_sample_agreement,cheap_direct_correct,cheap_direct_cost,escalate_strong_correct,escalate_strong_cost
+math_001,math,number,A store has 12 apples and buys 8 more. How many apples are there?,65,14,2,0,0,1,24,4,0,1.0,1.0,1,1.0,1,9.0
+math_002,math,number,"If 3 notebooks cost 4.50 dollars, how much do 10 notebooks cost?",64,13,3,0,0,1,24,4,0,1.0,1.0,1,1.0,1,9.0
+math_003,math,number,"A train travels 180 miles in 3 hours. At that rate, how far will it travel in 7 hours?",86,19,3,0,0,1,25,4,0,1.0,1.0,1,1.0,1,9.0
+math_004,math,number,"There are 5 boxes with 18 pencils each. If 17 pencils are removed, how many remain?",83,16,3,0,0,1,24,4,0,1.0,1.0,0,1.0,1,9.0
+math_005,math,number,A recipe uses 2.5 cups of flour for 4 servings. How many cups are needed for 10 servings?,89,19,3,0,0,1,26,5,0,1.0,1.0,1,1.0,1,9.0

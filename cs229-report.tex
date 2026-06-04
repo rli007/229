@@ -1,0 +1,247 @@
+\documentclass[11pt]{article}
+
+\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usetikzlibrary{arrows.meta}
+\usepackage[round]{natbib}
+\usepackage{titling}
+
+\setlength{\droptitle}{-1.5em}
+\title{Learning When Models Disagree:\\ An Empirical Study of LLM Routing on a Mixed-Task Benchmark\\[0.3em] \large \normalfont Stanford CS229 Final Project (Preliminary Draft)}
+\author{Ryan Li \\ Department of Computer Science, Stanford University \\ \texttt{ryanli18@stanford.edu}}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+LLM-as-a-service APIs offer dozens of models at prices that span two orders of magnitude. The question this paper studies is whether a small classifier, trained once on correctness labels, can decide per-example which model to call so that accuracy improves or cost decreases. The supervised version of the task has a clean ML framing: the input is a prompt $x$ together with cheap pre-routing features (length, math symbols, task category, and optionally the response of a cheap probe model), the output is a choice $\hat{y}(x)\in\{1,\dots,K\}$, and the target is the oracle label $y_i=\arg\max_m c_{i,m}$ where $c_{i,m}\in\{0,1\}$ is the correctness of model $m$ on example $i$. The cost-aware variant replaces correctness with utility $c_{i,m}-\lambda k_m$ for normalized per-call cost $k_m$ and trade-off weight $\lambda\geq 0$.
+
+\section{Related Work}
+The closest prior work is \citet{shnitzer2023llm}, who formalize routing as a collection of binary classification problems (one correctness predictor per LLM), embed prompts with a frozen sentence transformer, and run $k$NN classifiers with three scoring rules to combine the per-model predictions. \emph{RouterBench} \citep{routerbench} turns the paradigm into a benchmark of 405k inference outcomes across 7 evaluation datasets and 11 LLMs, with a non-decreasing convex hull on the cost--quality plane as the comparison protocol. Its predictive routers are $k$NN and MLP regressors that score each LLM as $\lambda P_{ij}-\mathrm{cost}_j$ for a willingness-to-pay $\lambda$ and select the argmax; the cost-aware utility used here is the same up to a sign convention.
+
+A separate line of work uses cascades rather than direct routers. \emph{FrugalGPT} \citep{frugalgpt} chains LLMs with a confidence threshold and escalates only when a cheap response looks unreliable; \emph{RouteLLM} \citep{routellm} trains binary routers on preference data rather than correctness; \emph{Hybrid LLM} \citep{hybridllm} learns a BERT-based two-model router; \emph{Tryage} \citep{forcrouter} routes prompts to specialized models in real time. \citet{cascade_prior} survey the same idea in vision and speech.
+
+The framework used here is not new. The contributions are empirical and methodological: a wider router-family sweep on identical splits (ten families rather than $k$NN+MLP) with an explicit bias--variance read-out from train--test gaps; a disagreement-restricted accuracy metric (\emph{decidable lift}, Section~\ref{sec:methods}) that can disagree with aggregate accuracy by 30\,pp on the same data; 30 stratified seeds throughout where prior work reports single-split point estimates; an emphasis on the small-data, mixed-task regime ($n{=}787$, 5 task families) and the failure modes that appear there; and an interpretability layer---feature importance and per-task router-decision distributions---absent from both prior works.
+
+\section{Dataset and Features}
+The benchmark is a balanced mixed-task CSV of 787 questions across five task families: math (158, GSM8K-style numeric), science (159, SciQ multiple choice), commonsense (156, StrategyQA yes/no), humanities (156, MMLU subsets), and social science (158, MMLU subsets). Every prompt was sent to ten OpenRouter models and graded by deterministic parsers (numeric match for math, yes/no for commonsense, multiple-choice letter for the rest). Total OpenRouter spend was \$0.79.
+
+Four of the ten models were excluded as broken under the prompt format: \texttt{step\_flash} (13.6\% accuracy), \texttt{ring\_1t} (42.8\%), \texttt{minimax\_m3} (60.2\%), and \texttt{mistral\_nemo} (67.1\%). The first two perform below random on multiple-choice; the other two have large enough gaps to the strong models that any router using them on a disagreement pays a severe expected-accuracy penalty (Section~\ref{sec:weak}). The six retained \emph{viable} models are \texttt{gemini\_flash\_lite} (92.6\%), \texttt{deepseek\_v3} (90.7\%), \texttt{qwen\_30b} (89.8\%), \texttt{llama\_70b} (89.1\%), \texttt{gemini\_flash} (87.2\%), and \texttt{granite\_8b} (84.5\%). Per-call costs span roughly two orders of magnitude, from $1.6\times10^{-5}$ USD for \texttt{granite\_8b} to $1.9\times10^{-4}$ for \texttt{gemini\_flash}.
+
+The feature set comprises 14 prompt-only metadata signals (\texttt{task\_type}, \texttt{prompt\_chars}, \texttt{num\_numbers}, \texttt{has\_math\_symbols}, \texttt{question\_start}, etc.) and 6 optional cheap-probe features extracted from a designated cheap model's response. Numeric features are $z$-standardized, categorical features one-hot encoded, and a TF-IDF variant adds 1--2-gram bag-of-words features over the prompt with up to 5000 dimensions.
+
+\section{Methods}
+\label{sec:methods}
+Following \citet{shnitzer2023llm} and \citet{routerbench}, a correctness matrix $C\in\{0,1\}^{n\times K}$ is collected by running every candidate on every example. Both prior works split that matrix into $K$ binary correctness predictors; this work instead collapses it to a multiclass target $y_i=\arg\max_m c_{i,m}$ (ties broken consistently) and fits a single router $\hat{y}_\theta:\mathcal{X}\to\{1,\dots,K\}$ by regularized softmax cross-entropy. The dominant model is the most common $y_i$, so \texttt{class\_weight="balanced"} ($w_k = n/(K\cdot n_k)$) is used to prevent rare classes from being ignored. Tree-based routers minimize weighted Gini impurity; for a random forest of $B$ trees with bootstrap resampling and $\sqrt{p}$-feature splits, the prediction variance is $\rho\sigma^2 + (1-\rho)\sigma^2/B$, so bagging shrinks the second term linearly in $B$ and random feature subsampling lowers $\rho$. Extremely randomized trees (extra trees) push $\rho$ down further with random split thresholds at a small bias cost. The remaining families are a linear SVM with hinge loss and $\ell_2$ regularization, $k$-NN with distance weighting, a feed-forward MLP with ReLU activations and Adam optimization, and TF-IDF augmentations of logistic regression, linear SVM, and a wider MLP. For cost-aware routing the utility $U(i,m)=c_{i,m}-\lambda k_m$ is used with normalized $k_m\in[0,1]$ and target $y_i^{(\lambda)}=\arg\max_m U(i,m)$.
+
+Hyperparameters per family were chosen by a per-family sweep on \texttt{gemini\_flash}+\texttt{llama\_70b} across 5 stratified seeds, picking the configuration with the highest mean test accuracy: extra trees ($B{=}1000$, $\textrm{min\_leaf}{=}2$); random forest ($B{=}300$, $\textrm{min\_leaf}{=}5$); decision tree ($\textrm{depth}{=}3$, $\textrm{min\_leaf}{=}5$); logistic and linear SVM ($C{=}0.1$); $k$-NN ($k{=}5$); $\{128,64\}$ MLP ($\alpha{=}10^{-4}$).
+
+Test accuracy is the headline metric but conflates the agreement subset (where all candidates agree and the router cannot help) with the disagreement subset $\mathcal{D}=\{i:0<\sum_m c_{i,m}<K\}$ (where it has to decide). The \emph{decidable lift} $\mathrm{Lift}(\hat{y})=\mathbb{E}_{i\sim\mathcal{D}}[c_{i,\hat{y}(x_i)}]-\max_{m^*}\mathbb{E}_{i\sim\mathcal{D}}[c_{i,m^*}]$ is the gain restricted to that subset; Section~\ref{sec:lift} shows it can disagree with aggregate accuracy by 30\,pp on the same data. All experiments use 30 random 75/25 splits stratified on \texttt{task\_type} (seeds 229--258); with $\sim 197$ test examples per split, $1\,\text{pp}\approx 2$ examples.
+
+\section{Results}
+
+\subsection{Pair-sweep: Pareto improvements, trade-offs, and a dominated pair}
+\label{sec:pair-sweep}
+All $\binom{6}{2}=15$ pairs of viable models are evaluated across 30 stratified seeds. Seven collapse: one candidate dominates per task, the multiclass argmax target is approximately constant, and every learned router reduces to \texttt{always\_X} (or near-constant) on every seed---all five pairs containing \texttt{gemini\_flash\_lite} (the most accurate model on every task family), \texttt{qwen\_30b}+\texttt{granite\_8b}, and \texttt{qwen\_30b}+\texttt{llama\_70b}. These are not learning problems and are omitted from the table. The remaining 8 pairs are reported in Table~\ref{tab:headline} and plotted on the accuracy--cost plane in Figure~\ref{fig:cost-accuracy}.
+
+Four pairs are Pareto-improving: the router gains accuracy \emph{and} lowers expected per-call cost relative to the best fixed model. The largest is \texttt{gemini\_flash}+\texttt{granite\_8b}, which gains $+0.80$\,pp while cutting expected cost from \$0.190 to \$0.166 per 1k calls; \texttt{llama\_70b}+\texttt{granite\_8b}, \texttt{deepseek\_v3}+\texttt{granite\_8b}, and \texttt{llama\_70b}+\texttt{deepseek\_v3} are smaller-magnitude wins. The common ingredient is a cheaper candidate that is competitive on the easy task families, giving the router a low-cost option for those examples.
+
+Three pairs are accuracy--cost trade-offs: the router gains accuracy but routes more frequently to the expensive candidate. The largest absolute gain in the table is in this regime: \texttt{gemini\_flash}+\texttt{llama\_70b} at $+1.56$\,pp but at \$0.054$\to$0.162 per 1k. \texttt{gemini\_flash}+\texttt{qwen\_30b} and \texttt{gemini\_flash}+\texttt{deepseek\_v3} follow the same shape at smaller scale. The remaining pair, \texttt{qwen\_30b}+\texttt{deepseek\_v3}, is dominated: $-0.12$\,pp accuracy at \$0.071$\to$0.027 per 1k.
+
+Every pair in the Pareto-improving and trade-off regimes contains at least one model whose per-task accuracy varies sharply across families: \texttt{gemini\_flash} ranges from $\sim 75\%$ on math to $\sim 95\%$ on social science; \texttt{granite\_8b} is the cheapest model and competitive on commonsense and humanities but weak on math. Collapse and dominated pairs sit between models whose per-task accuracy ranking is approximately constant, so the disagreement subset is unstructured and the multiclass target is nearly constant.
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lllcccc}
+\toprule
+Pair & Best fixed & Best learned & Gain (pp) & Fixed \$/1k & Router \$/1k & Oracle \\
+\midrule
+\texttt{gemini\_flash}~+~\texttt{llama\_70b}            & \texttt{llama\_70b}        & \texttt{extra\_trees}       & \textbf{+1.56} & 0.054 & 0.162 & 0.946 \\
+\texttt{gemini\_flash}~+~\texttt{granite\_8b}           & \texttt{gemini\_flash}     & \texttt{random\_forest}     & \textbf{+0.80} & 0.190 & \textbf{0.166} & 0.925 \\
+\texttt{gemini\_flash}~+~\texttt{qwen\_30b}             & \texttt{qwen\_30b}         & \texttt{extra\_trees}       & \textbf{+0.58} & 0.025 & 0.154 & 0.941 \\
+\texttt{gemini\_flash}~+~\texttt{deepseek\_v3}          & \texttt{deepseek\_v3}      & \texttt{extra\_trees}       & \textbf{+0.39} & 0.071 & 0.166 & 0.946 \\
+\texttt{deepseek\_v3}~+~\texttt{granite\_8b}            & \texttt{deepseek\_v3}      & \texttt{random\_forest}     & $+0.20$        & 0.071 & \textbf{0.068} & 0.943 \\
+\texttt{llama\_70b}~+~\texttt{granite\_8b}              & \texttt{llama\_70b}        & \texttt{linear\_svm}        & $+0.12$        & 0.054 & \textbf{0.048} & 0.943 \\
+\texttt{llama\_70b}~+~\texttt{deepseek\_v3}             & \texttt{deepseek\_v3}      & \texttt{linear\_svm}        & $+0.08$        & 0.071 & \textbf{0.056} & 0.950 \\
+\texttt{qwen\_30b}~+~\texttt{deepseek\_v3}              & \texttt{deepseek\_v3}      & \texttt{decision\_tree}     & $-0.12$        & 0.071 & 0.027 & 0.944 \\
+\bottomrule
+\end{tabular}
+\caption{The 8 non-collapse viable pairs, ranked by mean gain across 30 stratified splits. ``Best fixed'' is the more accurate of the two \texttt{always\_X} policies; ``Best learned'' is the best of 9 router families (MLP excluded for runtime); ``Gain'' is the difference in mean test accuracy. Costs are in USD per 1000 calls and are bounded between the two candidate-model costs by construction (\texttt{gemini\_flash}=\$0.190, \texttt{deepseek\_v3}=\$0.071, \texttt{llama\_70b}=\$0.054, \texttt{qwen\_30b}=\$0.025, \texttt{granite\_8b}=\$0.016 per 1k). Bold gains are $>2\sigma$ of the per-seed delta; bold router-cost values are pairs that gain accuracy \emph{and} undercut the best fixed model in absolute cost. The 7 omitted pairs all collapsed to a constant policy (one candidate strictly dominated the other across all task families).}
+\label{tab:headline}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.92\linewidth,
+    height=2.5in,
+    xlabel={Average cost per call (USD $\times 10^{-4}$)},
+    ylabel={Mean test accuracy (\%)},
+    xmin=0.0, xmax=2.1,
+    ymin=86.5, ymax=96,
+    grid=major,
+    grid style={gray!20},
+    legend pos=south east,
+    legend cell align={left},
+    legend style={font=\footnotesize,fill=white,fill opacity=0.92,draw opacity=1,text opacity=1,row sep=-1pt},
+    label style={font=\small},
+    tick label style={font=\footnotesize},
+]
+\draw[-{Latex[length=2mm]},green!55!black,thick] (axis cs:1.8965,87.699) -- (axis cs:1.6555,88.494);
+\draw[-{Latex[length=2mm]},green!55!black,thick] (axis cs:0.7058,90.711) -- (axis cs:0.6834,90.914);
+\draw[-{Latex[length=2mm]},green!55!black,thick] (axis cs:0.5354,89.509) -- (axis cs:0.4827,89.628);
+\draw[-{Latex[length=2mm]},green!55!black,thick] (axis cs:0.7058,90.711) -- (axis cs:0.5612,90.795);
+\draw[-{Latex[length=2mm]},orange!90!black,thick] (axis cs:0.5354,89.509) -- (axis cs:1.6221,91.066);
+\draw[-{Latex[length=2mm]},orange!90!black,thick] (axis cs:0.2531,89.983) -- (axis cs:1.5370,90.558);
+\draw[-{Latex[length=2mm]},orange!90!black,thick] (axis cs:0.7058,90.711) -- (axis cs:1.6579,91.100);
+\draw[-{Latex[length=2mm]},red!70!black,thick] (axis cs:0.7058,90.711) -- (axis cs:0.4399,90.592);
+\addplot[only marks, mark=o, mark size=2.5pt, line width=0.8pt, color=black] coordinates {
+    (0.5354,89.509) (1.8965,87.699) (0.2531,89.983) (0.7058,90.711) (1.2212,92.927)
+};
+\addlegendentry{Best fixed (\texttt{always\_X})}
+\addplot[only marks, mark=*, mark size=2.5pt, color=blue!75!black] coordinates {
+    (1.6221,91.066) (1.6555,88.494) (1.5370,90.558) (1.6579,91.100)
+    (0.4827,89.628) (0.6834,90.914) (0.5612,90.795) (0.4399,90.592)
+};
+\addlegendentry{Best learned router}
+\node[font=\scriptsize,anchor=south] at (axis cs:1.6221,91.10) {\texttt{gemini\_flash}+\texttt{llama\_70b}};
+\node[font=\scriptsize,anchor=west] at (axis cs:1.7,88.45) {\texttt{gemini\_flash}+\texttt{granite\_8b}};
+\end{axis}
+\end{tikzpicture}
+\caption{Accuracy vs cost for the 8 non-collapse pairs. Open circles are best-fixed points, filled dots are the corresponding best-learned-router points; each arrow connects a pair. Green arrows are Pareto-improving (router gains accuracy and lowers cost), orange arrows are accuracy-cost trade-offs (router gains accuracy at higher cost), and the single red arrow is the dominated pair (\texttt{qwen\_30b}+\texttt{deepseek\_v3}, lower accuracy at lower cost). The 7 collapse pairs are omitted because their endpoints coincide. Every router endpoint is bounded between the two candidate-model costs by construction. The labeled headline pair gains $+1.56$\,pp by escalating $\sim 80\%$ of decisions to the more expensive model; \texttt{gemini\_flash}+\texttt{granite\_8b} is the only pair with both $>0.5$\,pp gain and lower expected cost than the best fixed.}
+\label{fig:cost-accuracy}
+\end{figure}
+
+The router's expected cost on any pair is, by construction, a convex combination of the two candidate-model costs. The headline trade-off pair \texttt{gemini\_flash}+\texttt{llama\_70b} settles at \$0.162/1k because $\sim 80\%$ of test examples (everything but math) are routed to the more expensive \texttt{gemini\_flash} (\$0.190/1k) and $\sim 20\%$ to \texttt{llama\_70b} (\$0.054/1k). The Pareto-improving \texttt{gemini\_flash}+\texttt{granite\_8b} pair routes the easy commonsense, humanities, and social-science questions to \texttt{granite\_8b} (\$0.016/1k) and reserves \texttt{gemini\_flash} for math and science, landing at \$0.166/1k below always-\texttt{gemini\_flash} while gaining $+0.80$\,pp.
+
+\subsection{Architecture sweep: bias and variance across router families}
+\label{sec:arch}
+Comparing router families on \texttt{gemini\_flash}+\texttt{llama\_70b} using train and test accuracy from the same 10 stratified splits gives a clean bias--variance read-out (Table~\ref{tab:bv}). \texttt{random\_forest} and \texttt{extra\_trees} have the highest test accuracy ($\approx 0.912$); the bagging variance reduction $\mathrm{Var}(\bar f) = \rho\sigma^2 + (1-\rho)\sigma^2/B$ is doing visible work. \texttt{mlp} and \texttt{knn} train to the highest training accuracy but have the largest train--test gaps (4.8\,pp and 5.9\,pp), consistent with overfitting on $n\approx 590$ examples. The strongly-regularized linear and shallow-tree routers (\texttt{logistic}, \texttt{decision\_tree}, \texttt{linear\_svm}) have the smallest gaps but lower test accuracy, consistent with underfitting non-linear task-conditional structure.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+Router family            & Train acc & Test acc & Train$-$Test gap \\
+\midrule
+\texttt{random\_forest\_router}  & 0.918 & \textbf{0.912} & 0.6 pp          \\
+\texttt{extra\_trees\_router}    & 0.931 & \textbf{0.912} & 1.9 pp          \\
+\texttt{decision\_tree\_router}  & 0.910 & 0.906 & 0.5 pp          \\
+\texttt{logistic\_router}        & 0.909 & 0.905 & 0.4 pp          \\
+\texttt{linear\_svm\_router}     & 0.924 & 0.900 & 2.4 pp          \\
+\texttt{mlp\_router}             & 0.939 & 0.890 & 4.8 pp          \\
+\texttt{knn\_router}             & 0.939 & 0.880 & 5.9 pp          \\
+\bottomrule
+\end{tabular}
+\caption{Bias-variance diagnostic on \texttt{gemini\_flash}+\texttt{llama\_70b}, mean over 10 stratified seeds. Bagged tree ensembles attain the highest test accuracy.}
+\label{tab:bv}
+\end{table}
+
+\subsection{Feature importance and per-task decisions}
+\label{sec:fi}
+Averaging Gini feature importances across 30 fits of the \texttt{extra\_trees} router on \texttt{gemini\_flash}+\texttt{llama\_70b}, the top contributors are \texttt{task\_type=math} (15.1\%), \texttt{task\_type=social\_science} (10.5\%), \texttt{num\_numbers} (6.1\%), \texttt{cheap\_answer\_words} (4.7\%), \texttt{cheap\_answer\_chars} (3.7\%), \texttt{prompt\_words} (3.6\%), \texttt{task\_type=science} (3.4\%), and \texttt{has\_quantity\_word} (3.1\%). Four of the top eight features are task-type indicators, accounting for $\sim 30\%$ of the total decision weight; the policy the router has learned is therefore primarily task-type-conditional, with prompt length and math-related signals acting as secondary features.
+
+The per-seed decision distribution makes this concrete (Table~\ref{tab:routing}). On math, the router selects \texttt{llama\_70b} on 95\% of examples; on every other task family, it selects \texttt{gemini\_flash} on at least 93\%. The aggregate gain decomposes onto a single decision: routed accuracy on math is 92.7\% versus 75.3\% for \texttt{always\_gemini\_flash}, a $+17.4$\,pp swing on the 20\% of the test set that is math, which accounts for the majority of the $+1.56$\,pp headline gain.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+Task type & \% routed to \texttt{gemini\_flash} & \% routed to \texttt{llama\_70b} & Routed accuracy \\
+\midrule
+math            & 4.7\%   & \textbf{95.3\%} & 0.927  \\
+commonsense     & \textbf{92.7\%} & 7.3\%    & 0.844  \\
+humanities      & \textbf{97.1\%} & 2.9\%    & 0.869  \\
+science         & \textbf{99.7\%} & 0.3\%    & 0.953  \\
+social\_science & \textbf{100.0\%} & 0.0\%   & 0.957  \\
+\bottomrule
+\end{tabular}
+\caption{Router decisions per task type on \texttt{gemini\_flash}~+~\texttt{llama\_70b}, mean across 30 seeds. Near-categorical task-type-conditional routing.}
+\label{tab:routing}
+\end{table}
+
+\subsection{Decidable lift}
+\label{sec:lift}
+Aggregate accuracy can both understate and overstate routing skill. Only $12.1\%$ of test examples on \texttt{gemini\_flash}+\texttt{llama\_70b} are decidable (the candidates disagree); on the rest the router can do no better than the consensus. Restricted to that decidable subset, the \texttt{extra\_trees} router achieves $69.8\%$ accuracy versus $51.9\%$ for the best fixed model, a $+11.64$\,pp lift, and disagrees with \texttt{always\_llama\_70b} on $71\%$ of decidable cases while being correct on $90.7\%$ of those disagreements. The reverse failure mode is also visible: \texttt{llama\_70b}+\texttt{deepseek\_v3} has aggregate gain $+0.03$\,pp but decidable lift $-3.26$\,pp---the router rarely disagrees with the best fixed model, and when it does it is worse. Lift surfaces this gap; aggregate accuracy does not.
+
+\subsection{Predictability vs.\ volume of disagreement}
+\label{sec:weak}
+The largest oracle gap in the full 10-model dataset is $13.2$\,pp on \texttt{mistral\_nemo}+\texttt{minimax\_m3}, with $33\%$ of examples in the disagreement subset, yet the learnable gain on that pair is only $+0.27$\,pp aggregate and $+0.97$\,pp decidable. Within the disagreement subset, \texttt{task\_type} alone predicts the correct candidate $63.7\%$ of the time, against $50\%$ random and $100\%$ oracle. On \texttt{gemini\_flash}+\texttt{llama\_70b} the per-task win share of \texttt{gemini\_flash} ranges from $6.2\%$ on math to $85.7\%$ on social science---a level of task-conditional structure tree ensembles can exploit. Predictability of disagreement, not its volume, governs learnable gain.
+
+\subsection{Held-out-task generalization}
+Training on four task families and evaluating on the fifth, the random-split gain of $+0.17$\,pp on \texttt{llama\_70b}+\texttt{granite\_8b} collapses to $\approx 0$ on humanities, math, science, and social science, and to $-0.90$\,pp on commonsense. The learned policy is task-conditional (Section~\ref{sec:fi}), and a task-conditional policy cannot transfer to a task family absent from training.
+
+\subsection{Robustness to removing \texttt{gemini\_flash}}
+\label{sec:robustness-no-gemini}
+All four trade-off pairs and one of the four Pareto-improving pairs contain \texttt{gemini\_flash}, raising the question of whether the regime structure depends on a single candidate. Re-running the sweep with \texttt{gemini\_flash} removed from the viable set leaves 5 models and 10 pairs. The largest accuracy gain becomes $+0.17$\,pp on \texttt{llama\_70b}+\texttt{granite\_8b} at \$0.054$\to$0.049/1k. All three remaining Pareto-improving pairs survive (\texttt{llama+granite}, \texttt{deepseek+granite}, \texttt{llama+deepseek}); the trade-off regime loses all four pairs; the dominated pair is unaffected. The qualitative findings---existence of Pareto-improving pairs, bagged-tree-ensemble winners, the decidable-lift / aggregate-accuracy divergence, and the predictability--volume distinction---do not depend on \texttt{gemini\_flash}. The magnitude of the headline numbers does, scaling with the task-asymmetry of the most asymmetric candidate.
+
+\section{Conclusion and future work}
+The headline finding is a regime classification. Of 15 viable pairs on a 787-example mixed-task benchmark, 4 are Pareto-improving (more accurate \emph{and} cheaper than the best fixed model), 4 trade accuracy for cost, 6 collapse to a constant, and 1 is dominated. Every pair in the first two regimes contains at least one task-asymmetric candidate, and the regime structure persists when the most task-asymmetric candidate is removed. The largest absolute accuracy gain ($+1.51$\,pp on \texttt{gemini\_flash}+\texttt{llama\_70b}, $+11.64$\,pp on its disagreement subset) is a trade-off win, not Pareto-improving. Across families, bagged tree ensembles win on every positive pair with the smallest train--test gaps; linear routers underfit the task-conditional structure; $k$NN and MLP overfit at $n\approx 590$. The decidable-lift metric surfaces cases in which aggregate accuracy and underlying skill diverge by $30$\,pp on the same data, and feature-importance analysis identifies the learned policy as a task-type lookup table, consistent with the failure of held-out-task generalization.
+
+Future work: gradient-boosted trees with regularized early stopping; calibrated expected-utility routing using softmax probabilities in place of the multiclass argmax; bootstrap confidence intervals and paired sign tests on per-pair gains; and richer prompt representations such as frozen sentence-transformer embeddings \citep{shnitzer2023llm} to test whether the small-data ceiling can be raised.
+
+\section*{Reproducibility}
+All experiments are reproducible from \texttt{data/openrouter\_mixed\_10models\_787\_router\_dataset.csv} via five scripts in \texttt{scripts/}: \texttt{run\_class\_experiments.py} (main pair sweep), \texttt{run\_weak\_pair\_experiments.py} (weak-pair experiments), \texttt{analyze\_decidable\_routing.py} (decidable lift), \texttt{run\_architecture\_analysis.py} (bias--variance, feature importance, per-task analysis), and \texttt{run\_hyperparam\_sweep.py} (per-family hyperparameter selection). All output CSVs are committed to \texttt{results/}.
+
+\section*{Contributions}
+Single-author project: dataset construction, prompt templates, grading parsers, OpenRouter pipeline, router implementations, and evaluation metrics.
+
+\begin{thebibliography}{9}
+
+\bibitem[Chen et~al.(2023)]{frugalgpt}
+Lingjiao Chen, Matei Zaharia, and James Zou. 2023.
+\newblock FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance.
+\newblock arXiv preprint arXiv:2305.05176.
+
+\bibitem[Hu et~al.(2024)]{routerbench}
+Qian Hu et~al. 2024.
+\newblock RouterBench: A Benchmark for Multi-LLM Routing System.
+\newblock arXiv preprint arXiv:2403.12031.
+
+\bibitem[Ong et~al.(2024)]{routellm}
+Isaac Ong et~al. 2024.
+\newblock RouteLLM: Learning to Route LLMs with Preference Data.
+\newblock arXiv preprint arXiv:2406.18665.
+
+\bibitem[Wang et~al.(2018)]{cascade_prior}
+Xin Wang, Fisher Yu, Zi-Yi Dou, Trevor Darrell, and Joseph~E. Gonzalez. 2018.
+\newblock Adaptive Inference and Adaptive Computation: A Survey of Cascades and Early Exit.
+\newblock ICLR Workshop.
+
+\bibitem[\v{S}akota et~al.(2024)]{hybridllm}
+Marija \v{S}akota, Maxime Peyrard, and Robert West. 2024.
+\newblock Hybrid LLM: Cost-Efficient and Quality-Aware Query Routing.
+\newblock arXiv preprint arXiv:2404.14618.
+
+\bibitem[Hari and Thomson(2023)]{forcrouter}
+Surya Narayanan Hari and Matt Thomson. 2023.
+\newblock Tryage: Real-time, Intelligent Routing of User Prompts to Large Language Models.
+\newblock arXiv preprint arXiv:2308.11601.
+
+\bibitem[Shnitzer et~al.(2023)]{shnitzer2023llm}
+Tal Shnitzer, Anthony Ou, M\'irian Silva, Kate Soule, Yuekai Sun, Justin Solomon, Neil Thompson, and Mikhail Yurochkin. 2023.
+\newblock Large Language Model Routing with Benchmark Datasets.
+\newblock arXiv preprint arXiv:2309.15789. Conference on Language Modeling (COLM) 2024.
+
+\end{thebibliography}
+
+\end{document}
